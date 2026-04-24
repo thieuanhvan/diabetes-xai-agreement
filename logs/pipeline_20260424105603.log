@@ -1,0 +1,147 @@
+2026-04-24 10:56:03,340 | INFO | Logging initialized. Log file: C:\Projects\uit\diabetes-xai-agreement\logs\pipeline_20260424105603.log
+2026-04-24 10:56:03,341 | INFO | ==============================================================================
+2026-04-24 10:56:03,341 | INFO | [BOOTSTRAP] DATASET=cdc_brfss_2015_rebuilt MODEL=random_forest
+2026-04-24 10:56:03,341 | INFO | ==============================================================================
+2026-04-24 10:56:03,341 | INFO | ============================================================
+2026-04-24 10:56:03,341 | INFO | STEP 01 - LOAD AND INSPECT DATASET
+2026-04-24 10:56:03,342 | INFO | ============================================================
+2026-04-24 10:56:04,315 | INFO | Dataset rows after sampling: 440658
+2026-04-24 10:56:04,315 | INFO | Dataset config: {'path': WindowsPath('C:/Projects/uit/diabetes-xai-agreement/data/processed/cdc_brfss_2015_rebuilt.csv'), 'target': 'Diabetes_binary', 'slug': 'cdc_brfss_2015_rebuilt', 'task': 'classification', 'include_columns': None}
+2026-04-24 10:56:04,315 | INFO | Active dataset : cdc_brfss_2015_rebuilt
+2026-04-24 10:56:04,315 | INFO | Dataset path   : C:\Projects\uit\diabetes-xai-agreement\data\processed\cdc_brfss_2015_rebuilt.csv
+2026-04-24 10:56:04,315 | INFO | Target column  : Diabetes_binary
+2026-04-24 10:56:04,315 | INFO | Rows    : 440658
+2026-04-24 10:56:04,315 | INFO | Columns : 22
+2026-04-24 10:56:04,315 | INFO | Columns: ['Diabetes_binary', 'HighBP', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'Stroke', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'HvyAlcoholConsump', 'AnyHealthcare', 'NoDocbcCost', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Sex', 'Age', 'Education', 'Income']
+2026-04-24 10:56:04,316 | INFO | 
+   Diabetes_binary  HighBP  HighChol  CholCheck  ...  Sex  Age  Education  Income
+0                0       1         1          1  ...    2   10          4       3
+1                0       1         0          1  ...    2   10          6       1
+2                0       1         1          1  ...    2   11          4       6
+3                0       1         1          1  ...    2   10          4       6
+4                0       1         0          1  ...    2   10          5       6
+
+[5 rows x 22 columns]
+2026-04-24 10:56:04,339 | INFO | Target distribution:
+2026-04-24 10:56:04,342 | INFO | Diabetes_binary
+0    375712
+1     64946
+Name: count, dtype: int64
+2026-04-24 10:56:04,342 | INFO | Target ratio:
+2026-04-24 10:56:04,345 | INFO | Diabetes_binary
+0    0.852616
+1    0.147384
+Name: proportion, dtype: float64
+2026-04-24 10:56:04,362 | INFO | Missing values:
+2026-04-24 10:56:04,362 | INFO | No missing values
+2026-04-24 10:56:04,362 | INFO | STEP 01 COMPLETED
+2026-04-24 10:56:06,826 | INFO | ============================================================
+2026-04-24 10:56:06,826 | INFO | STEP 02 - DATA PREPROCESSING
+2026-04-24 10:56:06,826 | INFO | ============================================================
+2026-04-24 10:56:06,827 | INFO | Dataset shape: (440658, 22)
+2026-04-24 10:56:06,827 | INFO | Number of selected features: 21
+2026-04-24 10:56:06,827 | INFO | Categorical features (0): []
+2026-04-24 10:56:06,827 | INFO | Numerical features (21): ['HighBP', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'Stroke', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'HvyAlcoholConsump', 'AnyHealthcare', 'NoDocbcCost', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Sex', 'Age', 'Education', 'Income']
+2026-04-24 10:56:07,016 | INFO | Train size: 352526
+2026-04-24 10:56:07,016 | INFO | Test size : 88132
+2026-04-24 10:56:07,016 | INFO | STEP 02 COMPLETED
+2026-04-24 10:56:07,016 | INFO | ============================================================
+2026-04-24 10:56:07,016 | INFO | STEP 03 - BASELINE MODELS
+2026-04-24 10:56:07,016 | INFO | ============================================================
+2026-04-24 10:56:07,016 | INFO | Training baseline model: logistic_regression
+2026-04-24 10:56:07,427 | INFO | Training time for logistic_regression: 0.41s
+2026-04-24 10:56:07,428 | INFO | Evaluating model: logistic_regression
+2026-04-24 10:56:07,616 | INFO | Saved confusion matrix: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\confusion_matrix\logistic_regression_confusion_matrix.png
+2026-04-24 10:56:07,617 | INFO | Metrics for logistic_regression: {'model': 'logistic_regression', 'accuracy': 0.7244133799301048, 'f1': 0.4472210842550867, 'roc_auc': 0.8136813573305594, 'sensitivity': np.float64(0.7564092693817845), 'specificity': np.float64(0.7188826637211716), 'training_time_s': 0.41}
+2026-04-24 10:56:07,617 | INFO | Training baseline model: decision_tree
+2026-04-24 10:56:09,676 | INFO | Training time for decision_tree: 2.06s
+2026-04-24 10:56:09,676 | INFO | Evaluating model: decision_tree
+2026-04-24 10:56:09,905 | INFO | Saved confusion matrix: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\confusion_matrix\decision_tree_confusion_matrix.png
+2026-04-24 10:56:09,905 | INFO | Metrics for decision_tree: {'model': 'decision_tree', 'accuracy': 0.7848454590841011, 'f1': 0.2943059173799777, 'roc_auc': 0.5856122672653786, 'sensitivity': np.float64(0.30441142505196706), 'specificity': np.float64(0.8678918861370986), 'training_time_s': 2.06}
+2026-04-24 10:56:09,905 | INFO | Training baseline model: random_forest
+2026-04-24 10:57:24,250 | INFO | Training time for random_forest: 74.35s
+2026-04-24 10:57:24,250 | INFO | Evaluating model: random_forest
+2026-04-24 10:57:34,933 | INFO | Saved confusion matrix: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\confusion_matrix\random_forest_confusion_matrix.png
+2026-04-24 10:57:34,933 | INFO | Metrics for random_forest: {'model': 'random_forest', 'accuracy': 0.8390142059637816, 'f1': 0.25779451768152334, 'roc_auc': 0.7774183100988303, 'sensitivity': np.float64(0.18969897605666333), 'specificity': np.float64(0.9512529443860372), 'training_time_s': 74.35}
+2026-04-24 10:57:34,933 | INFO | Training baseline model: knn
+2026-04-24 10:57:35,120 | INFO | Training time for knn: 0.19s
+2026-04-24 10:57:35,120 | INFO | Evaluating model: knn
+2026-04-24 10:59:30,991 | INFO | Saved confusion matrix: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\confusion_matrix\knn_confusion_matrix.png
+2026-04-24 10:59:30,991 | INFO | Metrics for knn: {'model': 'knn', 'accuracy': 0.8402736803885081, 'f1': 0.2847416289822672, 'roc_auc': 0.7193738108252421, 'sensitivity': np.float64(0.21572099468781278), 'specificity': np.float64(0.9482320375816776), 'training_time_s': 0.19}
+2026-04-24 10:59:30,992 | INFO | STEP 03 COMPLETED
+2026-04-24 10:59:30,992 | INFO | ============================================================
+2026-04-24 10:59:30,992 | INFO | STEP 04 - PROPOSED MODELS
+2026-04-24 10:59:30,992 | INFO | ============================================================
+2026-04-24 10:59:30,992 | INFO | Training proposed model: ann
+2026-04-24 11:01:13,524 | INFO | Training time for ann: 102.53s
+2026-04-24 11:01:13,525 | INFO | Evaluating model: ann
+2026-04-24 11:01:13,883 | INFO | Saved confusion matrix: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\confusion_matrix\ann_confusion_matrix.png
+2026-04-24 11:01:13,883 | INFO | Training proposed model: xgboost
+2026-04-24 11:01:20,439 | INFO | Training time for xgboost: 6.56s
+2026-04-24 11:01:20,439 | INFO | Evaluating model: xgboost
+2026-04-24 11:01:21,117 | INFO | Saved confusion matrix: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\confusion_matrix\xgboost_confusion_matrix.png
+2026-04-24 11:01:21,118 | INFO | Selecting best model...
+2026-04-24 11:01:21,118 | INFO | Best model selected: xgboost
+2026-04-24 11:01:21,118 | INFO | ROC-AUC: 0.8244
+2026-04-24 11:01:21,118 | INFO | STEP 04 COMPLETED
+2026-04-24 11:01:21,118 | INFO | Using ACTIVE_MODEL for XAI: random_forest
+2026-04-24 11:01:21,118 | INFO | XAI model: random_forest
+2026-04-24 11:01:21,118 | INFO | ============================================================
+2026-04-24 11:01:21,118 | INFO | STEP 05 - EXPLAINABILITY (SHAP + PERMUTATION FI)
+2026-04-24 11:01:21,118 | INFO | ============================================================
+2026-04-24 11:01:21,119 | INFO | Running SHAP analysis for: random_forest
+2026-04-24 11:01:21,119 | INFO | Running SHAP analysis for model: random_forest
+2026-04-24 11:01:23,628 | INFO | TreeExplainer: OK
+2026-04-24 12:14:10,949 | INFO | SHAP computation time: 4369.8s
+2026-04-24 12:14:11,597 | INFO | Saved: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\shap\random_forest_shap_summary.png
+2026-04-24 12:14:11,871 | INFO | Saved: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\shap\random_forest_shap_bar.png
+2026-04-24 12:14:11,874 | INFO | Saved: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\shap\random_forest_shap_feature_importance.csv
+2026-04-24 12:14:11,874 | INFO | SHAP analysis completed
+2026-04-24 12:14:11,974 | INFO | SHAP analysis completed in 4369.8s
+2026-04-24 12:14:11,975 | INFO | Running Permutation Importance for: random_forest (scoring=roc_auc, n_repeats=10)
+2026-04-24 12:17:47,963 | WARNING | Permutation FI failed: Could not pickle the task to send it to the workers.
+2026-04-24 12:17:47,966 | INFO | STEP 05 COMPLETED
+2026-04-24 12:17:47,966 | INFO | ============================================================
+2026-04-24 12:17:47,966 | INFO | STEP 06 - RESULT VISUALIZATION
+2026-04-24 12:17:47,967 | INFO | ============================================================
+2026-04-24 12:17:48,318 | INFO | STEP 06 COMPLETED
+2026-04-24 12:17:48,318 | INFO | ============================================================
+2026-04-24 12:17:48,319 | INFO | STEP 07 - ERROR ANALYSIS + FAIRNESS (EQUALIZED ODDS)
+2026-04-24 12:17:48,319 | INFO | ============================================================
+2026-04-24 12:17:59,661 | INFO | Saved error analysis outputs to C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis
+2026-04-24 12:17:59,667 | INFO | Running Equalized Odds fairness analysis for: random_forest
+2026-04-24 12:18:10,058 | INFO |   Saved: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis\random_forest_fairness_age_detail.csv
+2026-04-24 12:18:10,059 | INFO |   Age: dTPR=0.236  dFPR=0.090  EO=0.236  [Nghiem trong]
+2026-04-24 12:18:10,089 | INFO |   Saved: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis\random_forest_fairness_sex_detail.csv
+2026-04-24 12:18:10,089 | INFO |   Sex: dTPR=0.006  dFPR=0.003  EO=0.006  [Tot]
+2026-04-24 12:18:10,127 | INFO |   Saved: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis\random_forest_fairness_income_detail.csv
+2026-04-24 12:18:10,127 | INFO |   Income: dTPR=0.125  dFPR=0.045  EO=0.125  [Đang lo ngai]
+2026-04-24 12:18:10,131 | INFO |   Saved summary: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis\random_forest_fairness_equalized_odds_summary.csv
+2026-04-24 12:18:10,131 | INFO | Equalized Odds fairness analysis completed
+2026-04-24 12:18:10,134 | INFO | Equalized Odds Summary:
+2026-04-24 12:18:10,135 | INFO |   Age     : dTPR=0.236  dFPR=0.090  EO=0.236  [Nghiem trong]
+2026-04-24 12:18:10,136 | INFO |   Sex     : dTPR=0.006  dFPR=0.003  EO=0.006  [Tot]
+2026-04-24 12:18:10,136 | INFO |   Income  : dTPR=0.125  dFPR=0.045  EO=0.125  [Đang lo ngai]
+2026-04-24 12:18:10,136 | INFO | Saved error analysis outputs to C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis
+2026-04-24 12:18:10,136 | INFO | STEP 07 COMPLETED
+2026-04-24 12:18:10,137 | INFO | ============================================================
+2026-04-24 12:18:10,137 | INFO | STEP 08 - STATISTICAL TEST
+2026-04-24 12:18:10,137 | INFO | ============================================================
+2026-04-24 12:18:10,155 | INFO | Saved statistical test results to C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\analysis\statistical_test_results.csv
+2026-04-24 12:18:10,155 | INFO | STEP 08 COMPLETED
+2026-04-24 12:18:10,155 | INFO | ============================================================
+2026-04-24 12:18:10,155 | INFO | STEP 09 - GENERATE RESULT TABLES
+2026-04-24 12:18:10,155 | INFO | ============================================================
+2026-04-24 12:18:10,158 | INFO | Saved comparison table to C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\tables\model_comparison_table.csv
+2026-04-24 12:18:10,159 | INFO | STEP 09 COMPLETED
+2026-04-24 12:18:10,159 | INFO | ============================================================
+2026-04-24 12:18:10,159 | INFO | STEP 10 - REPRODUCIBILITY
+2026-04-24 12:18:10,159 | INFO | ============================================================
+2026-04-24 12:18:10,216 | INFO | Saved experiment summary to C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\reproducibility\experiment_summary.json
+2026-04-24 12:18:10,288 | INFO | Saved environment info to C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\reproducibility\environment.json
+2026-04-24 12:18:10,289 | INFO | STEP 10 COMPLETED
+2026-04-24 12:18:10,289 | INFO | ============================================================
+2026-04-24 12:18:10,290 | INFO | STEP 11 - AUTO REPORT GENERATION
+2026-04-24 12:18:10,290 | INFO | ============================================================
+2026-04-24 12:18:10,295 | INFO | Report generated at: C:\Projects\uit\diabetes-xai-agreement\outputs\cdc_brfss_2015_rebuilt\auto_report.md
+2026-04-24 12:18:10,295 | INFO | STEP 11 COMPLETED
