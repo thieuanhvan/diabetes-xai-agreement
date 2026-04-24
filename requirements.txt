@@ -1,0 +1,25 @@
+# ml-pipeline-healthcare
+# Python 3.13 (Anaconda)
+# Thiều Anh Vân — github.com/thieuanhvan/ml-pipeline-healthcare
+
+# Core ML
+scikit-learn>=1.3.0
+xgboost>=1.7.0
+
+# XAI
+shap>=0.42.0
+
+# Data
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Stats
+scipy>=1.11.0
+statsmodels>=0.14.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Utils (stdlib — không cần cài)
+# json, logging, os, sys, time, pathlib, platform, datetime

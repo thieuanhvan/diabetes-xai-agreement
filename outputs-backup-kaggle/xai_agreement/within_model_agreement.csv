@@ -1,0 +1,7 @@
+year,model,method_A,method_B,note,J@70,|Sa|@70,|Sb|@70,J@80,|Sa|@80,|Sb|@80,J@90,|Sa|@90,|Sb|@90,RBO,cosine
+2015,xgboost,SHAP,native_FI,,0.6,5,3,0.6667,6,4,0.4167,10,7,0.7379,0.9504
+2015,random_forest,SHAP,native_FI,,0.5714,7,4,0.5,10,5,0.5385,13,7,0.7397,0.9099
+2015,logistic_regression,SHAP,native_FI,,0.6,5,3,0.5714,7,4,0.5556,9,5,0.8031,0.9341
+2021,xgboost,SHAP,native_FI,,0.8,5,4,0.7143,7,5,0.5,11,7,0.7598,0.9339
+2021,random_forest,SHAP,native_FI,,0.5,8,4,0.5,10,5,0.4,13,8,0.7066,0.903
+2021,logistic_regression,SHAP,native_FI,,0.8,5,4,0.7143,7,5,0.6,10,6,0.7755,0.9409

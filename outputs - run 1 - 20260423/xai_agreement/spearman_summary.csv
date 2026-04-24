@@ -1,0 +1,10 @@
+model,dataset_1,dataset_2,spearman_shap,top5_overlap_shap,top10_overlap_shap,spearman_fi,top5_overlap_fi,top10_overlap_fi
+xgboost,cdc_brfss_2015_rebuilt,cdc_brfss_2021_rebuilt,0.8103896103896104,0.8,0.7,0.53183885640026,0.6,0.6
+xgboost,cdc_brfss_2015_rebuilt,cdc_brfss_2023_rebuilt,0.7576587425901194,0.8,0.8,0.6490741497272924,0.6,0.8
+xgboost,cdc_brfss_2021_rebuilt,cdc_brfss_2023_rebuilt,0.7524469885568253,0.8,0.7,0.685568278627622,1.0,0.7
+random_forest,cdc_brfss_2015_rebuilt,cdc_brfss_2021_rebuilt,0.9259740259740258,0.8,0.8,0.4454545454545455,0.6,0.5
+random_forest,cdc_brfss_2015_rebuilt,cdc_brfss_2023_rebuilt,0.7867366859980778,1.0,0.8,0.15474655476656407,0.4,0.5
+random_forest,cdc_brfss_2021_rebuilt,cdc_brfss_2023_rebuilt,0.7854362947815521,0.8,0.7,0.5175557041772479,0.6,0.6
+logistic_regression,cdc_brfss_2015_rebuilt,cdc_brfss_2021_rebuilt,0.487012987012987,0.8,0.7,0.2701298701298701,0.8,0.6
+logistic_regression,cdc_brfss_2015_rebuilt,cdc_brfss_2023_rebuilt,0.6905077359751725,0.8,0.8,0.42392753658739396,0.6,0.5
+logistic_regression,cdc_brfss_2021_rebuilt,cdc_brfss_2023_rebuilt,0.6710018677272862,1.0,0.8,0.5591682231060718,0.8,0.6

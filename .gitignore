@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+venv/
+env/
+.env
+
+# Data
+data/
+*.xpt
+*.sas7bdat
+
+# Logs
+#logs/
+#*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

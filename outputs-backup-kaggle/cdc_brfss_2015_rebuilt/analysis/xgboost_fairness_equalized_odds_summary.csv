@@ -1,0 +1,4 @@
+attribute,delta_tpr,delta_fpr,delta_ppr,eo_violation,severity,worst_tpr_group,best_tpr_group,worst_fpr_group
+Age,0.2362,0.0538,0.099,0.2362,Nghiêm trọng,18-24,70-74,70-74
+Sex,0.0014,0.0018,0.0031,0.0018,Tốt,2,Male,Male
+Income,0.2018,0.0627,0.1121,0.2018,Nghiêm trọng,$35-50K,$10-15K,$10-15K
