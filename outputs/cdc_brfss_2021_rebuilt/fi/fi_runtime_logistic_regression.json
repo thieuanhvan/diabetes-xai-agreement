@@ -1,0 +1,12 @@
+{
+    "dataset": "cdc_brfss_2021_rebuilt",
+    "model": "logistic_regression",
+    "fi_time_s": 0.8301,
+    "fi_status": "success",
+    "fi_error": null,
+    "fi_n_repeats": 10,
+    "fi_n_jobs": 1,
+    "fi_scoring": "roc_auc",
+    "random_state": 42,
+    "created_at": "2026-04-25 14:26:09"
+}

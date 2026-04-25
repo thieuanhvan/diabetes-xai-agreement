@@ -1,0 +1,10 @@
+year,dataset,model,shap_time_s,fi_time_s,total_xai_time_s,shap_status,fi_status,shap_sample_size,fi_n_repeats,fi_n_jobs,fi_scoring,random_state,runtime_source
+2015,cdc_brfss_2015_rebuilt,logistic_regression,0.0,0.8282,0.8282,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2015_rebuilt\reproducibility\xai_runtime_logistic_regression.json
+2015,cdc_brfss_2015_rebuilt,random_forest,38.39,15.1335,53.5235,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2015_rebuilt\reproducibility\xai_runtime_random_forest.json
+2015,cdc_brfss_2015_rebuilt,xgboost,0.2,2.4292,2.6292,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2015_rebuilt\reproducibility\xai_runtime_xgboost.json
+2021,cdc_brfss_2021_rebuilt,logistic_regression,0.0,0.8301,0.8301,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2021_rebuilt\reproducibility\xai_runtime_logistic_regression.json
+2021,cdc_brfss_2021_rebuilt,random_forest,41.75,14.4227,56.1727,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2021_rebuilt\reproducibility\xai_runtime_random_forest.json
+2021,cdc_brfss_2021_rebuilt,xgboost,0.21,2.1579,2.3679,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2021_rebuilt\reproducibility\xai_runtime_xgboost.json
+2023,cdc_brfss_2023_rebuilt,logistic_regression,0.0,0.8071,0.8071,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2023_rebuilt\reproducibility\xai_runtime_logistic_regression.json
+2023,cdc_brfss_2023_rebuilt,random_forest,38.57,14.5088,53.0788,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2023_rebuilt\reproducibility\xai_runtime_random_forest.json
+2023,cdc_brfss_2023_rebuilt,xgboost,0.18,2.1378,2.3178,success,success,200,10,1,roc_auc,42,outputs\cdc_brfss_2023_rebuilt\reproducibility\xai_runtime_xgboost.json

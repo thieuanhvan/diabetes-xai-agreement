@@ -1,0 +1,77 @@
+{
+    "dataset": {
+        "rows": 10000,
+        "features": 21
+    },
+    "baseline_models": [
+        {
+            "model": "logistic_regression",
+            "accuracy": 0.713,
+            "f1": 0.4305555555555556,
+            "roc_auc": 0.7937454193772621,
+            "sensitivity": 0.6910828025477707,
+            "specificity": 0.7170818505338078,
+            "training_time_s": 0.02
+        },
+        {
+            "model": "decision_tree",
+            "accuracy": 0.7695,
+            "f1": 0.26003210272873195,
+            "roc_auc": 0.5615182356007888,
+            "sensitivity": 0.25796178343949044,
+            "specificity": 0.8647686832740213,
+            "training_time_s": 0.03
+        },
+        {
+            "model": "random_forest",
+            "accuracy": 0.8345,
+            "f1": 0.22482435597189696,
+            "roc_auc": 0.7624866831380194,
+            "sensitivity": 0.15286624203821655,
+            "specificity": 0.961447212336892,
+            "training_time_s": 1.08
+        },
+        {
+            "model": "knn",
+            "accuracy": 0.826,
+            "f1": 0.26582278481012656,
+            "roc_auc": 0.7032615922811312,
+            "sensitivity": 0.20063694267515925,
+            "specificity": 0.9424673784104389,
+            "training_time_s": 0.01
+        }
+    ],
+    "proposed_model": {
+        "metrics": [
+            {
+                "model": "ann",
+                "accuracy": 0.8235,
+                "f1": 0.2630480167014614,
+                "roc_auc": 0.737739042394844,
+                "sensitivity": 0.20063694267515925,
+                "specificity": 0.9395017793594306,
+                "training_time_s": 4.14
+            },
+            {
+                "model": "xgboost",
+                "accuracy": 0.84,
+                "f1": 0.27927927927927926,
+                "roc_auc": 0.7841818346669084,
+                "sensitivity": 0.19745222929936307,
+                "specificity": 0.9596678529062871,
+                "training_time_s": 0.28
+            }
+        ],
+        "models": {
+            "ann": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num', StandardScaler(),\n                                                  ['HighBP', 'HighChol',\n                                                   'CholCheck', 'BMI', 'Smoker',\n                                                   'Stroke',\n                                                   'HeartDiseaseorAttack',\n                                                   'PhysActivity', 'Fruits',\n                                                   'Veggies',\n                                                   'HvyAlcoholConsump',\n                                                   'AnyHealthcare',\n                                                   'NoDocbcCost', 'GenHlth',\n                                                   'MentHlth', 'PhysHlth',\n                                                   'DiffWalk', 'Sex', 'Age',\n                                                   'Education', 'Income']),\n                                                 ('cat',\n                                                  OneHotEncoder(handle_unknown='ignore'),\n                                                  [])])),\n                ('model',\n                 MLPClassifier(hidden_layer_sizes=(64, 32), random_state=42))])",
+            "xgboost": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num', StandardScaler(),\n                                                  ['HighBP', 'HighChol',\n                                                   'CholCheck', 'BMI', 'Smoker',\n                                                   'Stroke',\n                                                   'HeartDiseaseorAttack',\n                                                   'PhysActivity', 'Fruits',\n                                                   'Veggies',\n                                                   'HvyAlcoholConsump',\n                                                   'AnyHealthcare',\n                                                   'NoDocbcCost', 'GenHlth',\n                                                   'MentHlth', 'PhysHlth',\n                                                   'DiffWalk', 'Sex', 'Age',\n                                                   'Education', 'Income']),\n                                                 ('cat',\n                                                  OneHotEncoder...\n                               feature_types=None, feature_weights=None,\n                               gamma=None, grow_policy=None,\n                               importance_type=None,\n                               interaction_constraints=None, learning_rate=0.05,\n                               max_bin=None, max_cat_threshold=None,\n                               max_cat_to_onehot=None, max_delta_step=None,\n                               max_depth=6, max_leaves=None,\n                               min_child_weight=None, missing=nan,\n                               monotone_constraints=None, multi_strategy=None,\n                               n_estimators=300, n_jobs=None,\n                               num_parallel_tree=None, ...))])"
+        },
+        "best_model": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num', StandardScaler(),\n                                                  ['HighBP', 'HighChol',\n                                                   'CholCheck', 'BMI', 'Smoker',\n                                                   'Stroke',\n                                                   'HeartDiseaseorAttack',\n                                                   'PhysActivity', 'Fruits',\n                                                   'Veggies',\n                                                   'HvyAlcoholConsump',\n                                                   'AnyHealthcare',\n                                                   'NoDocbcCost', 'GenHlth',\n                                                   'MentHlth', 'PhysHlth',\n                                                   'DiffWalk', 'Sex', 'Age',\n                                                   'Education', 'Income']),\n                                                 ('cat',\n                                                  OneHotEncoder...\n                               feature_types=None, feature_weights=None,\n                               gamma=None, grow_policy=None,\n                               importance_type=None,\n                               interaction_constraints=None, learning_rate=0.05,\n                               max_bin=None, max_cat_threshold=None,\n                               max_cat_to_onehot=None, max_delta_step=None,\n                               max_depth=6, max_leaves=None,\n                               min_child_weight=None, missing=nan,\n                               monotone_constraints=None, multi_strategy=None,\n                               n_estimators=300, n_jobs=None,\n                               num_parallel_tree=None, ...))])",
+        "best_model_name": "xgboost"
+    },
+    "xai_timing": {
+        "shap_time_s": 0.0,
+        "fi_time_s": 0.8071,
+        "note": "shap_time_s = wall-clock seconds for SHAP computation (TreeSHAP or LinearSHAP on sample_size=200). fi_time_s = time to read tree feature_importances_ (near-instant, intrinsic to training)."
+    }
+}

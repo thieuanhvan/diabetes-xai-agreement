@@ -1,0 +1,10 @@
+{
+    "dataset": "cdc_brfss_2023_rebuilt",
+    "model": "random_forest",
+    "shap_time_s": 38.57,
+    "shap_status": "success",
+    "shap_error": null,
+    "shap_sample_size": 200,
+    "random_state": 42,
+    "created_at": "2026-04-25 14:27:33"
+}

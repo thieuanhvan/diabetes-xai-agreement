@@ -1,0 +1,5 @@
+baseline_model,baseline_accuracy,proposed_accuracy,p_value
+logistic_regression,0.705,0.8055,
+decision_tree,0.774,0.8055,
+random_forest,0.8355,0.8055,
+knn,0.8225,0.8055,

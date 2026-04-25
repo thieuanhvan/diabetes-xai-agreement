@@ -1,0 +1,1 @@
+Trong số các biến thể của dữ liệu BRFSS 2015, phiên bản nhị phân với phân bố lớp cân bằng (50/50) được lựa chọn làm dataset chính cho nghiên cứu này nhằm đảm bảo tính ổn định của các chỉ số fairness. Các biến thể còn lại được sử dụng để phân tích bổ trợ và thảo luận về ảnh hưởng của mất cân bằng dữ liệu cũng như khả năng mở rộng nghiên cứu trong tương lai.

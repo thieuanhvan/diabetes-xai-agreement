@@ -1,0 +1,37 @@
+{
+    "dataset_name": "CDC BRFSS 2021 Diabetes (Rebuilt 50/50)",
+    "original_dataset": {
+        "rows": 236378,
+        "features": 22
+    },
+    "original_class_distribution": {
+        "0.0": 197191,
+        "2.0": 33568,
+        "1.0": 5619
+    },
+    "after_remove_prediabetes": {
+        "rows": 230759,
+        "class_distribution": {
+            "0.0": 197191,
+            "2.0": 33568
+        }
+    },
+    "binary_conversion": {
+        "0": "no_diabetes",
+        "1": "diabetes"
+    },
+    "class_imbalance_before_balancing": {
+        "class0_no_diabetes": 197191,
+        "class1_diabetes": 33568,
+        "imbalance_ratio": 5.87
+    },
+    "balancing_method": "random_downsampling",
+    "random_state": 42,
+    "final_dataset": {
+        "rows": 67136,
+        "class_distribution": {
+            "1": 33568,
+            "0": 33568
+        }
+    }
+}
