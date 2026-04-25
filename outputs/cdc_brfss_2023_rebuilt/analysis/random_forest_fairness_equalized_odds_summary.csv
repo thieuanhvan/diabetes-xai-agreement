@@ -1,4 +1,4 @@
 attribute,delta_tpr,delta_fpr,delta_ppr,eo_violation,severity,worst_tpr_group,best_tpr_group,worst_fpr_group
-Age,0.2696,0.1203,0.1575,0.2696,Nghiem trong,25-29,70-74,70-74
-Sex,0.016,0.0093,0.012,0.016,Tot,2,Male,Male
-Income,0.2344,0.0881,0.124,0.2344,Nghiem trong,>$200K,$15-20K,$10-15K
+Age,0.2054,0.0825,0.1114,0.2054,Nghiem trong,18-24,65-69,70-74
+Sex,0.0052,0.013,0.0125,0.013,Tot,2,Male,Male
+Income,0.2434,0.1058,0.1219,0.2434,Nghiem trong,>$200K,$15-20K,$10-15K

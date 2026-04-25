@@ -1,65 +1,65 @@
 {
     "dataset": {
-        "rows": 437708,
+        "rows": 40000,
         "features": 21
     },
     "baseline_models": [
         {
             "model": "logistic_regression",
-            "accuracy": 0.7158963697425236,
-            "f1": 0.4476425255957537,
-            "roc_auc": 0.8031452203181675,
-            "sensitivity": 0.7458555358200119,
-            "specificity": 0.7104282047818452,
-            "training_time_s": 0.41
+            "accuracy": 0.71125,
+            "f1": 0.4409486931268151,
+            "roc_auc": 0.7927827940897507,
+            "sensitivity": 0.7358642972536349,
+            "specificity": 0.7067435669920142,
+            "training_time_s": 0.05
         },
         {
             "model": "decision_tree",
-            "accuracy": 0.7757190834113911,
-            "f1": 0.29748103621010447,
-            "roc_auc": 0.5836050616191235,
-            "sensitivity": 0.3076524570751924,
-            "specificity": 0.861150884776442,
-            "training_time_s": 2.34
+            "accuracy": 0.78275,
+            "f1": 0.2934959349593496,
+            "roc_auc": 0.5824918925918334,
+            "sensitivity": 0.29159935379644586,
+            "specificity": 0.8726708074534162,
+            "training_time_s": 0.16
         },
         {
             "model": "random_forest",
-            "accuracy": 0.8295332526101757,
-            "f1": 0.25641536698390555,
-            "roc_auc": 0.7617088116030281,
-            "sensitivity": 0.1904233274126702,
-            "specificity": 0.9461839794677833,
-            "training_time_s": 76.55
+            "accuracy": 0.83975,
+            "f1": 0.22019464720194648,
+            "roc_auc": 0.7675044520863764,
+            "sensitivity": 0.14620355411954766,
+            "specificity": 0.9667258207630879,
+            "training_time_s": 4.62
         },
         {
             "model": "knn",
-            "accuracy": 0.8290420598112905,
-            "f1": 0.27073384660364486,
-            "roc_auc": 0.7057252724340788,
-            "sensitivity": 0.205595026642984,
-            "specificity": 0.9428339862218019,
-            "training_time_s": 0.2
+            "accuracy": 0.828875,
+            "f1": 0.255573681348559,
+            "roc_auc": 0.6889063731132687,
+            "sensitivity": 0.18982229402261713,
+            "specificity": 0.9458740017746229,
+            "training_time_s": 0.02
         }
     ],
     "proposed_model": {
         "metrics": [
             {
                 "model": "ann",
-                "accuracy": 0.8492266569189646,
-                "f1": 0.24958781056342033,
-                "roc_auc": 0.8055756013415905,
-                "sensitivity": 0.16244819419775014,
-                "specificity": 0.9745778738349318,
-                "training_time_s": 67.72
+                "accuracy": 0.82175,
+                "f1": 0.3050682261208577,
+                "roc_auc": 0.7547940859282535,
+                "sensitivity": 0.252827140549273,
+                "specificity": 0.9259094942324756,
+                "training_time_s": 17.03
             },
             {
                 "model": "xgboost",
-                "accuracy": 0.8508601585524662,
-                "f1": 0.2433059000811406,
-                "roc_auc": 0.8119870704730061,
-                "sensitivity": 0.15534339846062759,
-                "specificity": 0.9778062947453735,
-                "training_time_s": 5.39
+                "accuracy": 0.845125,
+                "f1": 0.2365988909426987,
+                "roc_auc": 0.7922390351097242,
+                "sensitivity": 0.15508885298869143,
+                "specificity": 0.971458148476782,
+                "training_time_s": 0.55
             }
         ],
         "models": {
@@ -70,8 +70,8 @@
         "best_model_name": "xgboost"
     },
     "xai_timing": {
-        "shap_time_s": 2798.23,
-        "fi_time_s": 2421.6962,
+        "shap_time_s": 0.0,
+        "fi_time_s": 1.553,
         "note": "shap_time_s = wall-clock seconds for SHAP computation (TreeSHAP or LinearSHAP on sample_size=200). fi_time_s = time to read tree feature_importances_ (near-instant, intrinsic to training)."
     }
 }
