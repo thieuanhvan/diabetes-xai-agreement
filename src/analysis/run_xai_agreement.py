@@ -988,6 +988,84 @@ def compute_topk_overlap(df_a: pd.DataFrame, df_b: pd.DataFrame, k: int = 5) -> 
     return len(sa & sb) / k
 
 
+def compute_spearman_importance(df_a: pd.DataFrame, df_b: pd.DataFrame) -> float:
+    """
+    Compute Spearman rank correlation between two aligned importance vectors.
+
+    The function ranks importance values after aligning on the union of features.
+    It avoids an extra scipy dependency and is equivalent to Spearman correlation
+    for the feature-importance rankings used in this analysis.
+    """
+    a, b = align_feature_vectors(df_a, df_b)
+    va = a["importance"].to_numpy(dtype=float)
+    vb = b["importance"].to_numpy(dtype=float)
+
+    if len(va) == 0 or len(vb) == 0:
+        return float("nan")
+
+    # If either vector is constant, Spearman correlation is undefined.
+    if np.allclose(va, va[0]) or np.allclose(vb, vb[0]):
+        return float("nan")
+
+    ra = pd.Series(va).rank(method="average").to_numpy(dtype=float)
+    rb = pd.Series(vb).rank(method="average").to_numpy(dtype=float)
+
+    corr = np.corrcoef(ra, rb)[0, 1]
+    return float(corr)
+
+
+def build_spearman_summary() -> pd.DataFrame:
+    """
+    Build manuscript-friendly temporal Spearman summary across years.
+
+    Output columns are compatible with the earlier spearman_summary.csv used
+    in run 1, while being regenerated from the current SHAP and FI CSV files.
+
+    One row is produced for each model and each year pair:
+        3 models × C(3 years, 2) = 9 rows
+
+    Columns:
+        model, dataset_1, dataset_2, year_1, year_2,
+        spearman_shap, top5_overlap_shap, top10_overlap_shap,
+        spearman_fi, top5_overlap_fi, top10_overlap_fi
+    """
+    rows = []
+
+    year_map = {dataset_slug_to_year(ds): ds for ds in TARGET_DATASETS}
+    years_sorted = sorted(year_map.keys())
+
+    for model in TARGET_MODELS:
+        for year_a, year_b in combinations(years_sorted, 2):
+            ds_a = year_map[year_a]
+            ds_b = year_map[year_b]
+
+            row = {
+                "model": model,
+                "dataset_1": ds_a,
+                "dataset_2": ds_b,
+                "year_1": year_a,
+                "year_2": year_b,
+            }
+
+            for method, suffix in [("SHAP", "shap"), ("FI", "fi")]:
+                a = load_importance(ds_a, model, method)
+                b = load_importance(ds_b, model, method)
+
+                if a is None or b is None:
+                    row[f"spearman_{suffix}"] = np.nan
+                    row[f"top5_overlap_{suffix}"] = np.nan
+                    row[f"top10_overlap_{suffix}"] = np.nan
+                    continue
+
+                row[f"spearman_{suffix}"] = round(compute_spearman_importance(a, b), 4)
+                row[f"top5_overlap_{suffix}"] = round(compute_topk_overlap(a, b, k=5), 4)
+                row[f"top10_overlap_{suffix}"] = round(compute_topk_overlap(a, b, k=10), 4)
+
+            rows.append(row)
+
+    return pd.DataFrame(rows)
+
+
 # ============================================================
 # ADDITIONAL SUMMARY FIGURES (added for manuscript)
 # ============================================================
@@ -1283,6 +1361,12 @@ def run_xai_agreement_full() -> None:
         save_csv(temporal_df, "temporal_stability.csv")
         save_csv(temporal_cabc_df, "temporal_stability_cabc.csv")
         logging.info("Saved temporal stability CSVs")
+
+        # 4B) Spearman summary CSV retained for manuscript compatibility
+        logging.info("STEP 05B | Building Spearman temporal summary CSV")
+        spearman_summary_df = build_spearman_summary()
+        save_csv(spearman_summary_df, "spearman_summary.csv")
+        logging.info("Saved spearman_summary.csv")
 
         # 5) Summary plots
         logging.info("STEP 06 | Building summary plots")

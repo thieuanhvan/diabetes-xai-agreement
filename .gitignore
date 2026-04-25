@@ -1,26 +1,38 @@
+# =========================
 # Python
+# =========================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Virtual env
+# Virtual environment
 .venv/
 venv/
-env/
+
+# =========================
+# ENV (security)
+# =========================
 .env
 
-# Data
-data/
-*.xpt
-*.sas7bdat
+# =========================
+# DATA
+# =========================
 
-# Logs
-#logs/
-#*.log
+# ❌ RAW data (KHÔNG commit)
+data/raw/
 
-# IDE
-.vscode/
-.idea/
+# ✅ PROCESSED data (COMMIT)
+# (không ignore)
 
-# OS
+# Optional: ignore large temp files
+*.tmp
+*.log
+
+# =========================
+# OS / IDE
+# =========================
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/

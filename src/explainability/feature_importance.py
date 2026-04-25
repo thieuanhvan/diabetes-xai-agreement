@@ -73,13 +73,26 @@ def run_feature_importance_analysis(model, X, y, output_dir, model_name="model",
     output_dir.mkdir(parents=True, exist_ok=True)
 
     t0 = time.time()
+
+    # Van change n_jobs value because not see fi/random_forest_feature_importance.csv
+    # date 2026-04-25
+    #result = permutation_importance(
+    #    model, X, y,
+    #    n_repeats=n_repeats,
+    #    random_state=random_state,
+    #    scoring=scoring,
+    #    n_jobs=-1,
+    #)
+    # Use n_jobs=1 to avoid multiprocessing pickling issues on Windows/PyCharm,
+    # especially for RandomForest pipelines.
     result = permutation_importance(
         model, X, y,
         n_repeats=n_repeats,
         random_state=random_state,
         scoring=scoring,
-        n_jobs=-1,
+        n_jobs=1,
     )
+
     fi_time_s = round(time.time() - t0, 4)
 
     # sklearn returns importances_mean aligned with X.columns (raw features).

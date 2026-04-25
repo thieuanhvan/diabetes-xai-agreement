@@ -20,7 +20,7 @@
             "roc_auc": 0.5822336702073655,
             "sensitivity": 0.31379653310599603,
             "specificity": 0.850356392971599,
-            "training_time_s": 2.2
+            "training_time_s": 1.97
         },
         {
             "model": "random_forest",
@@ -29,7 +29,7 @@
             "roc_auc": 0.7504695248213045,
             "sensitivity": 0.21881216254617789,
             "specificity": 0.9311111725052492,
-            "training_time_s": 84.92
+            "training_time_s": 71.57
         },
         {
             "model": "knn",
@@ -38,7 +38,7 @@
             "roc_auc": 0.7079070032528845,
             "sensitivity": 0.22215117931230463,
             "specificity": 0.9401729472869931,
-            "training_time_s": 0.2
+            "training_time_s": 0.18
         }
     ],
     "proposed_model": {
@@ -50,7 +50,7 @@
                 "roc_auc": 0.8023140324059301,
                 "sensitivity": 0.15281329923273657,
                 "specificity": 0.9763786053707592,
-                "training_time_s": 92.3
+                "training_time_s": 78.57
             },
             {
                 "model": "xgboost",
@@ -59,7 +59,7 @@
                 "roc_auc": 0.8081831235852067,
                 "sensitivity": 0.15821256038647344,
                 "specificity": 0.9779257376505691,
-                "training_time_s": 9.55
+                "training_time_s": 4.28
             }
         ],
         "models": {
@@ -70,8 +70,8 @@
         "best_model_name": "xgboost"
     },
     "xai_timing": {
-        "shap_time_s": 0.02,
-        "fi_time_s": 12.8739,
+        "shap_time_s": 2865.93,
+        "fi_time_s": 5190.3366,
         "note": "shap_time_s = wall-clock seconds for SHAP computation (TreeSHAP or LinearSHAP on sample_size=200). fi_time_s = time to read tree feature_importances_ (near-instant, intrinsic to training)."
     }
 }

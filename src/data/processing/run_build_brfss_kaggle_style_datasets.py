@@ -127,12 +127,112 @@ def setup_logger(script_name: str = "run_build_brfss_kaggle_style_datasets") -> 
 
 
 # ============================================================
+# RAW DATA VALIDATION
+# ============================================================
+
+def check_raw_files() -> None:
+    """
+    Ensure required CDC BRFSS .XPT files exist before processing.
+
+    Raw .XPT files are intentionally not committed to GitHub because
+    they are large and can be downloaded from the official CDC website.
+    """
+    missing_files = []
+
+    for year, path in INPUT_FILES.items():
+        if not path.exists():
+            missing_files.append((year, path))
+
+    if not missing_files:
+        logging.info("All required raw CDC BRFSS .XPT files were found.")
+        return
+
+    missing_text = "\n".join(
+        f"   - {year}: {path}" for year, path in missing_files
+    )
+
+    raise FileNotFoundError(
+        f"""
+================================================================================
+Missing CDC BRFSS raw data files (.XPT)
+
+The following required files were not found:
+
+{missing_text}
+
+--------------------------------------------------------------------------------
+How to fix:
+
+1. Go to the official CDC BRFSS annual data website:
+   https://cdc.gov/brfss/annual_data/
+
+2. Download the datasets for the required years:
+   - 2015
+   - 2021
+   - 2023
+
+Useful pages:
+   - 2015: https://cdc.gov/brfss/annual_data/annual_2015.html
+   - 2021: https://cdc.gov/brfss/annual_data/annual_2021.html
+   - 2023: https://cdc.gov/brfss/annual_data/annual_2023.html
+
+3. Download the ZIP file for each year.
+
+4. Extract each ZIP file.
+
+5. Copy the extracted .XPT files into:
+
+   {RAW_DIR}
+
+Expected filenames:
+   - LLCP2015.XPT
+   - LLCP2021.XPT
+   - LLCP2023.XPT
+
+--------------------------------------------------------------------------------
+Notes:
+
+- The raw data folder is intentionally not committed to GitHub:
+    data/raw/
+
+- The processed datasets should be committed for reproducibility:
+    data/processed/cdc_brfss_2015_rebuilt.csv
+    data/processed/cdc_brfss_2021_rebuilt.csv
+    data/processed/cdc_brfss_2023_rebuilt.csv
+
+- If processed datasets already exist, you do not need to run this script
+  unless you want to rebuild them from the original CDC raw data.
+
+================================================================================
+"""
+    )
+
+
+# ============================================================
 # IO
 # ============================================================
 
 def read_xpt(path: Path) -> pd.DataFrame:
+    """
+    Read one CDC BRFSS SAS Transport (.XPT) file.
+
+    This function assumes check_raw_files() has already validated
+    that all required files exist.
+    """
     if not path.exists():
-        raise FileNotFoundError(path)
+        raise FileNotFoundError(
+            f"""
+File not found:
+
+{path}
+
+Please download the required CDC BRFSS .XPT files and place them in:
+
+{RAW_DIR}
+
+For details, see the error message from check_raw_files().
+"""
+        )
 
     logging.info("Reading XPT file: %s", path)
     df = pd.read_sas(path, format="xport", encoding="utf-8")
@@ -275,7 +375,6 @@ def build_dataset(df: pd.DataFrame, year: int) -> pd.DataFrame:
 
     out["Diabetes_binary"] = build_target(df, year)
 
-    # HighBP
     col = pick_existing_column(
         df,
         ["BPHIGH4", "BPHIGH6", "BPHIGH7", "HIGHBP", "_RFHYPE5", "_RFHYPE6", "_RFHYPE7", "_RFHYPE8", "_RFHYPE9"],
@@ -283,99 +382,73 @@ def build_dataset(df: pd.DataFrame, year: int) -> pd.DataFrame:
     )
     out["HighBP"] = binary_yes_no(df[col])
 
-    # HighChol
     col = pick_existing_column(df, ["TOLDHI2", "TOLDHI3"], "HighChol")
     out["HighChol"] = binary_yes_no(df[col])
 
-    # CholCheck
     col = pick_existing_column(df, ["CHOLCHK", "CHOLCHK3"], "CholCheck")
     out["CholCheck"] = binary_yes_no(df[col])
 
-    # BMI
     col = pick_existing_column(df, ["_BMI5"], "BMI")
     out["BMI"] = clean_numeric(df[col]) / 100.0
 
-    # Smoker
     col = pick_existing_column(df, ["SMOKE100"], "Smoker")
     out["Smoker"] = binary_yes_no(df[col])
 
-    # Stroke
     col = pick_existing_column(df, ["CVDSTRK3"], "Stroke")
     out["Stroke"] = binary_yes_no(df[col])
 
-    # HeartDiseaseorAttack
     col = pick_existing_column(df, ["CVDCRHD4"], "HeartDiseaseorAttack")
     out["HeartDiseaseorAttack"] = binary_yes_no(df[col])
 
-    # PhysActivity
     col = pick_existing_column(df, ["EXERANY2"], "PhysActivity")
     out["PhysActivity"] = binary_yes_no(df[col])
 
-    # Fruits
     out["Fruits"] = optional_binary_field(
         df,
         ["_FRTLT1A", "_FRTLT1", "_FRUITEX", "_FRUITE1", "FRUIT2", "FRUIT1"],
         "Fruits",
     )
 
-    # Veggies
     out["Veggies"] = optional_binary_field(
         df,
         ["_VEGLT1A", "_VEGLT1", "_VEGETEX", "_VEGETE1", "_RFVEG23", "VEGETAB1", "VEGETAB2"],
         "Veggies",
     )
 
-    # HvyAlcoholConsump
     col = pick_existing_column(df, ["_RFDRHV5", "_RFDRHV7", "_RFDRHV8", "_RFDRHV9"], "HvyAlcoholConsump")
     out["HvyAlcoholConsump"] = binary_yes_no(df[col])
 
-    # AnyHealthcare
     out["AnyHealthcare"] = optional_binary_field(
         df,
         ["HLTHPLN1", "_HLTHPLN", "_HLTHPL2"],
         "AnyHealthcare",
     )
 
-    # NoDocbcCost
     col = pick_existing_column(df, ["MEDCOST", "MEDCOST1"], "NoDocbcCost")
     out["NoDocbcCost"] = binary_yes_no(df[col])
 
-    # GenHlth
     out["GenHlth"] = clean_numeric(df["GENHLTH"])
-
-    # MentHlth
     out["MentHlth"] = clean_numeric(df["MENTHLTH"])
-
-    # PhysHlth
     out["PhysHlth"] = clean_numeric(df["PHYSHLTH"])
-
-    # DiffWalk
     out["DiffWalk"] = binary_yes_no(df["DIFFWALK"])
 
-    # Sex
     col = pick_existing_column(df, ["SEX", "SEXVAR", "_SEX"], "Sex")
     out["Sex"] = clean_numeric(df[col])
 
-    # Age
     col = pick_existing_column(df, ["_AGEG5YR", "CAGEG"], "Age")
     out["Age"] = clean_numeric(df[col])
 
-    # Education
     out["Education"] = clean_numeric(df["EDUCA"])
 
-    # Income
     col = pick_existing_column(df, ["INCOME2", "INCOME3"], "Income")
     out["Income"] = clean_numeric(df[col])
 
-    # Keep schema fixed
     out = out[KAGGLE_COLUMNS].copy()
 
     before_drop = len(out)
-
-    # Drop rows with missing target only
     out = out.dropna(subset=["Diabetes_binary"]).copy()
-
     after_drop = len(out)
+
     logging.info(
         "Dropped rows with missing target for %s: %d -> %d (dropped=%d)",
         year,
@@ -384,12 +457,10 @@ def build_dataset(df: pd.DataFrame, year: int) -> pd.DataFrame:
         before_drop - after_drop,
     )
 
-    # Impute remaining missing values without using -1
     bmi_median = out["BMI"].median()
     out["BMI"] = out["BMI"].fillna(bmi_median)
     logging.info("BMI median imputation value for %s: %.4f", year, bmi_median)
 
-    # Binary / ordinal / categorical-like columns -> mode
     for c in out.columns:
         if c in {"Diabetes_binary", "BMI"}:
             continue
@@ -407,13 +478,11 @@ def build_dataset(df: pd.DataFrame, year: int) -> pd.DataFrame:
                 missing_after,
             )
 
-    # Cast integer columns
     for c in out.columns:
         if c != "BMI":
             out[c] = out[c].astype(int)
 
     logging.info("Final dataset shape for %s: %s", year, out.shape)
-
     return out
 
 
@@ -431,9 +500,7 @@ def log_dataset_summary(out: pd.DataFrame, year: int) -> None:
 
     logging.info("Target counts:\n%s", counts.to_string())
     logging.info("Target ratios:\n%s", ratios.to_string())
-
     logging.info("Missing values after processing: %d", int(out.isna().sum().sum()))
-
     logging.info("Column list: %s", list(out.columns))
 
 
@@ -446,6 +513,8 @@ def main() -> None:
     start_time = datetime.now()
 
     try:
+        check_raw_files()
+
         for year, path in INPUT_FILES.items():
             logging.info("=" * 80)
             logging.info("Processing year: %s", year)

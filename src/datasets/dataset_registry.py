@@ -109,9 +109,9 @@ DATASETS: dict[str, dict] = {
 #ACTIVE_DATASET = "cdc_brfss_2021"
 #ACTIVE_DATASET = "cdc_brfss_2021_full"
 
-ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"
+#ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"
 #ACTIVE_DATASET = "cdc_brfss_2021_rebuilt"
-#ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"
+ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"
 
 
 
@@ -124,11 +124,11 @@ ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"
 #   Fairness = Equalized Odds (step07)                 — tất cả 6 models đều chạy được
 #   Paper    = dùng trong paper (RQ2/RQ3)              — chỉ 3 models đầu
 
-ACTIVE_MODEL = "xgboost"              # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper model chính
-#ACTIVE_MODEL = "random_forest"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ablation
+#ACTIVE_MODEL = "xgboost"              # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper model chính
 #ACTIVE_MODEL = "logistic_regression"   # SHAP (LinearSHAP) + Permutation FI | Fairness | Paper consensus
-#ACTIVE_MODEL = "decision_tree"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ✗ variance cao
+ACTIVE_MODEL = "random_forest"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ablation
 
+#ACTIVE_MODEL = "decision_tree"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ✗ variance cao
 #ACTIVE_MODEL = "knn"                  # SHAP ✗ (quá chậm, skip) | Permutation FI | Fairness | Paper ✗
 #ACTIVE_MODEL = "ann"                  # SHAP ✗ (quá chậm, skip) | Permutation FI | Fairness | Paper ✗
 
