@@ -24,8 +24,9 @@ def run_step01_load_dataset():
     # ----------------------------------------
     # FAST TEST MODE
     # ----------------------------------------
-    DEBUG_SAMPLE_SIZE = 40000  # set None để chạy full
-    #DEBUG_SAMPLE_SIZE = None  # set None để chạy full
+    #DEBUG_SAMPLE_SIZE = 3000  # set None để chạy full
+    #DEBUG_SAMPLE_SIZE = 30000
+    DEBUG_SAMPLE_SIZE = None # 400K
 
     if DEBUG_SAMPLE_SIZE is not None and len(df) > DEBUG_SAMPLE_SIZE:
         logging.info(f"DEBUG MODE: sampling {DEBUG_SAMPLE_SIZE} rows from {len(df)}")

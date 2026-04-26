@@ -4,7 +4,7 @@ Step 12 — XAI Agreement Analysis (cross-dataset, cross-model)
 This step is CROSS-RUN: it consumes SHAP and FI CSVs that were produced by
 Step 05 across multiple ACTIVE_DATASET × ACTIVE_MODEL combinations.
 
-Prerequisite: 12 files must exist under outputs/ (after running run_all_combos.py
+Prerequisite: 12 files must exist under outputs/ (after running run_pipeline_all_combos.py
 with the updated Step 05, which uses Permutation Importance as the unified FI method) :
     outputs/cdc_brfss_{year}_full/shap/{model}_shap_feature_importance.csv
     outputs/cdc_brfss_{year}_full/fi/{model}_feature_importance.csv
@@ -41,7 +41,7 @@ Writes CSVs into outputs/xai_agreement/ :
 Usage (standalone, after all 6 combos have finished):
     python -m src.pipelines.step12_xai_agreement
 
-Or call run_step12_xai_agreement() from run_all_combos.py.
+Or call run_step12_xai_agreement() from run_pipeline_all_combos.py.
 
 References:
     Ultsch, A. & Lötsch, J. (2015). Computed ABC analysis for rational selection
@@ -72,9 +72,10 @@ from src.utils.project_paths import OUTPUT_DIR
 # ------------------------------------------------------------------ #
 
 # Datasets and models to aggregate across.
-# Only the "_full" variants are used (consistent with current ACTIVE_DATASET choices).
-YEARS = ["2015", "2021"]
-DATASET_SLUGS = [f"cdc_brfss_{y}_full" for y in YEARS]
+# Three-phase temporal study: pre-pandemic (2015), mid-pandemic (2021), post-acute (2023).
+# Datasets follow the Teboul recoding convention rebuilt from raw CDC XPT.
+YEARS = ["2015", "2021", "2023"]
+DATASET_SLUGS = [f"cdc_brfss_{y}_rebuilt" for y in YEARS]
 MODELS = ["xgboost", "random_forest", "logistic_regression"]
 
 # Strip ColumnTransformer prefixes so SHAP ("GenHlth") and FI ("num__GenHlth") align.
@@ -310,6 +311,23 @@ def _cabc_agreement(
     }
 
 
+def _intersect_features(imp_a: pd.Series, imp_b: pd.Series) -> Tuple[pd.Series, pd.Series]:
+    """Restrict two importance Series to the intersection of their feature sets.
+
+    Used for cross-temporal comparisons where some features may be absent
+    in one year due to BRFSS schema changes (e.g. Fruits, Veggies,
+    AnyHealthcare, HvyAlcoholConsump removed from BRFSS 2023).
+
+    Without this, schema-removed features get treated as "present with zero
+    importance" in the year that lacks them — a schema artifact that biases
+    Group C / J@α metrics.
+    """
+    common = sorted(set(imp_a.index) & set(imp_b.index))
+    a = imp_a.loc[common].sort_values(ascending=False)
+    b = imp_b.loc[common].sort_values(ascending=False)
+    return a, b
+
+
 # ------------------------------------------------------------------ #
 # Aggregate                                                           #
 # ------------------------------------------------------------------ #
@@ -362,16 +380,32 @@ def _cross_model_shap(imp: Dict) -> pd.DataFrame:
 
 
 def _temporal_stability(imp: Dict) -> pd.DataFrame:
+    """Cross-temporal stability across all year pairs.
+
+    For 3 years (2015, 2021, 2023) generates 3 pairs:
+        2015 vs 2021, 2015 vs 2023, 2021 vs 2023
+
+    Uses intersection of features for each pair (schema-robust):
+        2015 vs 2021: full 21 features (same schema)
+        2015 vs 2023: 17 common features (4 schema-removed in 2023)
+        2021 vs 2023: 17 common features
+    """
+    from itertools import combinations
     rows = []
     for model in MODELS:
         for method in ["shap", "fi"]:
-            k15, k21 = ("2015", model, method), ("2021", model, method)
-            if k15 not in imp or k21 not in imp:
-                continue
-            r = {"model": model, "method": method.upper(),
-                 "year_A": "2015", "year_B": "2021"}
-            r.update(_compute_all_metrics(imp[k15], imp[k21]))
-            rows.append(r)
+            for year_a, year_b in combinations(YEARS, 2):
+                k_a = (year_a, model, method)
+                k_b = (year_b, model, method)
+                if k_a not in imp or k_b not in imp:
+                    continue
+                # Intersection-only for cross-temporal
+                ia, ib = _intersect_features(imp[k_a], imp[k_b])
+                r = {"model": model, "method": method.upper(),
+                     "year_A": year_a, "year_B": year_b,
+                     "n_common_features": len(ia)}
+                r.update(_compute_all_metrics(ia, ib))
+                rows.append(r)
     return pd.DataFrame(rows)
 
 
@@ -411,16 +445,27 @@ def _cross_model_shap_cabc(imp: Dict) -> pd.DataFrame:
 
 
 def _temporal_stability_cabc(imp: Dict) -> pd.DataFrame:
+    """Cross-temporal cABC group agreement across all year pairs.
+
+    For 3 years generates 3 pairs. Uses intersection of features (schema-robust)
+    so that 4 features removed from BRFSS 2023 (Fruits, Veggies, AnyHealthcare,
+    HvyAlcoholConsump) are not artifact-classified as marginal Group C.
+    """
+    from itertools import combinations
     rows = []
     for model in MODELS:
         for method in ["shap", "fi"]:
-            k15, k21 = ("2015", model, method), ("2021", model, method)
-            if k15 not in imp or k21 not in imp:
-                continue
-            r = {"model": model, "method": method.upper(),
-                 "year_A": "2015", "year_B": "2021"}
-            r.update(_cabc_agreement(imp[k15], imp[k21]))
-            rows.append(r)
+            for year_a, year_b in combinations(YEARS, 2):
+                k_a = (year_a, model, method)
+                k_b = (year_b, model, method)
+                if k_a not in imp or k_b not in imp:
+                    continue
+                ia, ib = _intersect_features(imp[k_a], imp[k_b])
+                r = {"model": model, "method": method.upper(),
+                     "year_A": year_a, "year_B": year_b,
+                     "n_common_features": len(ia)}
+                r.update(_cabc_agreement(ia, ib))
+                rows.append(r)
     return pd.DataFrame(rows)
 
 

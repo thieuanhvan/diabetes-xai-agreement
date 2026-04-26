@@ -189,15 +189,31 @@ def load_importance(dataset_slug: str, model: str, method: str) -> Optional[pd.D
     return normalize_columns(df)
 
 
-def align_feature_vectors(df_a: pd.DataFrame, df_b: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def align_feature_vectors(df_a: pd.DataFrame, df_b: pd.DataFrame,
+                          intersect_only: bool = False) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Align two importance tables on union of features.
-    Missing features get zero importance.
-    """
-    all_features = sorted(set(df_a["feature"]) | set(df_b["feature"]))
+    Align two importance tables to a common feature set.
 
-    a = df_a.set_index("feature").reindex(all_features).fillna(0.0).reset_index()
-    b = df_b.set_index("feature").reindex(all_features).fillna(0.0).reset_index()
+    Parameters
+    ----------
+    df_a, df_b : DataFrames with columns [feature, importance]
+    intersect_only : bool, default False
+        If False (default): union of features, missing fill with zero.
+                            Use for within-dataset (cross-model) comparison.
+        If True: intersection of features.
+                 Use for cross-temporal comparison where some features may be
+                 absent in one year due to BRFSS schema changes (e.g. 2023 lacks
+                 Fruits, Veggies, AnyHealthcare, HvyAlcoholConsump).
+                 Avoids classifying schema-removed features as marginal Group C.
+    """
+    if intersect_only:
+        common_features = sorted(set(df_a["feature"]) & set(df_b["feature"]))
+        a = df_a[df_a["feature"].isin(common_features)].set_index("feature").reindex(common_features).reset_index()
+        b = df_b[df_b["feature"].isin(common_features)].set_index("feature").reindex(common_features).reset_index()
+    else:
+        all_features = sorted(set(df_a["feature"]) | set(df_b["feature"]))
+        a = df_a.set_index("feature").reindex(all_features).fillna(0.0).reset_index()
+        b = df_b.set_index("feature").reindex(all_features).fillna(0.0).reset_index()
 
     a.columns = ["feature", "importance"]
     b.columns = ["feature", "importance"]
@@ -208,8 +224,9 @@ def sort_desc(df: pd.DataFrame) -> pd.DataFrame:
     return df.sort_values("importance", ascending=False).reset_index(drop=True)
 
 
-def cosine_similarity_from_importance(df_a: pd.DataFrame, df_b: pd.DataFrame) -> float:
-    a, b = align_feature_vectors(df_a, df_b)
+def cosine_similarity_from_importance(df_a: pd.DataFrame, df_b: pd.DataFrame,
+                                       intersect_only: bool = False) -> float:
+    a, b = align_feature_vectors(df_a, df_b, intersect_only=intersect_only)
     va = a["importance"].to_numpy(dtype=float)
     vb = b["importance"].to_numpy(dtype=float)
 
@@ -261,8 +278,9 @@ def prefix_set_by_alpha(df_sorted: pd.DataFrame, alpha: float) -> Tuple[set, int
     return set(x.head(k)["feature"]), k
 
 
-def jaccard_for_alpha(df_a: pd.DataFrame, df_b: pd.DataFrame, alpha: float) -> Tuple[float, int, int]:
-    a, b = align_feature_vectors(df_a, df_b)
+def jaccard_for_alpha(df_a: pd.DataFrame, df_b: pd.DataFrame, alpha: float,
+                      intersect_only: bool = False) -> Tuple[float, int, int]:
+    a, b = align_feature_vectors(df_a, df_b, intersect_only=intersect_only)
     a = sort_desc(a)
     b = sort_desc(b)
 
@@ -939,14 +957,21 @@ def build_temporal_stability(cabc_lookup: Dict[Tuple[str, str, str], CABCResult]
                     "year_B": year_b,
                 }
 
+                # Cross-temporal: use intersection-only to avoid artifacts from
+                # BRFSS schema changes (Fruits/Veggies/AnyHealthcare/HvyAlcoholConsump
+                # absent in 2023).
                 for alpha in ALPHA_LEVELS:
-                    j, ka, kb = jaccard_for_alpha(a, b, alpha)
+                    j, ka, kb = jaccard_for_alpha(a, b, alpha, intersect_only=True)
                     row[f"J@{int(alpha * 100)}"] = round(j, 4)
                     row[f"|Sa|@{int(alpha * 100)}"] = ka
                     row[f"|Sb|@{int(alpha * 100)}"] = kb
 
-                row["RBO"] = round(rbo_score(sort_desc(a)["feature"].tolist(), sort_desc(b)["feature"].tolist(), p=RBO_P), 4)
-                row["cosine"] = round(cosine_similarity_from_importance(a, b), 4)
+                # For RBO, restrict both ranking lists to common features
+                common_features = set(a["feature"]) & set(b["feature"])
+                a_common = sort_desc(a[a["feature"].isin(common_features)])
+                b_common = sort_desc(b[b["feature"].isin(common_features)])
+                row["RBO"] = round(rbo_score(a_common["feature"].tolist(), b_common["feature"].tolist(), p=RBO_P), 4)
+                row["cosine"] = round(cosine_similarity_from_importance(a, b, intersect_only=True), 4)
 
                 agreement_rows.append(row)
 
@@ -988,15 +1013,19 @@ def compute_topk_overlap(df_a: pd.DataFrame, df_b: pd.DataFrame, k: int = 5) -> 
     return len(sa & sb) / k
 
 
-def compute_spearman_importance(df_a: pd.DataFrame, df_b: pd.DataFrame) -> float:
+def compute_spearman_importance(df_a: pd.DataFrame, df_b: pd.DataFrame,
+                                 intersect_only: bool = False) -> float:
     """
     Compute Spearman rank correlation between two aligned importance vectors.
 
-    The function ranks importance values after aligning on the union of features.
-    It avoids an extra scipy dependency and is equivalent to Spearman correlation
-    for the feature-importance rankings used in this analysis.
+    The function ranks importance values after aligning on the union (or
+    intersection) of features. Equivalent to Spearman correlation for the
+    feature-importance rankings used in this analysis.
+
+    Set intersect_only=True for cross-temporal comparisons where schema
+    differences would otherwise create artifact ranks.
     """
-    a, b = align_feature_vectors(df_a, df_b)
+    a, b = align_feature_vectors(df_a, df_b, intersect_only=intersect_only)
     va = a["importance"].to_numpy(dtype=float)
     vb = b["importance"].to_numpy(dtype=float)
 
@@ -1057,7 +1086,8 @@ def build_spearman_summary() -> pd.DataFrame:
                     row[f"top10_overlap_{suffix}"] = np.nan
                     continue
 
-                row[f"spearman_{suffix}"] = round(compute_spearman_importance(a, b), 4)
+                # Cross-temporal: intersection-only for schema-robust comparison
+                row[f"spearman_{suffix}"] = round(compute_spearman_importance(a, b, intersect_only=True), 4)
                 row[f"top5_overlap_{suffix}"] = round(compute_topk_overlap(a, b, k=5), 4)
                 row[f"top10_overlap_{suffix}"] = round(compute_topk_overlap(a, b, k=10), 4)
 
