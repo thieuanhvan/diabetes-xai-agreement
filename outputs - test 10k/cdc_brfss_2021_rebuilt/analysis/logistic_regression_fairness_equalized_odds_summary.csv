@@ -1,4 +1,0 @@
-attribute,delta_tpr,delta_fpr,delta_ppr,eo_violation,severity,worst_tpr_group,best_tpr_group,worst_fpr_group
-Age,1.0,0.6673,0.687,1.0,Nghiem trong,18-24,14,80+
-Sex,0.0353,0.0524,0.0611,0.0524,Chap nhan duoc,2,Male,Male
-Income,0.6282,0.504,0.5609,0.6282,Nghiem trong,>$200K,$15-20K,$10-15K

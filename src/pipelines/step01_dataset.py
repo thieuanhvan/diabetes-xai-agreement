@@ -2,24 +2,25 @@ import logging
 import pandas as pd
 
 from datasets.dataset_registry import get_active_dataset
+from datasets.loader import load_active_dataset
 
 
 def run_step01_load_dataset():
     """
     STEP 01
-    Load dataset and inspect
+    Load dataset and inspect.
+    Uses loader.load_active_dataset() so include_columns from registry
+    is applied automatically (filter to subset of features).
     """
 
     logging.info("============================================================")
     logging.info("STEP 01 - LOAD AND INSPECT DATASET")
     logging.info("============================================================")
 
-    config = get_active_dataset()
+    df, config = load_active_dataset()
 
     dataset_path = config["path"]
     target = config["target"]
-
-    df = pd.read_csv(dataset_path)
 
     # ----------------------------------------
     # FAST TEST MODE

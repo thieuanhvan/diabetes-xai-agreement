@@ -18,13 +18,10 @@ DATASETS: dict[str, dict] = {
             "physical_activity_minutes_per_week", "diet_score",
             "sleep_hours_per_day", "screen_time_hours_per_day",
             "family_history_diabetes", "hypertension_history",
-            "cardiovascular_history"
-            #, "bmi"
-            #, "waist_to_hip_ratio",
-            "systolic_bp", "diastolic_bp", "heart_rate"
-            ,"cholesterol_total", "hdl_cholesterol", "ldl_cholesterol"
-            ,"triglycerides"
-            , "glucose_fasting"
+            "cardiovascular_history",
+            "systolic_bp", "diastolic_bp", "heart_rate",
+            "cholesterol_total", "hdl_cholesterol", "ldl_cholesterol",
+            "triglycerides", "glucose_fasting",
         ],
     },
 
@@ -74,12 +71,26 @@ DATASETS: dict[str, dict] = {
         "task": "regression_to_binary",
         "include_columns": None,
     },
+
+    # ============================================================
+    # REBUILT — 17 predictors thống nhất cho cả 3 năm
+    # 2015 & 2021 raw có 22 cols → liệt kê 17 predictors cần giữ
+    # 2023 raw đã 18 cols (17 predictors + target) → None đọc hết
+    # 4 features bị CDC drop khỏi BRFSS 2023 (executive-order schema modifications):
+    #   Fruits, Veggies, AnyHealthcare, HvyAlcoholConsump
+    # → reduce 2015 & 2021 xuống 17 để cross-temporal apples-to-apples
+    # ============================================================
     "cdc_brfss_2015_rebuilt": {
         "path": DATA_DIR / "cdc_brfss_2015_rebuilt.csv",
         "target": "Diabetes_binary",
         "slug": "cdc_brfss_2015_rebuilt",
         "task": "classification",
-        "include_columns": None,
+        "include_columns": [
+            "HighBP", "HighChol", "CholCheck", "BMI", "Smoker",
+            "Stroke", "HeartDiseaseorAttack", "PhysActivity",
+            "NoDocbcCost", "GenHlth", "MentHlth", "PhysHlth",
+            "DiffWalk", "Sex", "Age", "Education", "Income",
+        ],
     },
 
     "cdc_brfss_2021_rebuilt": {
@@ -87,7 +98,12 @@ DATASETS: dict[str, dict] = {
         "target": "Diabetes_binary",
         "slug": "cdc_brfss_2021_rebuilt",
         "task": "classification",
-        "include_columns": None,
+        "include_columns": [
+            "HighBP", "HighChol", "CholCheck", "BMI", "Smoker",
+            "Stroke", "HeartDiseaseorAttack", "PhysActivity",
+            "NoDocbcCost", "GenHlth", "MentHlth", "PhysHlth",
+            "DiffWalk", "Sex", "Age", "Education", "Income",
+        ],
     },
 
     "cdc_brfss_2023_rebuilt": {
@@ -95,10 +111,11 @@ DATASETS: dict[str, dict] = {
         "target": "Diabetes_binary",
         "slug": "cdc_brfss_2023_rebuilt",
         "task": "classification",
-        "include_columns": None,
+        "include_columns": None,  # 2023 đã 17 predictors sẵn
     },
 
 }
+
 #ACTIVE_DATASET = "sklearn_diabetes"
 #ACTIVE_DATASET = "kaggle_100000k"
 #ACTIVE_DATASET = "kaggle_640"
@@ -124,9 +141,9 @@ ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"
 #   Fairness = Equalized Odds (step07)                 — tất cả 6 models đều chạy được
 #   Paper    = dùng trong paper (RQ2/RQ3)              — chỉ 3 models đầu
 
-#ACTIVE_MODEL = "xgboost"              # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper model chính
+ACTIVE_MODEL = "xgboost"              # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper model chính
 #ACTIVE_MODEL = "logistic_regression"   # SHAP (LinearSHAP) + Permutation FI | Fairness | Paper consensus
-ACTIVE_MODEL = "random_forest"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ablation
+#ACTIVE_MODEL = "random_forest"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ablation
 
 #ACTIVE_MODEL = "decision_tree"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ✗ variance cao
 #ACTIVE_MODEL = "knn"                  # SHAP ✗ (quá chậm, skip) | Permutation FI | Fairness | Paper ✗
