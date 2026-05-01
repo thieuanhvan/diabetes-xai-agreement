@@ -16,7 +16,7 @@ DATASETS: dict[str, dict] = {
     # REBUILT — 17 predictors thống nhất cho cả 3 năm
     # 2015 & 2021 raw có 22 cols → liệt kê 17 predictors cần giữ
     # 2023 raw đã 18 cols (17 predictors + target) → None đọc hết
-    # 4 features bị CDC drop khỏi BRFSS 2023 (executive-order schema modifications):
+    # 4 features bị CDC drop khỏi BRFSS 2023 questionnaire:
     #   Fruits, Veggies, AnyHealthcare, HvyAlcoholConsump
     # → reduce 2015 & 2021 xuống 17 để cross-temporal apples-to-apples
     # ============================================================

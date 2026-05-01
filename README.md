@@ -28,7 +28,7 @@ The goal is to provide a **robust evaluation framework for XAI** rather than rel
 3. Application of **contribution-based grouping (cABC)** to reduce ranking instability
 4. Integration of **fairness analysis** into XAI evaluation
 
-> To the best of our knowledge, this is among the first studies combining all these dimensions in a single pipeline.
+>  This repository implements an evaluation framework combining agreement, stability, and fairness for XAI in diabetes risk prediction.
 
 ---
 
