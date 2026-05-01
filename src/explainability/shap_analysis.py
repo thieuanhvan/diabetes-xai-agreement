@@ -148,8 +148,15 @@ def run_linear_shap_analysis(model, X_test, output_dir, model_name="logistic_reg
     return {"importance_df": importance_df, "shap_time_s": shap_time_s}
 
 
-def run_shap_analysis(model, X_test, output_dir, model_name="model"):
-    """Auto-dispatch SHAP: TreeSHAP for tree models, LinearSHAP for LR."""
+def run_shap_analysis(model, X_test, output_dir, model_name="model", sample_size=200):
+    """Auto-dispatch SHAP: TreeSHAP for tree models, LinearSHAP for LR.
+
+    Parameters
+    ----------
+    sample_size : int
+        Number of test instances for TreeSHAP attribution. Ignored for
+        LinearSHAP (which uses the full test set, fast for linear models).
+    """
     if isinstance(model, Pipeline):
         core = model.named_steps.get("model", list(model.named_steps.values())[-1])
     else:
@@ -165,4 +172,6 @@ def run_shap_analysis(model, X_test, output_dir, model_name="model"):
     elif any(t in model_type for t in linear_types):
         return run_linear_shap_analysis(model, X_test, output_dir, model_name)
     else:
-        return run_tree_shap_analysis(model, X_test, output_dir, model_name=model_name)
+        return run_tree_shap_analysis(model, X_test, output_dir,
+                                      sample_size=sample_size,
+                                      model_name=model_name)

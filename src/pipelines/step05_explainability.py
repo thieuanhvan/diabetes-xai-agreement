@@ -2,6 +2,7 @@ import logging
 from pathlib import Path
 
 from src.utils.project_paths import get_outputs_dir
+from src.utils.config import load_config
 from src.explainability.shap_analysis import run_shap_analysis
 from src.explainability.feature_importance import run_feature_importance_analysis
 
@@ -18,6 +19,10 @@ def run_step05_explainability(data, model, model_name="model"):
       - Permutation runs on raw X_test (pipeline handles preprocessing),
         so feature names align naturally with SHAP output (no "num__" prefix).
 
+    Notes (updated 01/05/2026):
+      - SHAP sample_size and PI n_repeats/scoring/random_state are now
+        loaded from configs/default.yaml (single source of truth).
+
     Returns dict with shap_time_s and fi_time_s.
     """
     logging.info("============================================================")
@@ -26,6 +31,11 @@ def run_step05_explainability(data, model, model_name="model"):
 
     X_test = data["X_test"]
     y_test = data["y_test"]
+
+    # Load XAI config from configs/default.yaml
+    cfg = load_config()
+    shap_cfg = cfg["xai"]["shap"]
+    pi_cfg   = cfg["xai"]["permutation_importance"]
 
     # ── SHAP ──────────────────────────────────────────────────────────────────
     shap_output_dir = get_outputs_dir("shap")
@@ -36,7 +46,8 @@ def run_step05_explainability(data, model, model_name="model"):
         shap_result = run_shap_analysis(
             model, X_test,
             output_dir=shap_output_dir,
-            model_name=model_name
+            model_name=model_name,
+            sample_size=shap_cfg["sample_size"],
         )
         shap_df     = shap_result["importance_df"]
         shap_time_s = shap_result["shap_time_s"]
@@ -54,6 +65,9 @@ def run_step05_explainability(data, model, model_name="model"):
             model, X_test, y_test,
             output_dir=fi_output_dir,
             model_name=model_name,
+            n_repeats=pi_cfg["n_repeats"],
+            random_state=pi_cfg["random_state"],
+            scoring=pi_cfg["scoring"],
         )
         logging.info(f"Permutation FI completed in {fi_time_s}s")
     except Exception as e:

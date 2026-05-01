@@ -25,10 +25,11 @@ def run_step06_visualization(baseline_results, proposed_results):
     )
 
     plots_dir = get_outputs_dir("plots")
+    plots_dir.mkdir(parents=True, exist_ok=True)
 
     generate_model_comparison_plots(
         results,
-        plots_dir
+        plots_dir / "model_performance_comparison.png"  # ← truyền FILE path
     )
 
     logging.info("STEP 06 COMPLETED")

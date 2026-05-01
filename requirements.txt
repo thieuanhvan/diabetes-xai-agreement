@@ -1,6 +1,6 @@
-# ml-pipeline-healthcare
+# diabetes-xai-agreement
 # Python 3.13 (Anaconda)
-# Thiều Anh Vân — github.com/thieuanhvan/ml-pipeline-healthcare
+# Thiều Anh Vân — github.com/thieuanhvan/diabetes-xai-agreement
 
 # Core ML
 scikit-learn>=1.3.0
@@ -20,6 +20,9 @@ statsmodels>=0.14.0
 # Visualization
 matplotlib>=3.7.0
 seaborn>=0.12.0
+
+# Config
+pyyaml>=6.0
 
 # Utils (stdlib — không cần cài)
 # json, logging, os, sys, time, pathlib, platform, datetime

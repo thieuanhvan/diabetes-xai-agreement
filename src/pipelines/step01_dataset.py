@@ -3,6 +3,7 @@ import pandas as pd
 
 from datasets.dataset_registry import get_active_dataset
 from datasets.loader import load_active_dataset
+from src.utils.config import load_config
 
 
 def run_step01_load_dataset():
@@ -23,11 +24,15 @@ def run_step01_load_dataset():
     target = config["target"]
 
     # ----------------------------------------
-    # FAST TEST MODE
+    # FAST TEST MODE — đọc từ configs/default.yaml
     # ----------------------------------------
-    #DEBUG_SAMPLE_SIZE = 2500  # set None để chạy full
-    #DEBUG_SAMPLE_SIZE = 25000
-    DEBUG_SAMPLE_SIZE = None # 250K
+    # Để chạy nhanh khi dev, sửa configs/default.yaml:
+    #   debug:
+    #     sample_size: 2500     # nhanh nhất, ~30s/combo
+    #     sample_size: 25000    # trung bình, ~3 phút/combo
+    #     sample_size: null     # full dataset (production), ~3-30 phút/combo
+    cfg = load_config()
+    DEBUG_SAMPLE_SIZE = cfg["debug"]["sample_size"]
 
     if DEBUG_SAMPLE_SIZE is not None and len(df) > DEBUG_SAMPLE_SIZE:
         logging.info(f"DEBUG MODE: sampling {DEBUG_SAMPLE_SIZE} rows from {len(df)}")
