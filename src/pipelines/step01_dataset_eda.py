@@ -108,8 +108,17 @@ def _plot_binary(series: pd.Series, title: str, png_path: Path):
     pcts = (counts / counts.sum() * 100).round(2)
 
     fig, ax = plt.subplots(figsize=(6, 4))
-    bars = ax.bar(counts.index.astype(str), counts.values,
-                   color=["#3498db", "#e67e22"], edgecolor="black")
+
+    # Van changed on 2026-05-01
+    #bars = ax.bar(counts.index.astype(str), counts.values,
+    #               color=["#3498db", "#e67e22"], edgecolor="black")
+
+    positions = np.arange(len(counts))
+    bars = ax.bar(positions, counts.values,
+                  color=["#3498db", "#e67e22"], edgecolor="black")
+    ax.set_xticks(positions)
+    ax.set_xticklabels([str(v) for v in counts.index])
+
     for bar, c, p in zip(bars, counts.values, pcts.values):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(),
                 f"{c:,}\n({p:.2f}%)", ha="center", va="bottom", fontsize=10)
@@ -131,8 +140,16 @@ def _plot_ordinal(series: pd.Series, title: str, png_path: Path):
     pcts = (counts / counts.sum() * 100).round(2)
 
     fig, ax = plt.subplots(figsize=(max(7, 0.5 * len(counts)), 4.5))
-    bars = ax.bar(counts.index.astype(str), counts.values,
-                   color="#3498db", edgecolor="black", linewidth=0.7)
+
+    # Van changed on 2026-05-01
+    # bars = ax.bar(counts.index.astype(str), counts.values,
+    #               color="#3498db", edgecolor="black", linewidth=0.7)
+    positions = np.arange(len(counts))
+    bars = ax.bar(positions, counts.values,
+                  color="#3498db", edgecolor="black", linewidth=0.7)
+    ax.set_xticks(positions)
+    ax.set_xticklabels([str(v) for v in counts.index])
+
     for bar, p in zip(bars, pcts.values):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(),
                 f"{p:.2f}%", ha="center", va="bottom", fontsize=9)

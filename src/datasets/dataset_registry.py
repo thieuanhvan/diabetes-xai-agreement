@@ -3,74 +3,14 @@ from __future__ import annotations
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DATA_DIR = PROJECT_ROOT / "data" / "processed"
+
+# Since we have brfss-diabetes which do task cleaning data
+# we do not separate raw and processed folders anymore
+#DATA_DIR = PROJECT_ROOT / "data" / "processed"
+DATA_DIR = PROJECT_ROOT / "data"
 
 DATASETS: dict[str, dict] = {
 
-    "kaggle_100000k": {
-        "path": DATA_DIR / "kaggle_100000x32_diabetes_health_indicators_classification.csv",
-        "target": "diagnosed_diabetes",
-        "slug": "kaggle_100000k",
-        "task": "classification",
-        "include_columns": [
-            "age", "gender", "ethnicity", "education_level", "income_level",
-            "employment_status", "smoking_status", "alcohol_consumption_per_week",
-            "physical_activity_minutes_per_week", "diet_score",
-            "sleep_hours_per_day", "screen_time_hours_per_day",
-            "family_history_diabetes", "hypertension_history",
-            "cardiovascular_history",
-            "systolic_bp", "diastolic_bp", "heart_rate",
-            "cholesterol_total", "hdl_cholesterol", "ldl_cholesterol",
-            "triglycerides", "glucose_fasting",
-        ],
-    },
-
-    "kaggle_640": {
-        "path": DATA_DIR / "kaggle_640x16_early_stage_diabetes_risk_prediction.csv",
-        "target": "class",
-        "slug": "kaggle_640",
-        "task": "classification",
-        "include_columns": None,
-    },
-
-    "cdc_brfss_2015": {
-        "path": DATA_DIR / "cdc_brfss_2015_70692x22_diabetes_binary_5050split_health_indicators_BRFSS2015.csv.csv",
-        "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2015",
-        "task": "classification",
-        "include_columns": None,
-    },
-    "cdc_brfss_2015_full": {
-        "path": DATA_DIR / "cdc_brfss_2015_253680x22_diabetes_binary_health_indicators_BRFSS2015.csv",
-        "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2015_full",
-        "task": "classification",
-        "include_columns": None,
-    },
-
-    "cdc_brfss_2021": {
-        "path": DATA_DIR / "cdc_brfss_2021_67136x22_diabetes_health_indicators_classification.csv",
-        "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2021",
-        "task": "classification",
-        "include_columns": None,
-    },
-
-    "cdc_brfss_2021_full": {
-        "path": DATA_DIR / "cdc_brfss_2021_236379x22_diabetes_binary_health_indicators_BRFSS2021.csv",
-        "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2021_full",
-        "task": "classification",
-        "include_columns": None,
-    },
-
-    "sklearn_diabetes": {
-        "path": DATA_DIR / "sklearn_442x10_diabetes_progression_regression.csv",
-        "target": "disease_progression",
-        "slug": "sklearn_diabetes",
-        "task": "regression_to_binary",
-        "include_columns": None,
-    },
 
     # ============================================================
     # REBUILT — 17 predictors thống nhất cho cả 3 năm
@@ -116,20 +56,10 @@ DATASETS: dict[str, dict] = {
 
 }
 
-#ACTIVE_DATASET = "sklearn_diabetes"
-#ACTIVE_DATASET = "kaggle_100000k"
-#ACTIVE_DATASET = "kaggle_640"
 
-#ACTIVE_DATASET = "cdc_brfss_2015"
-#ACTIVE_DATASET = "cdc_brfss_2015_full"
-
-#ACTIVE_DATASET = "cdc_brfss_2021"
-#ACTIVE_DATASET = "cdc_brfss_2021_full"
-
-#ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"
+ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"
 #ACTIVE_DATASET = "cdc_brfss_2021_rebuilt"
-ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"
-
+#ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"
 
 
 # Model dùng cho XAI (step05, agreement analysis, tables)

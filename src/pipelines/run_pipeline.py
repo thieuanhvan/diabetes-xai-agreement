@@ -13,10 +13,10 @@ from src.pipelines.step04_proposed_model import run_step04_proposed_models
 from src.pipelines.step05_explainability import run_step05_explainability
 from src.pipelines.step06_visualization import run_step06_visualization
 from src.pipelines.step07_error_analysis import run_step07_error_analysis
-from src.pipelines.step08_statistical_test import run_step08_statistical_test
-from src.pipelines.step09_paper_tables import run_step09_generate_tables
-from src.pipelines.step10_reproducibility import run_step10_reproducibility
-from src.pipelines.step11_auto_report import run_step11_auto_report
+#from src.pipelines.step08_statistical_test import run_step08_statistical_test
+from src.pipelines.step08_paper_tables import run_step08_generate_tables
+from src.pipelines.step09_reproducibility import run_step09_reproducibility
+from src.pipelines.step10_auto_report import run_step10_auto_report
 from src.utils.project_paths import get_outputs_dir
 
 
@@ -86,26 +86,19 @@ def run_all_steps():
     # ============================================================
     run_step07_error_analysis(data, xai_model)
 
+
     # ============================================================
-    # STEP 8
+    # STEP 08
     # ============================================================
-    run_step08_statistical_test(
+    run_step08_generate_tables(
         baseline_results,
         proposed_results["metrics"]
     )
 
     # ============================================================
-    # STEP 9
+    # STEP 09 — Reproducibility with XAI timing
     # ============================================================
-    run_step09_generate_tables(
-        baseline_results,
-        proposed_results["metrics"]
-    )
-
-    # ============================================================
-    # STEP 10 — Reproducibility with XAI timing
-    # ============================================================
-    run_step10_reproducibility(
+    run_step09_reproducibility(
         data,
         baseline_results,
         proposed_results,
@@ -113,9 +106,9 @@ def run_all_steps():
     )
 
     # ============================================================
-    # STEP 11
+    # STEP 10
     # ============================================================
-    run_step11_auto_report()
+    run_step10_auto_report()
 
 
 def main():
