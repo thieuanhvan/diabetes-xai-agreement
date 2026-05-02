@@ -75,7 +75,7 @@ from src.utils.project_paths import OUTPUT_DIR
 # Three-phase temporal study: pre-pandemic (2015), mid-pandemic (2021), post-acute (2023).
 # Datasets follow the Teboul recoding convention rebuilt from raw CDC XPT.
 YEARS = ["2015", "2021", "2023"]
-DATASET_SLUGS = [f"cdc_brfss_{y}_rebuilt" for y in YEARS]
+DATASET_SLUGS = [f"cdc_brfss_diabetes_{y}" for y in YEARS]
 MODELS = ["xgboost", "random_forest", "logistic_regression"]
 
 # Strip ColumnTransformer prefixes so SHAP ("GenHlth") and FI ("num__GenHlth") align.

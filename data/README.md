@@ -18,9 +18,9 @@ Place all 3 files directly in this `data/` folder:
 
 ```
 data/
-├── cdc_brfss_2015_rebuilt.csv  (253,680 rows × 22 cols)
-├── cdc_brfss_2021_rebuilt.csv  (236,378 rows × 22 cols)
-└── cdc_brfss_2023_rebuilt.csv  (272,769 rows × 18 cols)
+├── cdc_brfss_diabetes_2015.csv  (253,680 rows × 22 cols)
+├── cdc_brfss_diabetes_2021.csv  (236,378 rows × 22 cols)
+└── cdc_brfss_diabetes_2023.csv  (272,769 rows × 18 cols)
 ```
 
 ---
@@ -47,9 +47,9 @@ python src/brfss_diabetes/run_build_kaggle_csvs.py
 
 # 4. Outputs are written to outputs/tabular/
 #    Copy the 3 files into this repo's data/ folder
-cp outputs/tabular/cdc_brfss_2015_rebuilt.csv  /path/to/diabetes-xai-agreement/data/
-cp outputs/tabular/cdc_brfss_2021_rebuilt.csv  /path/to/diabetes-xai-agreement/data/
-cp outputs/tabular/cdc_brfss_2023_rebuilt.csv  /path/to/diabetes-xai-agreement/data/
+cp outputs/tabular/cdc_brfss_diabetes_2015.csv  /path/to/diabetes-xai-agreement/data/
+cp outputs/tabular/cdc_brfss_diabetes_2021.csv  /path/to/diabetes-xai-agreement/data/
+cp outputs/tabular/cdc_brfss_diabetes_2015.csv  /path/to/diabetes-xai-agreement/data/
 ```
 
 ### Option B — Download pre-built CSVs from Kaggle
@@ -94,9 +94,9 @@ fasting glucose).
 Edit `src/datasets/dataset_registry.py`, change the `ACTIVE_DATASET` line:
 
 ```python
-ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"   # BRFSS 2015 — pre-COVID baseline
-ACTIVE_DATASET = "cdc_brfss_2021_rebuilt"   # BRFSS 2021 — in-COVID peak
-ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"   # BRFSS 2023 — post-COVID (default)
+ACTIVE_DATASET = "cdc_brfss_diabetes_2015"   # BRFSS 2015 — pre-COVID baseline
+ACTIVE_DATASET = "cdc_brfss_diabetes_2021"   # BRFSS 2021 — in-COVID peak
+ACTIVE_DATASET = "cdc_brfss_diabetes_2023"   # BRFSS 2023 — post-COVID (default)
 ```
 
 Then re-run the pipeline. Outputs are saved under the corresponding slug folder

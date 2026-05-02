@@ -27,9 +27,9 @@ AGREEMENT_DIR = OUTPUT_DIR / "xai_agreement"
 PLOTS_DIR = AGREEMENT_DIR / "plots"
 
 TARGET_DATASETS = [
-    "cdc_brfss_2015_rebuilt",
-    "cdc_brfss_2021_rebuilt",
-    "cdc_brfss_2023_rebuilt",
+    "cdc_brfss_diabetes_2015",
+    "cdc_brfss_diabetes_2021",
+    "cdc_brfss_diabetes_2023",
 ]
 
 TARGET_MODELS = [
@@ -1211,7 +1211,7 @@ def plot_fairness_drift(
     one panel per protected attribute.
 
     Reads from per-dataset analysis folders:
-        outputs/cdc_brfss_YYYY_rebuilt/analysis/MODEL_fairness_equalized_odds_summary.csv
+        outputs/cdc_brfss_diabetes_20XX/analysis/MODEL_fairness_equalized_odds_summary.csv
     Colored severity bands: Good (<0.1), Concerning (0.1-0.2), Critical (>=0.2).
     """
     plot_dir = create_output_subdir("summaries")
@@ -1226,7 +1226,7 @@ def plot_fairness_drift(
     data: Dict[str, Dict[str, List[float]]] = {a: {m: [] for m in models} for a in attributes}
 
     for year in years:
-        ds_folder = OUTPUT_DIR / f"cdc_brfss_{year}_rebuilt" / "analysis"
+        ds_folder = OUTPUT_DIR / f"cdc_brfss_diabetes_{year}" / "analysis"
         for model in models:
             csv_path = ds_folder / f"{model}_fairness_equalized_odds_summary.csv"
             if not csv_path.exists():

@@ -30,9 +30,9 @@ Convert raw BRFSS .XPT files into Kaggle-style datasets.
 python src/data_preparation/run_build_brfss_kaggle_style_datasets.py
 Expected Output
 data/processed/
-    cdc_brfss_2015_rebuilt.csv
-    cdc_brfss_2021_rebuilt.csv
-    cdc_brfss_2023_rebuilt.csv
+    cdc_brfss_diabetes_2015.csv
+    cdc_brfss_diabetes_2021.csv
+    cdc_brfss_diabetes_2023.csv
 🤖 Step 2 — Train Models
 
 Run all combinations of datasets and models:
@@ -48,9 +48,9 @@ BRFSS 2021
 BRFSS 2023
 Outputs
 outputs/
-    cdc_brfss_2015_rebuilt/
-    cdc_brfss_2021_rebuilt/
-    cdc_brfss_2023_rebuilt/
+    cdc_brfss_diabetes_2015/
+    cdc_brfss_diabetes_2021/
+    cdc_brfss_diabetes_2023/
 
 Each dataset folder contains:
 

@@ -93,9 +93,9 @@ python src/data_preparation/run_build_brfss_kaggle_style_datasets.py
 Output:
 
 data/processed/
-    cdc_brfss_2015_rebuilt.csv
-    cdc_brfss_2021_rebuilt.csv
-    cdc_brfss_2023_rebuilt.csv
+    cdc_brfss_diabetes_2015.csv
+    cdc_brfss_diabetes_2021.csv
+    cdc_brfss_diabetes_2023.csv
 3. Run all models (3 datasets × 3 models)
 python src/pipelines/run_all_combos.py
 4. Run XAI agreement analysis

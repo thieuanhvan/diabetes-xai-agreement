@@ -16,9 +16,9 @@ sys.stderr.reconfigure(encoding="utf-8")
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 DEFAULT_DATASETS = [
-    "cdc_brfss_2015_rebuilt",
-    "cdc_brfss_2021_rebuilt",
-    "cdc_brfss_2023_rebuilt",
+    "cdc_brfss_diabetes_2015",
+    "cdc_brfss_diabetes_2021",
+    "cdc_brfss_diabetes_2023",
 ]
 
 DEFAULT_MODELS = [

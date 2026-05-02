@@ -16,7 +16,7 @@ What's new:
     - Writes column_inventory.csv    (consumed by run_eda_comparative.py)
     - Writes correlation_with_target.csv (consumed by run_eda_comparative.py)
     - Auto-detects dataset slug from outputs_dir.name (e.g.
-      'outputs/cdc_brfss_2015_rebuilt' → slug = 'cdc_brfss_2015_rebuilt')
+      'outputs/cdc_brfss_diabetes_2015' → slug = 'cdc_brfss_diabetes_2015')
 
 Public API (unchanged):
     run_step01_dataset_eda(df, outputs_dir)

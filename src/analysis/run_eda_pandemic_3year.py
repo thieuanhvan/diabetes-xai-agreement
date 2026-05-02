@@ -48,9 +48,9 @@ logging.basicConfig(level=logging.INFO,
 # Maps dataset slug → (calendar year, phase label, color).
 # Edit if you rename datasets or add years.
 PHASE_MAP = {
-    "cdc_brfss_2015_rebuilt": (2015, "Pre-pandemic",  "#3498db"),
-    "cdc_brfss_2021_rebuilt": (2021, "Mid-pandemic",  "#e67e22"),
-    "cdc_brfss_2023_rebuilt": (2023, "Post-acute",    "#c0392b"),
+    "cdc_brfss_diabetes_2015": (2015, "Pre-pandemic",  "#3498db"),
+    "cdc_brfss_diabetes_2021": (2021, "Mid-pandemic",  "#e67e22"),
+    "cdc_brfss_diabetes_2023": (2023, "Post-acute",    "#c0392b"),
 }
 
 

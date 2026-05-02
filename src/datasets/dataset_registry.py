@@ -20,10 +20,10 @@ DATASETS: dict[str, dict] = {
     #   Fruits, Veggies, AnyHealthcare, HvyAlcoholConsump
     # → reduce 2015 & 2021 xuống 17 để cross-temporal apples-to-apples
     # ============================================================
-    "cdc_brfss_2015_rebuilt": {
-        "path": DATA_DIR / "cdc_brfss_2015_rebuilt.csv",
+    "cdc_brfss_diabetes_2015": {
+        "path": DATA_DIR / "cdc_brfss_diabetes_2015.csv",
         "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2015_rebuilt",
+        "slug": "cdc_brfss_diabetes_2015",
         "task": "classification",
         "include_columns": [
             "HighBP", "HighChol", "CholCheck", "BMI", "Smoker",
@@ -33,10 +33,10 @@ DATASETS: dict[str, dict] = {
         ],
     },
 
-    "cdc_brfss_2021_rebuilt": {
-        "path": DATA_DIR / "cdc_brfss_2021_rebuilt.csv",
+    "cdc_brfss_diabetes_2021": {
+        "path": DATA_DIR / "cdc_brfss_diabetes_2021.csv",
         "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2021_rebuilt",
+        "slug": "cdc_brfss_diabetes_2021",
         "task": "classification",
         "include_columns": [
             "HighBP", "HighChol", "CholCheck", "BMI", "Smoker",
@@ -46,10 +46,10 @@ DATASETS: dict[str, dict] = {
         ],
     },
 
-    "cdc_brfss_2023_rebuilt": {
-        "path": DATA_DIR / "cdc_brfss_2023_rebuilt.csv",
+    "cdc_brfss_diabetes_2023": {
+        "path": DATA_DIR / "cdc_brfss_diabetes_2023.csv",
         "target": "Diabetes_binary",
-        "slug": "cdc_brfss_2023_rebuilt",
+        "slug": "cdc_brfss_diabetes_2023",
         "task": "classification",
         "include_columns": None,  # 2023 đã 17 predictors sẵn
     },
@@ -57,9 +57,9 @@ DATASETS: dict[str, dict] = {
 }
 
 
-ACTIVE_DATASET = "cdc_brfss_2015_rebuilt"
-#ACTIVE_DATASET = "cdc_brfss_2021_rebuilt"
-#ACTIVE_DATASET = "cdc_brfss_2023_rebuilt"
+ACTIVE_DATASET = "cdc_brfss_diabetes_2015"
+#ACTIVE_DATASET = "cdc_brfss_diabetes_2021"
+#ACTIVE_DATASET = "cdc_brfss_diabetes_2023"
 
 
 # Model dùng cho XAI (step05, agreement analysis, tables)
