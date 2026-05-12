@@ -1,0 +1,4 @@
+feature,type,cohort,value,median_other_cohorts,modified_z_score,direction
+DiffWalk,binary,cdc_brfss_diabetes_2015,0.1682,0.1539,19.29,high
+HighBP,binary,cdc_brfss_diabetes_2021,0.4186,0.429,-7.79,low
+Sex,binary,cdc_brfss_diabetes_2015,0.4403,0.4778,-3.56,low

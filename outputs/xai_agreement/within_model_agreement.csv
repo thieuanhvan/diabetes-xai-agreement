@@ -1,0 +1,10 @@
+year,dataset,model,method_A,method_B,note,J@70,|Sa|@70,|Sb|@70,J@80,|Sa|@80,|Sb|@80,J@90,|Sa|@90,|Sb|@90,RBO,cosine,top5_overlap,top10_overlap
+2015,cdc_brfss_diabetes_2015,xgboost,SHAP,PI,,0.6,5,3,0.6667,6,4,0.5556,8,6,0.7164,0.9461,1.0,0.8
+2015,cdc_brfss_diabetes_2015,random_forest,SHAP,PI,,0.5714,7,4,0.5556,9,5,0.5455,11,6,0.7217,0.9122,1.0,0.7
+2015,cdc_brfss_diabetes_2015,logistic_regression,SHAP,PI,,0.6,5,3,0.6667,6,4,0.625,8,5,0.7658,0.9346,1.0,1.0
+2021,cdc_brfss_diabetes_2021,xgboost,SHAP,PI,,0.8,5,4,0.7143,7,5,0.4545,10,6,0.7226,0.9346,1.0,0.9
+2021,cdc_brfss_diabetes_2021,random_forest,SHAP,PI,,0.5714,7,4,0.5556,9,5,0.4615,12,7,0.6848,0.8992,1.0,0.7
+2021,cdc_brfss_diabetes_2021,logistic_regression,SHAP,PI,,0.6,5,3,0.6667,6,4,0.6667,9,6,0.7679,0.9424,1.0,1.0
+2023,cdc_brfss_diabetes_2023,xgboost,SHAP,PI,,0.8,5,4,0.7143,7,5,0.6364,11,7,0.6194,0.918,1.0,0.9
+2023,cdc_brfss_diabetes_2023,random_forest,SHAP,PI,,0.5714,7,4,0.5556,9,5,0.4615,12,7,0.5062,0.8734,1.0,0.7
+2023,cdc_brfss_diabetes_2023,logistic_regression,SHAP,PI,,0.6,5,3,0.5714,7,4,0.6667,9,6,0.779,0.9473,1.0,0.9

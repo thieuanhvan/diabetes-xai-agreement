@@ -1,0 +1,3 @@
+group_label,n,n_positive,TPR,FPR,PPR
+Female,24591,3207,0.1363,0.0161,0.0318
+Male,22685,3507,0.1577,0.0213,0.0424

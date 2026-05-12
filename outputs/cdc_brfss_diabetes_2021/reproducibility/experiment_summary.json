@@ -1,0 +1,77 @@
+{
+    "dataset": {
+        "rows": 236378,
+        "features": 17
+    },
+    "baseline_models": [
+        {
+            "model": "logistic_regression",
+            "accuracy": 0.7259920467044589,
+            "f1": 0.44202274293590627,
+            "roc_auc": 0.8155993009271273,
+            "sensitivity": 0.7642240095323205,
+            "specificity": 0.7196637246684089,
+            "training_time_s": 0.33
+        },
+        {
+            "model": "decision_tree",
+            "accuracy": 0.7932143159319739,
+            "f1": 0.2896381339921523,
+            "roc_auc": 0.587535614635227,
+            "sensitivity": 0.29684241882633305,
+            "specificity": 0.8753759676544549,
+            "training_time_s": 1.26
+        },
+        {
+            "model": "random_forest",
+            "accuracy": 0.8493104323546832,
+            "f1": 0.2296712802768166,
+            "roc_auc": 0.7832275489750301,
+            "sensitivity": 0.1581769436997319,
+            "specificity": 0.9637098762388442,
+            "training_time_s": 36.43
+        },
+        {
+            "model": "knn",
+            "accuracy": 0.8440011845333785,
+            "f1": 0.2792924850972344,
+            "roc_auc": 0.7207558387614986,
+            "sensitivity": 0.21283884420613644,
+            "specificity": 0.9484739411271633,
+            "training_time_s": 0.09
+        }
+    ],
+    "proposed_model": {
+        "metrics": [
+            {
+                "model": "ann",
+                "accuracy": 0.8598654708520179,
+                "f1": 0.2403394106180484,
+                "roc_auc": 0.8125208008005838,
+                "sensitivity": 0.15609174858504618,
+                "specificity": 0.9763571815985405,
+                "training_time_s": 59.24
+            },
+            {
+                "model": "xgboost",
+                "accuracy": 0.8630171757339876,
+                "f1": 0.23415326395458846,
+                "roc_auc": 0.8228017353355449,
+                "sensitivity": 0.14745308310991956,
+                "specificity": 0.981460480252453,
+                "training_time_s": 3.42
+            }
+        ],
+        "models": {
+            "ann": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num', StandardScaler(),\n                                                  ['HighBP', 'HighChol',\n                                                   'CholCheck', 'BMI', 'Smoker',\n                                                   'Stroke',\n                                                   'HeartDiseaseorAttack',\n                                                   'PhysActivity',\n                                                   'NoDocbcCost', 'GenHlth',\n                                                   'MentHlth', 'PhysHlth',\n                                                   'DiffWalk', 'Sex', 'Age',\n                                                   'Education', 'Income']),\n                                                 ('cat',\n                                                  OneHotEncoder(handle_unknown='ignore'),\n                                                  [])])),\n                ('model',\n                 MLPClassifier(hidden_layer_sizes=(64, 32), random_state=42))])",
+            "xgboost": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num', StandardScaler(),\n                                                  ['HighBP', 'HighChol',\n                                                   'CholCheck', 'BMI', 'Smoker',\n                                                   'Stroke',\n                                                   'HeartDiseaseorAttack',\n                                                   'PhysActivity',\n                                                   'NoDocbcCost', 'GenHlth',\n                                                   'MentHlth', 'PhysHlth',\n                                                   'DiffWalk', 'Sex', 'Age',\n                                                   'Education', 'Income']),\n                                                 ('cat',\n                                                  OneHotEncoder(handle_unknown='ignore'),\n                                                  [])])),\n                ('model',\n                 XGBClassifier...\n                               feature_types=None, feature_weights=None,\n                               gamma=None, grow_policy=None,\n                               importance_type=None,\n                               interaction_constraints=None, learning_rate=0.05,\n                               max_bin=None, max_cat_threshold=None,\n                               max_cat_to_onehot=None, max_delta_step=None,\n                               max_depth=6, max_leaves=None,\n                               min_child_weight=None, missing=nan,\n                               monotone_constraints=None, multi_strategy=None,\n                               n_estimators=300, n_jobs=None,\n                               num_parallel_tree=None, ...))])"
+        },
+        "best_model": "Pipeline(steps=[('preprocessor',\n                 ColumnTransformer(transformers=[('num', StandardScaler(),\n                                                  ['HighBP', 'HighChol',\n                                                   'CholCheck', 'BMI', 'Smoker',\n                                                   'Stroke',\n                                                   'HeartDiseaseorAttack',\n                                                   'PhysActivity',\n                                                   'NoDocbcCost', 'GenHlth',\n                                                   'MentHlth', 'PhysHlth',\n                                                   'DiffWalk', 'Sex', 'Age',\n                                                   'Education', 'Income']),\n                                                 ('cat',\n                                                  OneHotEncoder(handle_unknown='ignore'),\n                                                  [])])),\n                ('model',\n                 XGBClassifier...\n                               feature_types=None, feature_weights=None,\n                               gamma=None, grow_policy=None,\n                               importance_type=None,\n                               interaction_constraints=None, learning_rate=0.05,\n                               max_bin=None, max_cat_threshold=None,\n                               max_cat_to_onehot=None, max_delta_step=None,\n                               max_depth=6, max_leaves=None,\n                               min_child_weight=None, missing=nan,\n                               monotone_constraints=None, multi_strategy=None,\n                               n_estimators=300, n_jobs=None,\n                               num_parallel_tree=None, ...))])",
+        "best_model_name": "xgboost"
+    },
+    "xai_timing": {
+        "shap_time_s": 0.01,
+        "fi_time_s": 3.762,
+        "note": "shap_time_s = wall-clock seconds for SHAP computation: TreeSHAP on sample_size=200 (seeded random_state=42) for XGBoost and RandomForest; LinearSHAP (closed-form) on the full test set for LogisticRegression. fi_time_s = wall-clock seconds for Permutation Importance via sklearn.inspection.permutation_importance (n_repeats=10, scoring='roc_auc', n_jobs=1, random_state=42) computed on the full held-out 20% test partition. Both attribution methods produce a global importance vector per (model, cohort) cell."
+    }
+}

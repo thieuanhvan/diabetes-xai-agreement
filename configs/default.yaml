@@ -1,0 +1,62 @@
+# configs/default.yaml
+# Paper 2 — fixed configuration (no hyperparameter tuning by design).
+# All values used to produce the reported results in manuscript v9.
+#
+# Rationale: Hyperparameters were fixed a priori, without test-set tuning,
+# to keep the contribution focused on attribution-method behaviour
+# (Agreement, Stability, Fairness) under stable model conditions.
+
+preprocessing:
+  test_size: 0.2
+  random_state: 42
+  stratify: true                # stratify by target — critical for 14:86 imbalance
+
+debug:
+  sample_size: null             # null = full dataset (production)
+                                # set integer (e.g. 30000) for fast dev iteration
+
+models:
+  logistic_regression:
+    max_iter: 1000
+    class_weight: balanced
+
+  decision_tree:
+    random_state: 42
+    class_weight: balanced
+
+  random_forest:
+    n_estimators: 200
+    random_state: 42
+    class_weight: balanced
+
+  knn:
+    n_neighbors: 5
+
+  ann:                          # MLP baseline — not reported in main tables
+    hidden_layer_sizes: [64, 32]
+    activation: relu
+    solver: adam
+    max_iter: 200
+    random_state: 42
+
+  xgboost:
+    n_estimators: 300
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    eval_metric: logloss
+    random_state: 42
+
+xai:
+  shap:
+    sample_size: 200            # TreeSHAP/LinearSHAP test sample for attribution
+    random_state: 42
+
+  permutation_importance:
+    n_repeats: 10
+    scoring: roc_auc
+    random_state: 42
+    n_jobs: 1                   # IMPORTANT: keep 1 on Windows;
+                                # n_jobs=-1 fails silently for RandomForest
+                                # in PyCharm/Windows (Joblib pickling issue)

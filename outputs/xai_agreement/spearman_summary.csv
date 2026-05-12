@@ -1,0 +1,10 @@
+model,dataset_1,dataset_2,year_1,year_2,spearman_shap,top5_overlap_shap,top10_overlap_shap,spearman_fi,top5_overlap_fi,top10_overlap_fi
+xgboost,cdc_brfss_diabetes_2015,cdc_brfss_diabetes_2021,2015,2021,0.8701,1.0,0.8,0.9069,1.0,0.9
+xgboost,cdc_brfss_diabetes_2015,cdc_brfss_diabetes_2023,2015,2023,0.8848,1.0,0.9,0.875,1.0,0.9
+xgboost,cdc_brfss_diabetes_2021,cdc_brfss_diabetes_2023,2021,2023,0.9853,1.0,0.9,0.9877,1.0,1.0
+random_forest,cdc_brfss_diabetes_2015,cdc_brfss_diabetes_2021,2015,2021,0.9828,1.0,1.0,0.8137,1.0,0.7
+random_forest,cdc_brfss_diabetes_2015,cdc_brfss_diabetes_2023,2015,2023,0.9657,1.0,1.0,0.6814,1.0,0.8
+random_forest,cdc_brfss_diabetes_2021,cdc_brfss_diabetes_2023,2021,2023,0.9828,1.0,1.0,0.7941,1.0,0.9
+logistic_regression,cdc_brfss_diabetes_2015,cdc_brfss_diabetes_2021,2015,2021,0.9142,1.0,0.9,0.9044,1.0,0.9
+logistic_regression,cdc_brfss_diabetes_2015,cdc_brfss_diabetes_2023,2015,2023,0.8848,1.0,0.8,0.902,1.0,0.9
+logistic_regression,cdc_brfss_diabetes_2021,cdc_brfss_diabetes_2023,2021,2023,0.9657,1.0,0.9,0.973,1.0,1.0

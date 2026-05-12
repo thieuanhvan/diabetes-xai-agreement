@@ -1,0 +1,50 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+
+# =========================
+# ENV (security)
+# =========================
+.env
+
+# =========================
+# DATA
+# =========================
+
+# Raw data (not committed)
+data/raw/
+
+# Intermediate "rebuilt" duplicates (identical md5 to cdc_brfss_diabetes_*.csv)
+data/cdc_brfss_*_rebuilt.csv
+
+# Note: processed cdc_brfss_diabetes_{2015,2021,2023}.csv are committed
+# (intentionally not ignored)
+
+# =========================
+# RUN ARTIFACTS
+# =========================
+
+# outputs/ — committed for reviewer reproducibility (canonical run only)
+# logs/    — committed as audit trail of real execution
+
+# Internal backups of superseded runs (not committed)
+_bk/
+
+# Temp files
+*.tmp
+
+# =========================
+# OS / IDE
+# =========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
