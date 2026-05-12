@@ -74,8 +74,9 @@ def run_feature_importance_analysis(model, X, y, output_dir, model_name="model",
 
     t0 = time.time()
 
-    # Van change n_jobs value because not see fi/random_forest_feature_importance.csv
     # date 2026-04-25
+    # Use n_jobs=1 to avoid multiprocessing issues that may prevent
+    # Random Forest permutation importance outputs from being written.
     #result = permutation_importance(
     #    model, X, y,
     #    n_repeats=n_repeats,

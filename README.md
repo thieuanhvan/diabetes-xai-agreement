@@ -1,10 +1,10 @@
 # diabetes-xai-agreement
 
 Research pipeline auditing explainable AI methods on population-scale
-diabetes risk prediction from CDC BRFSS data (2015, 2021, 2023). The
-codebase supports two related publications: a conference paper on
-inter-method agreement, and a journal extension that additionally
-analyses temporal stability and fairness.
+diabetes risk prediction from CDC BRFSS data (2015, 2021, 2023). This
+repository reproduces the submitted anonymous paper. Additional
+exploratory outputs are included for completeness but are not required
+for the conference results.
 
 > **Runtime note.** A full reproduction from scratch takes approximately
 > two to three hours on a standard desktop CPU; no GPU is required. The
@@ -36,34 +36,6 @@ The cABC partition follows Ultsch and Lötsch (2015), with the
 breakpoint selected at the Lorenz-curve maximum gap; this removes the
 arbitrary-K choice of top-K overlap.
 
-## Scope of accompanying papers
-
-Two papers draw on this pipeline:
-
-- The **conference paper** (currently under review) reports axes 1
-  and 2 (the two agreement axes) for all three cohorts.
-- The **journal extension** (in preparation) additionally reports
-  axes 3 (temporal stability) and 4 (fairness).
-
-The same code, data, hyperparameters, and random seed are used by both
-papers. The table below maps each output file to its role in each
-publication.
-
-| File or directory | Conference paper | Journal extension |
-|---|---|---|
-| `outputs/xai_agreement/cabc_groups.csv` | Table V | Same |
-| `outputs/xai_agreement/within_model_agreement.csv` | Table III | Same |
-| `outputs/xai_agreement/cross_model_shap_agreement.csv` | Table IV, Figure 2 | Same |
-| `outputs/xai_agreement/plots/cabc_partition.png` | Figure 1 | Figure 1 |
-| `outputs/xai_agreement/plots/crossmodel_jaccard.png` | Figure 2 | Figure 2 |
-| `outputs/<cohort>/tables/model_comparison_table.csv` | Table II (AUC) | Same |
-| `outputs/xai_agreement/temporal_stability_cabc.csv` | Not analysed | Primary stability metric |
-| `outputs/xai_agreement/temporal_stability.csv` | Not analysed | Auxiliary (legacy metrics) |
-| `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv` | Not analysed | Primary fairness metric |
-| `outputs/<cohort>/analysis/<model>_fairness_{age,sex,income}_detail.csv` | Not analysed | Per-attribute breakdown |
-| `outputs/xai_agreement/spearman_summary.csv` | Not analysed | Auxiliary |
-| `outputs/<cohort>/eda/`, `eda_comparative/`, `eda_pandemic_3year/` | Not used | Exploratory EDA |
-| `outputs/anomaly_detection/`, `drift_visualization/` | Not used | Exploratory |
 
 ## Factorial design
 
@@ -105,7 +77,7 @@ diabetes-xai-agreement/
 │   ├── evaluation/                   # Classification metrics
 │   └── reporting/                    # Auto-generated tables and plots
 ├── outputs/                          # Reference run committed
-├── logs/                             # Execution audit trail committed
+├── logs/                             # Generated during execution; not in this anonymous archive
 ├── requirements.txt
 └── README.md
 ```
@@ -163,7 +135,7 @@ The following invariants are headline numbers reported in the two
 papers. They are present in the committed `outputs/` and should be
 reproduced by any clean run.
 
-### Agreement axis (conference paper, retained in journal extension)
+### Agreement axis
 
 Cross-method Group-A Jaccard (SHAP vs Permutation Importance, by
 model-cohort cell):
@@ -193,7 +165,7 @@ Cross-model SHAP Group-A Jaccard, averaged over the three cohorts:
 Stable core set (Group A in all 18 rankings): `{Age, BMI, GenHlth,
 HighBP, HighChol}`.
 
-### Temporal stability axis (journal extension only)
+### Temporal stability axis
 
 Group-A Jaccard across cohort pairs (2015 vs 2021, 2015 vs 2023, 2021
 vs 2023), for each (model, method) combination. Source:
@@ -205,7 +177,7 @@ vs 2023), for each (model, method) combination. Source:
 | Permutation Importance | 1.0000 | 9 / 9 |
 | Aggregate (both methods) | 0.9656 | 14 / 18 |
 
-### Fairness axis (journal extension only)
+### Fairness axis
 
 Equalised Odds violation by protected attribute, per (model, cohort).
 Source: `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv`.

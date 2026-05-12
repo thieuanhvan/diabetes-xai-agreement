@@ -1,9 +1,9 @@
 # Reproducibility Guide
 
 This document describes how to fully reproduce the numerical results
-reported in the two accompanying papers: the conference paper on
-inter-method XAI agreement, and the journal extension that adds
-temporal stability and fairness analyses.
+reported in the submitted anonymous paper. Stability and fairness
+outputs are included as exploratory additions and are not required
+for the conference results.
 
 The reproduction has two stages. First, the per-cell pipeline trains
 each of three models on each of three BRFSS cohorts and computes SHAP
@@ -102,8 +102,8 @@ outputs/xai_agreement/
 ## 5. Verify against the papers
 
 After Step 4 completes, the following invariants should hold. They are
-grouped by analytical axis. The conference paper reports the agreement
-axis only; the journal extension adds stability and fairness.
+grouped by analytical axis. The acceptance test below covers the
+agreement axis; stability and fairness outputs are exploratory.
 
 ### 5a. Agreement axis (both papers)
 
@@ -132,7 +132,7 @@ Per-pair cross-model J_A (SHAP, by cohort):
 | XGB-RF | 0.8333 | 0.8333 | 0.7143 | 0.7936 |
 | RF-LR  | 0.8333 | 0.7143 | 0.7143 | 0.7540 |
 
-Test-set AUC (Table II in the conference paper):
+Test-set AUC (reported in the submitted paper):
 
 | Model | 2015 | 2021 | 2023 |
 |---|---|---|---|
@@ -140,7 +140,7 @@ Test-set AUC (Table II in the conference paper):
 | Random Forest       | 0.7817 | 0.7832 | 0.7693 |
 | Logistic Regression | 0.8185 | 0.8156 | 0.8061 |
 
-### 5b. Temporal stability axis (journal extension only)
+### 5b. Temporal stability axis
 
 Group-A Jaccard across cohort pairs (2015-2021, 2015-2023, 2021-2023),
 per (model, method). Source:
@@ -160,7 +160,7 @@ By model and method:
 | Random Forest        | 1.0000, 0.8571, 0.8571 | 1.0000, 1.0000, 1.0000 |
 | Logistic Regression  | 0.8333, 1.0000, 0.8333 | 1.0000, 1.0000, 1.0000 |
 
-### 5c. Fairness axis (journal extension only)
+### 5c. Fairness axis
 
 Equalised Odds violation per (model, cohort, protected attribute).
 Source: `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv`,
@@ -235,4 +235,4 @@ results.
 
 ## Contact
 
-For reproducibility issues, please open a GitHub issue.
+For anonymous review, no contact information is provided in this archive.
