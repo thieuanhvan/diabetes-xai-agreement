@@ -1,277 +1,62 @@
-# diabetes-xai-agreement
+# data/
 
-Research pipeline auditing explainable AI methods on population-scale
-diabetes risk prediction from CDC BRFSS data (2015, 2021, 2023). The
-codebase supports two related publications: a conference paper on
-inter-method agreement, and a journal extension that additionally
-analyses temporal stability and fairness.
-
-> **Runtime note.** A full reproduction from scratch takes approximately
-> two to three hours on a standard desktop CPU; no GPU is required. The
-> Random Forest SHAP and Permutation Importance stages dominate the wall
-> clock. If only the headline numbers are needed, the canonical
-> reference outputs are committed under `outputs/` and can be inspected
-> directly without re-execution.
-
-## What the pipeline computes
-
-The codebase runs three classifiers (Logistic Regression, Random
-Forest, XGBoost) on three BRFSS cohorts and computes two
-feature-attribution methods per cell (SHAP and Permutation Importance),
-producing eighteen attribution rankings in total. From these rankings
-the pipeline derives four analytical axes:
-
-1. Inter-method agreement (SHAP vs Permutation Importance) within each
-   model-cohort cell, quantified via per-group Jaccard on a data-driven
-   computed-ABC (cABC) partition of ranked importance.
-2. Cross-model agreement (SHAP rankings across architecture pairs)
-   within each cohort.
-3. Temporal stability of Group A membership across cohort pairs
-   (2015-2021, 2015-2023, 2021-2023).
-4. Equalised Odds fairness summaries per (model, cohort) by Age, Sex,
-   and Income, with automatic detection of the year-specific Income
-   schema (BRFSS 2015 INCOME2, 2021 INCOME3, 2023 _INCOMG1).
-
-The cABC partition follows Ultsch and Lötsch (2015), with the
-breakpoint selected at the Lorenz-curve maximum gap; this removes the
-arbitrary-K choice of top-K overlap.
-
-## Scope of accompanying papers
-
-Two papers draw on this pipeline:
-
-- The **conference paper** (currently under review) reports axes 1
-  and 2 (the two agreement axes) for all three cohorts.
-- The **journal extension** (in preparation) additionally reports
-  axes 3 (temporal stability) and 4 (fairness).
-
-The same code, data, hyperparameters, and random seed are used by both
-papers. The table below maps each output file to its role in each
-publication.
-
-| File or directory | Conference paper | Journal extension |
-|---|---|---|
-| `outputs/xai_agreement/cabc_groups.csv` | Table V | Same |
-| `outputs/xai_agreement/within_model_agreement.csv` | Table III | Same |
-| `outputs/xai_agreement/cross_model_shap_agreement.csv` | Table IV, Figure 2 | Same |
-| `outputs/xai_agreement/plots/cabc_partition.png` | Figure 1 | Figure 1 |
-| `outputs/xai_agreement/plots/crossmodel_jaccard.png` | Figure 2 | Figure 2 |
-| `outputs/<cohort>/tables/model_comparison_table.csv` | Table II (AUC) | Same |
-| `outputs/xai_agreement/temporal_stability_cabc.csv` | Not analysed | Primary stability metric |
-| `outputs/xai_agreement/temporal_stability.csv` | Not analysed | Auxiliary (legacy metrics) |
-| `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv` | Not analysed | Primary fairness metric |
-| `outputs/<cohort>/analysis/<model>_fairness_{age,sex,income}_detail.csv` | Not analysed | Per-attribute breakdown |
-| `outputs/xai_agreement/spearman_summary.csv` | Not analysed | Auxiliary |
-| `outputs/<cohort>/eda/`, `eda_comparative/`, `eda_pandemic_3year/` | Not used | Exploratory EDA |
-| `outputs/anomaly_detection/`, `drift_visualization/` | Not used | Exploratory |
-
-## Factorial design
-
-Three classifiers, three cohorts, two XAI methods gives 18 attribution
-rankings.
-
-| Dimension | Values |
-|-----------|--------|
-| Classifiers | Logistic Regression, Random Forest, XGBoost |
-| Cohorts     | BRFSS 2015 (n = 253,680), 2021 (236,378), 2023 (272,769) |
-| XAI methods | SHAP (TreeSHAP for trees, LinearSHAP for LR), Permutation Importance |
-| Total N     | 762,827 respondents across the three cohorts |
-
-The harmonised analysis is restricted to the 17 predictors common to
-all three releases. BRFSS 2015 and 2021 each contain 21 features;
-BRFSS 2023 contains 17 (the variables `AnyHealthcare`, `Fruits`,
-`Veggies`, and `HvyAlcoholConsump` are not retained in the harmonised
-2023 schema).
-
-## Project structure
+Three cleaned CDC BRFSS cohorts committed directly to this folder:
 
 ```
-diabetes-xai-agreement/
-├── configs/
-│   └── default.yaml                  # Fixed hyperparameters (no test-set tuning)
-├── data/
-│   └── cdc_brfss_diabetes_{2015,2021,2023}.csv   # Committed, ~20 MB each
-├── src/
-│   ├── pipelines/
-│   │   ├── run_pipeline.py           # Single (dataset, model) cell
-│   │   ├── run_pipeline_all_combos.py  # Iterates 9 cells
-│   │   └── step01..step10_*.py       # Pipeline stages
-│   ├── analysis/
-│   │   ├── run_xai_agreement.py      # Aggregates 18 rankings into cABC + Jaccard
-│   │   └── fairness_analysis.py      # Equalised Odds per protected attribute
-│   ├── datasets/                     # Loaders + cohort registry
-│   ├── models/                       # Baseline + proposal estimators
-│   ├── explainability/               # SHAP + Permutation Importance
-│   ├── evaluation/                   # Classification metrics
-│   └── reporting/                    # Auto-generated tables and plots
-├── outputs/                          # Reference run committed
-├── logs/                             # Execution audit trail committed
-├── requirements.txt
-└── README.md
+data/
+├── cdc_brfss_diabetes_2015.csv    (253,680 rows x 22 cols)
+├── cdc_brfss_diabetes_2021.csv    (236,378 rows x 22 cols)
+└── cdc_brfss_diabetes_2023.csv    (272,769 rows x 18 cols)
 ```
 
-## Installation
+These three files are the only inputs the pipeline consumes. The full
+reproduction in `README_REPRODUCIBILITY.md` reads them as-is; no raw
+`.XPT` ingestion is required.
 
-```bash
-git clone <repository-url>
-cd diabetes-xai-agreement
-python -m venv .venv
-# Windows:  .venv\Scripts\activate
-# Linux:    source .venv/bin/activate
-pip install -r requirements.txt
+## Dataset summary
+
+|                 | BRFSS 2015 | BRFSS 2021 | BRFSS 2023 |
+|-----------------|---|---|---|
+| Records         | 253,680 | 236,378 | 272,769 |
+| Features        | 21 (+ 1 target) | 21 (+ 1 target) | 17 (+ 1 target) |
+| Target          | `Diabetes_binary` | `Diabetes_binary` | `Diabetes_binary` |
+| Period          | Pre-pandemic baseline | In-pandemic peak | Post-pandemic |
+| Source          | CDC BRFSS 2015 | CDC BRFSS 2021 | CDC BRFSS 2023 |
+
+**On the 2023 schema reduction:** CDC removed four lifestyle variables in
+BRFSS 2023 (`Fruits`, `Veggies`, `AnyHealthcare`, `HvyAlcoholConsump`) due
+to questionnaire modifications. The 2023 CSV therefore carries 17
+features instead of 21. The pipeline harmonises all three cohorts on the
+17-feature common schema.
+
+All features are survey self-report. No clinical biomarkers (HbA1c,
+fasting glucose, OGTT) are included.
+
+## Provenance
+
+- **Raw source:** CDC Behavioral Risk Factor Surveillance System (BRFSS),
+  <https://www.cdc.gov/brfss/>
+- **Recoding protocol:** Teboul (2022) Kaggle convention, faithfully
+  reproduced and extended to BRFSS 2021 and BRFSS 2023 for this study
+- **Reference Kaggle datasets** used for output validation during the
+  cleaning step:
+  - 2015: `alexteboul/diabetes-health-indicators-dataset`
+  - 2021: `julnazz/diabetes-health-indicators-dataset`
+  - 2023: `siamaktahmasbi/diabetes-2023-brfss-cdc`
+
+## Switching the active cohort
+
+Edit `src/datasets/dataset_registry.py` and set `ACTIVE_DATASET`:
+
+```python
+ACTIVE_DATASET = "cdc_brfss_diabetes_2015"   # pre-pandemic
+ACTIVE_DATASET = "cdc_brfss_diabetes_2021"   # in-pandemic
+ACTIVE_DATASET = "cdc_brfss_diabetes_2023"   # post-pandemic
 ```
 
-Tested with Python 3.12.10 (Anaconda) on Windows 10. The version
-ranges in `requirements.txt` allow patch updates within the tested
-major range; exact pins from the reference run are available in
-`outputs/<cohort>/reproducibility/environment.json`.
-
-## Running the pipeline
-
-The harmonised CSVs in `data/` are the only inputs required. No raw
-`.XPT` files or external downloads are needed to reproduce paper
-results.
-
-### Step 1: Train models and compute attributions (about 2 to 3 hours)
+Outputs are written to `outputs/<slug>/`. For the full 9-cell factorial
+across all three cohorts and all three models, run:
 
 ```bash
 python -m src.pipelines.run_pipeline_all_combos
 ```
-
-This iterates over the 9 (model, cohort) cells. For each cell, the
-script writes a metrics table, SHAP and Permutation Importance CSVs,
-confusion matrix plots, per-attribute fairness summaries, and a
-reproducibility summary into `outputs/<cohort_slug>/`.
-
-### Step 2: Aggregate agreement analysis (about 5 to 10 minutes)
-
-```bash
-python -m src.analysis.run_xai_agreement
-```
-
-This consumes the 18 attribution CSVs from Step 1 and writes the
-aggregate tables and figures into `outputs/xai_agreement/`.
-
-To verify a fresh run against the committed reference, diff the two
-`outputs/` trees. CSVs should be byte-identical except for the
-`*_time_s` fields in `experiment_summary.json`, where wall-clock
-varies between runs while numerical results do not.
-
-## Acceptance test
-
-The following invariants are headline numbers reported in the two
-papers. They are present in the committed `outputs/` and should be
-reproduced by any clean run.
-
-### Agreement axis (conference paper, retained in journal extension)
-
-Cross-method Group-A Jaccard (SHAP vs Permutation Importance, by
-model-cohort cell):
-
-| Cell                       | Expected J_A |
-|----------------------------|---|
-| XGBoost, BRFSS 2015        | 1.0000 |
-| XGBoost, BRFSS 2021        | 1.0000 |
-| XGBoost, BRFSS 2023        | 1.0000 |
-| Random Forest, 2015        | 0.8333 |
-| Random Forest, 2021        | 0.8333 |
-| Random Forest, 2023        | 0.7143 |
-| Logistic Regression, 2015  | 1.0000 |
-| Logistic Regression, 2021  | 0.8333 |
-| Logistic Regression, 2023  | 1.0000 |
-| Aggregate (mean over 9 cells) | 0.9127 |
-
-Cross-model SHAP Group-A Jaccard, averaged over the three cohorts:
-
-| Pair      | Mean J_A |
-|-----------|---|
-| XGBoost, LR | 0.9444 |
-| XGBoost, RF | 0.7936 |
-| RF, LR      | 0.7540 |
-| Aggregate   | 0.8307 |
-
-Stable core set (Group A in all 18 rankings): `{Age, BMI, GenHlth,
-HighBP, HighChol}`.
-
-### Temporal stability axis (journal extension only)
-
-Group-A Jaccard across cohort pairs (2015 vs 2021, 2015 vs 2023, 2021
-vs 2023), for each (model, method) combination. Source:
-`outputs/xai_agreement/temporal_stability_cabc.csv`.
-
-| Method | Aggregate J_A | Perfect cells |
-|--------|---|---|
-| SHAP                  | 0.9312 | 5 / 9 |
-| Permutation Importance | 1.0000 | 9 / 9 |
-| Aggregate (both methods) | 0.9656 | 14 / 18 |
-
-### Fairness axis (journal extension only)
-
-Equalised Odds violation by protected attribute, per (model, cohort).
-Source: `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv`.
-Severity labels follow the convention in `fairness_analysis.py`:
-`Tot` (good) for EO < 0.05, `Chap nhan duoc` (acceptable) for
-0.05 to 0.10, `Dang lo ngai` (concerning) for 0.10 to 0.20,
-`Nghiem trong` (severe) for >= 0.20.
-
-Sex shows minimal bias across all (model, cohort) cells (EO <= 0.07).
-The dominant patterns are concentrated in Age and Income, with
-Logistic Regression showing the most severe bias.
-
-EO violation by Income (max of dTPR, dFPR):
-
-| Model | 2015 | 2021 | 2023 |
-|-------|------|------|------|
-| XGBoost              | 0.2422 | 0.3153 | 0.3047 |
-| Random Forest        | 0.1090 | 0.1923 | 0.2090 |
-| Logistic Regression  | 0.4316 | 0.4914 | 0.4099 |
-
-EO violation by Age (max of dTPR, dFPR):
-
-| Model | 2015 | 2021 | 2023 |
-|-------|------|------|------|
-| XGBoost              | 0.2365 | 0.2074 | 0.2122 |
-| Random Forest        | 0.2502 | 0.2098 | 0.2291 |
-| Logistic Regression  | 0.7902 | 0.7412 | 0.7278 |
-
-If a clean run reproduces these values, the pipeline is reproducible.
-If any value differs, check that `random_state = 42` is honoured
-throughout and that all packages match `requirements.txt`.
-
-## Reproducibility
-
-All splits, samples, and stochastic estimators use `random_state = 42`.
-Hyperparameters are fixed in `configs/default.yaml`; no test-set
-tuning is performed. TreeSHAP attributions use a seeded sample of 200
-test instances for tree models, while LinearSHAP is closed-form and
-uses the full test set for Logistic Regression. Permutation Importance
-uses `n_repeats = 10`, `scoring = "roc_auc"`, and `n_jobs = 1` on the
-full test set. The single-process setting is intentional: with
-`n_jobs = -1`, some Windows and PyCharm configurations fail silently
-and produce empty importance files. Exact package versions for the
-reference run are recorded in
-`outputs/<cohort>/reproducibility/environment.json`. A separate
-`README_REPRODUCIBILITY.md` provides the step-by-step recipe with
-expected runtimes per stage.
-
-## Key references
-
-- Ultsch, A. and Lötsch, J. (2015). Computed ABC analysis for rational
-  selection of most informative variables in multivariate data.
-  *PLoS ONE*, 10(6), e0129767.
-- Lundberg, S. M. and Lee, S.-I. (2017). A unified approach to
-  interpreting model predictions. *NeurIPS 30*.
-- Lundberg, S. M. *et al.* (2020). From local explanations to global
-  understanding with explainable AI for trees. *Nat. Mach. Intell.*,
-  2(1), 56–67.
-- Breiman, L. (2001). Random forests. *Mach. Learn.*, 45(1), 5–32.
-- Fisher, A., Rudin, C., and Dominici, F. (2019). All models are wrong
-  but many are useful. *JMLR*, 20(177).
-- Hardt, M., Price, E., and Srebro, N. (2016). Equality of opportunity
-  in supervised learning. *NeurIPS 29*.
-
-The full reference list is in each accompanying paper.
-
-## License
-
-Released under the MIT License.
