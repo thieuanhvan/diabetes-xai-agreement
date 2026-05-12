@@ -1,126 +1,62 @@
 # data/
 
-Dataset files are **not tracked in git** (large files, >50MB each).
-Place the 3 required CSV files directly in this folder (`data/`) with the
-exact filenames listed below.
-
-These CSVs are produced by the companion repository
-[`thieuanhvan/brfss-diabetes`](https://github.com/thieuanhvan/brfss-diabetes),
-which handles raw `.XPT` ingestion, Teboul-protocol recoding, and listwise
-deletion. This repository (`diabetes-xai-agreement`) does **not** build data
-from raw — it consumes the cleaned CSVs only.
-
----
-
-## Required Files
-
-Place all 3 files directly in this `data/` folder:
+Three cleaned CDC BRFSS cohorts committed directly to this folder:
 
 ```
 data/
-├── cdc_brfss_diabetes_2015.csv  (253,680 rows × 22 cols)
-├── cdc_brfss_diabetes_2021.csv  (236,378 rows × 22 cols)
-└── cdc_brfss_diabetes_2023.csv  (272,769 rows × 18 cols)
+├── cdc_brfss_diabetes_2015.csv    (253,680 rows x 22 cols)
+├── cdc_brfss_diabetes_2021.csv    (236,378 rows x 22 cols)
+└── cdc_brfss_diabetes_2023.csv    (272,769 rows x 18 cols)
 ```
 
----
+These three files are the only inputs the pipeline consumes. The full
+reproduction in `README_REPRODUCIBILITY.md` reads them as-is; no raw
+`.XPT` ingestion is required.
 
-## How to obtain the files
+## Dataset summary
 
-### Option A — Build from raw (recommended for reproducibility)
+|                 | BRFSS 2015 | BRFSS 2021 | BRFSS 2023 |
+|-----------------|---|---|---|
+| Records         | 253,680 | 236,378 | 272,769 |
+| Features        | 21 (+ 1 target) | 21 (+ 1 target) | 17 (+ 1 target) |
+| Target          | `Diabetes_binary` | `Diabetes_binary` | `Diabetes_binary` |
+| Period          | Pre-pandemic baseline | In-pandemic peak | Post-pandemic |
+| Source          | CDC BRFSS 2015 | CDC BRFSS 2021 | CDC BRFSS 2023 |
 
-Use the `brfss-diabetes` toolkit:
+**On the 2023 schema reduction:** CDC removed four lifestyle variables in
+BRFSS 2023 (`Fruits`, `Veggies`, `AnyHealthcare`, `HvyAlcoholConsump`) due
+to questionnaire modifications. The 2023 CSV therefore carries 17
+features instead of 21. The pipeline harmonises all three cohorts on the
+17-feature common schema.
 
-```bash
-# 1. Clone the toolkit repo
-git clone https://github.com/thieuanhvan/brfss-diabetes.git
-cd brfss-diabetes
+All features are survey self-report. No clinical biomarkers (HbA1c,
+fasting glucose, OGTT) are included.
 
-# 2. Place CDC raw .XPT files in data/raw/cdc/
-#    Download from: https://www.cdc.gov/brfss/annual_data/annual_data.htm
-#      - LLCP2015.XPT
-#      - LLCP2021.XPT
-#      - LLCP2023.XPT
+## Provenance
 
-# 3. Build the cleaned CSVs
-python src/brfss_diabetes/run_build_kaggle_csvs.py
-
-# 4. Outputs are written to outputs/tabular/
-#    Copy the 3 files into this repo's data/ folder
-cp outputs/tabular/cdc_brfss_diabetes_2015.csv  /path/to/diabetes-xai-agreement/data/
-cp outputs/tabular/cdc_brfss_diabetes_2021.csv  /path/to/diabetes-xai-agreement/data/
-cp outputs/tabular/cdc_brfss_diabetes_2015.csv  /path/to/diabetes-xai-agreement/data/
-```
-
-### Option B — Download pre-built CSVs from Kaggle
-
-The same 3 cleaned CSVs are published as a Kaggle dataset:
-
-**Kaggle dataset:** `https://www.kaggle.com/datasets/thieuanhvan/brfss-diabetes`
-*(URL placeholder — to be updated after Kaggle release, planned 5/2026)*
-
-**Kaggle DOI:** `10.34740/kaggle/dsv/XXXXXXXX`
-*(DOI placeholder — assigned by Kaggle on publication)*
-
-Download the dataset, unzip, and place the 3 CSVs in `data/`.
-
----
-
-## Dataset Info
-
-| | BRFSS 2015 | BRFSS 2021 | BRFSS 2023 |
-|---|---|---|---|
-| Records | 253,680 | 236,378 | 272,769 |
-| Features | 21 (+ 1 target) | 21 (+ 1 target) | 17 (+ 1 target) |
-| Target | `Diabetes_binary` | `Diabetes_binary` | `Diabetes_binary` |
-| Period | Pre-COVID baseline | In-COVID peak | Post-COVID |
-| Schema | Full (Teboul 2015) | Full (julnazz 2021) | Reduced (CDC dropped 4 vars) |
-| Source | CDC BRFSS 2015 | CDC BRFSS 2021 | CDC BRFSS 2023 |
-| Registry slug | `cdc_brfss_2015_rebuilt` | `cdc_brfss_2021_rebuilt` | `cdc_brfss_2023_rebuilt` |
-
-**Note on 2023 schema reduction:** CDC removed 4 lifestyle variables in BRFSS 2023
-(`Fruits`, `Veggies`, `AnyHealthcare`, `HvyAlcoholConsump`) due to questionnaire
-modifications. The 2023 CSV therefore has 17 features instead of 21. For
-cross-temporal analysis, the 2015 and 2021 datasets can be projected to the
-common 17-feature schema as a separate post-processing step.
-
-All features are survey self-report (no clinical biomarkers such as HbA1c or
-fasting glucose).
-
----
-
-## Switching the active dataset
-
-Edit `src/datasets/dataset_registry.py`, change the `ACTIVE_DATASET` line:
-
-```python
-ACTIVE_DATASET = "cdc_brfss_diabetes_2015"   # BRFSS 2015 — pre-COVID baseline
-ACTIVE_DATASET = "cdc_brfss_diabetes_2021"   # BRFSS 2021 — in-COVID peak
-ACTIVE_DATASET = "cdc_brfss_diabetes_2023"   # BRFSS 2023 — post-COVID (default)
-```
-
-Then re-run the pipeline. Outputs are saved under the corresponding slug folder
-(e.g., `outputs/cdc_brfss_2023_rebuilt/`).
-
-For batch runs across all 3 years, use:
-
-```bash
-python src/pipelines/run_pipeline_all_combos.py
-```
-
----
-
-## Source and provenance
-
-- **Raw data:** CDC Behavioral Risk Factor Surveillance System (BRFSS),
-  https://www.cdc.gov/brfss/
+- **Raw source:** CDC Behavioral Risk Factor Surveillance System (BRFSS),
+  <https://www.cdc.gov/brfss/>
 - **Recoding protocol:** Teboul (2022) Kaggle convention, faithfully
-  reproduced and extended to 2023 by the `brfss-diabetes` toolkit
-- **Reference Kaggle datasets** (used for output validation):
+  reproduced and extended to BRFSS 2021 and BRFSS 2023 for this study
+- **Reference Kaggle datasets** used for output validation during the
+  cleaning step:
   - 2015: `alexteboul/diabetes-health-indicators-dataset`
   - 2021: `julnazz/diabetes-health-indicators-dataset`
   - 2023: `siamaktahmasbi/diabetes-2023-brfss-cdc`
 
-For the full recoding methodology (PATTERN A vs PATTERN B encoding, multi-level
-recodings, listwise deletion rationale), see
-[`brfss-diabetes/docs/methodology.md`](https://github.com/thieuanhvan/brfss-diabetes/blob/main/docs/methodology.md).
+## Switching the active cohort
+
+Edit `src/datasets/dataset_registry.py` and set `ACTIVE_DATASET`:
+
+```python
+ACTIVE_DATASET = "cdc_brfss_diabetes_2015"   # pre-pandemic
+ACTIVE_DATASET = "cdc_brfss_diabetes_2021"   # in-pandemic
+ACTIVE_DATASET = "cdc_brfss_diabetes_2023"   # post-pandemic
+```
+
+Outputs are written to `outputs/<slug>/`. For the full 9-cell factorial
+across all three cohorts and all three models, run:
+
+```bash
+python -m src.pipelines.run_pipeline_all_combos
+```
