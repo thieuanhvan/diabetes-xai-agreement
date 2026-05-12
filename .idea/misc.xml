@@ -4,5 +4,5 @@
     <option name="pathToExecutable" value="C:\Users\Win\anaconda3\Scripts\black.exe" />
     <option name="sdkName" value="Python 3.12 (diabetes-xai-agreement)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (diabetes-xai-agreement)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (diabetes-xai-agreement)" project-jdk-type="Python SDK" />
 </project>

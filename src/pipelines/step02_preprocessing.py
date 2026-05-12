@@ -37,7 +37,7 @@ def run_step02_preprocessing(df, config):
         y,
         test_size=0.2,
         random_state=42,
-        stratify=y # Van: stratify=y rất quan trọng với dataset imbalance.
+        stratify=y,  # stratify=y is critical given ~14% positive class imbalance
     )
 
     logging.info(f"Train size: {len(X_train)}")

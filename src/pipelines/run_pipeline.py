@@ -13,7 +13,7 @@ from src.pipelines.step04_proposed_model import run_step04_proposed_models
 from src.pipelines.step05_explainability import run_step05_explainability
 from src.pipelines.step06_visualization import run_step06_visualization
 from src.pipelines.step07_error_analysis import run_step07_error_analysis
-#from src.pipelines.step08_statistical_test import run_step08_statistical_test
+
 from src.pipelines.step08_paper_tables import run_step08_generate_tables
 from src.pipelines.step09_reproducibility import run_step09_reproducibility
 from src.pipelines.step10_auto_report import run_step10_auto_report

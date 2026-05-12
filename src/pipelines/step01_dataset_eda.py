@@ -109,10 +109,9 @@ def _plot_binary(series: pd.Series, title: str, png_path: Path):
 
     fig, ax = plt.subplots(figsize=(6, 4))
 
-    # Van changed on 2026-05-01
-    #bars = ax.bar(counts.index.astype(str), counts.values,
-    #               color=["#3498db", "#e67e22"], edgecolor="black")
-
+    # Use explicit positions + xticks/xticklabels instead of passing
+    # categorical strings directly to ax.bar() (avoids matplotlib auto
+    # category mapping warnings on numeric label series).
     positions = np.arange(len(counts))
     bars = ax.bar(positions, counts.values,
                   color=["#3498db", "#e67e22"], edgecolor="black")
@@ -141,9 +140,7 @@ def _plot_ordinal(series: pd.Series, title: str, png_path: Path):
 
     fig, ax = plt.subplots(figsize=(max(7, 0.5 * len(counts)), 4.5))
 
-    # Van changed on 2026-05-01
-    # bars = ax.bar(counts.index.astype(str), counts.values,
-    #               color="#3498db", edgecolor="black", linewidth=0.7)
+    # Use explicit positions + xticks/xticklabels (see _plot_binary above).
     positions = np.arange(len(counts))
     bars = ax.bar(positions, counts.values,
                   color="#3498db", edgecolor="black", linewidth=0.7)

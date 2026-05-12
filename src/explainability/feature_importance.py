@@ -84,7 +84,8 @@ def run_feature_importance_analysis(model, X, y, output_dir, model_name="model",
     #    n_jobs=-1,
     #)
     # Use n_jobs=1 to avoid multiprocessing pickling issues on Windows/PyCharm,
-    # especially for RandomForest pipelines.
+    # especially for RandomForest pipelines (n_jobs=-1 fails silently and
+    # produces an empty importance file).
     result = permutation_importance(
         model, X, y,
         n_repeats=n_repeats,
