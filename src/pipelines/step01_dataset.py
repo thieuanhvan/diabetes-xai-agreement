@@ -24,13 +24,13 @@ def run_step01_load_dataset():
     target = config["target"]
 
     # ----------------------------------------
-    # FAST TEST MODE — đọc từ configs/default.yaml
+    # FAST TEST MODE — reads from configs/default.yaml
     # ----------------------------------------
-    # Để chạy nhanh khi dev, sửa configs/default.yaml:
+    # For quick dev iteration, edit configs/default.yaml:
     #   debug:
-    #     sample_size: 2500     # nhanh nhất, ~30s/combo
-    #     sample_size: 25000    # trung bình, ~3 phút/combo
-    #     sample_size: null     # full dataset (production), ~3-30 phút/combo
+    #     sample_size: 2500     # fastest, ~30s/combo
+    #     sample_size: 25000    # medium, ~3 min/combo
+    #     sample_size: null     # full dataset (production), ~3-30 min/combo
     cfg = load_config()
     DEBUG_SAMPLE_SIZE = cfg["debug"]["sample_size"]
 

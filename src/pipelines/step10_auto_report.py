@@ -11,10 +11,10 @@ def run_step10_auto_report():
     logging.info("STEP 10 - AUTO REPORT GENERATION")
     logging.info("============================================================")
 
-    # Folder chứa outputs của pipeline
+    # Folder containing pipeline outputs
     report_dir = get_outputs_dir()
 
-    # File report output
+    # Output report file
     output_path = Path(report_dir) / "auto_report.md"
 
     report_path = generate_auto_report(report_dir, output_path)

@@ -13,12 +13,12 @@ DATASETS: dict[str, dict] = {
 
 
     # ============================================================
-    # REBUILT — 17 predictors thống nhất cho cả 3 năm
-    # 2015 & 2021 raw có 22 cols → liệt kê 17 predictors cần giữ
-    # 2023 raw đã 18 cols (17 predictors + target) → None đọc hết
-    # 4 features bị CDC drop khỏi BRFSS 2023 questionnaire:
+    # REBUILT — 17 predictors harmonized across all 3 years
+    # 2015 & 2021 raw have 22 cols → list 17 predictors to keep
+    # 2023 raw already has 18 cols (17 predictors + target) → None reads all
+    # 4 features dropped from BRFSS 2023 questionnaire by CDC:
     #   Fruits, Veggies, AnyHealthcare, HvyAlcoholConsump
-    # → reduce 2015 & 2021 xuống 17 để cross-temporal apples-to-apples
+    # → reduce 2015 & 2021 to 17 for apples-to-apples cross-temporal comparison
     # ============================================================
     "cdc_brfss_diabetes_2015": {
         "path": DATA_DIR / "cdc_brfss_diabetes_2015.csv",
@@ -51,7 +51,7 @@ DATASETS: dict[str, dict] = {
         "target": "Diabetes_binary",
         "slug": "cdc_brfss_diabetes_2023",
         "task": "classification",
-        "include_columns": None,  # 2023 đã 17 predictors sẵn
+        "include_columns": None,  # 2023 already has 17 predictors
     },
 
 }
@@ -62,25 +62,25 @@ ACTIVE_DATASET = "cdc_brfss_diabetes_2015"
 #ACTIVE_DATASET = "cdc_brfss_diabetes_2023"
 
 
-# Model dùng cho XAI (step05, agreement analysis, tables)
-# Đổi tại đây nếu muốn chạy với model khác
+# Model used for XAI (step05, agreement analysis, tables)
+# Change here to run a different model
 #
-# Ghi chú:
-#   SHAP     = phân tích giải thích (step05)           — chỉ 3 models đầu hỗ trợ
-#   FI       = Permutation Importance (step05)         — model-agnostic, mọi model đều chạy được
-#   Fairness = Equalized Odds (step07)                 — tất cả 6 models đều chạy được
-#   Paper    = dùng trong paper (RQ2/RQ3)              — chỉ 3 models đầu
+# Notes:
+#   SHAP     = explanation analysis (step05)           — only first 3 models supported
+#   FI       = Permutation Importance (step05)         — model-agnostic, all models supported
+#   Fairness = Equalized Odds (step07)                 — all 6 models supported
+#   Paper    = used in paper (RQ2/RQ3)                 — only first 3 models
 
-ACTIVE_MODEL = "xgboost"              # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper model chính
+ACTIVE_MODEL = "xgboost"              # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper main model
 #ACTIVE_MODEL = "logistic_regression"   # SHAP (LinearSHAP) + Permutation FI | Fairness | Paper consensus
 #ACTIVE_MODEL = "random_forest"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ablation
 
-#ACTIVE_MODEL = "decision_tree"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper ✗ variance cao
-#ACTIVE_MODEL = "knn"                  # SHAP ✗ (quá chậm, skip) | Permutation FI | Fairness | Paper ✗
-#ACTIVE_MODEL = "ann"                  # SHAP ✗ (quá chậm, skip) | Permutation FI | Fairness | Paper ✗
+#ACTIVE_MODEL = "decision_tree"        # SHAP (TreeSHAP)   + Permutation FI | Fairness | Paper x high variance
+#ACTIVE_MODEL = "knn"                  # SHAP x (too slow, skip) | Permutation FI | Fairness | Paper x
+#ACTIVE_MODEL = "ann"                  # SHAP x (too slow, skip) | Permutation FI | Fairness | Paper x
 
-# Không hỗ trợ SHAP: KNeighborsClassifier, MLPClassifier (KernelSHAP > 4 giờ)
-# FI Permutation: mọi model đều chạy được (model-agnostic, Breiman 2001)
+# SHAP not supported for: KNeighborsClassifier, MLPClassifier (KernelSHAP > 4 hours)
+# FI Permutation: all models supported (model-agnostic, Breiman 2001)
 
 def _validate_cfg(cfg: dict) -> dict:
     if "path" not in cfg:

@@ -2,13 +2,13 @@
 Fairness Analysis Module — Equalized Odds & Demographic Parity
 ===============================================================
 
-Tính các fairness metrics chính thức:
+Computes the formal fairness metrics:
 - TPR (True Positive Rate / Sensitivity) per group
 - FPR (False Positive Rate) per group
 - Equalized Odds violation = max(dTPR, dFPR)
 - Demographic Parity difference = ΔPPV (predicted positive rate)
 
-Demographic attributes trong BRFSS:
+Demographic attributes in BRFSS:
 - Age    : 1–13 (1=18-24, 2=25-29, ..., 13=80+)
 - Sex    : 0=Female, 1=Male
 - Income : schema-dependent (BRFSS 2015: 1–8, BRFSS 2021: 1–11, BRFSS 2023: 1–7)
