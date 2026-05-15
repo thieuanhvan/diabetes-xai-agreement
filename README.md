@@ -182,9 +182,8 @@ vs 2023), for each (model, method) combination. Source:
 Equalised Odds violation by protected attribute, per (model, cohort).
 Source: `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv`.
 Severity labels follow the convention in `fairness_analysis.py`:
-`Tot` (good) for EO < 0.05, `Chap nhan duoc` (acceptable) for
-0.05 to 0.10, `Dang lo ngai` (concerning) for 0.10 to 0.20,
-`Nghiem trong` (severe) for >= 0.20.
+`good` for EO < 0.05, `acceptable` for 0.05 to 0.10,
+`concerning` for 0.10 to 0.20, `severe` for >= 0.20.
 
 Sex shows minimal bias across all (model, cohort) cells (EO <= 0.07).
 The dominant patterns are concentrated in Age and Income, with

@@ -157,10 +157,10 @@ def _equalized_odds_summary(metrics_df, attribute_name, label_map=None):
     eo_violation = max(delta_tpr, delta_fpr)
 
     severity = (
-        "Nghiem trong"   if eo_violation >= 0.20 else
-        "Đang lo ngai"   if eo_violation >= 0.10 else
-        "Chap nhan duoc" if eo_violation >= 0.05 else
-        "Tot"
+        "severe"     if eo_violation >= 0.20 else
+        "concerning" if eo_violation >= 0.10 else
+        "acceptable" if eo_violation >= 0.05 else
+        "good"
     )
 
     return {
