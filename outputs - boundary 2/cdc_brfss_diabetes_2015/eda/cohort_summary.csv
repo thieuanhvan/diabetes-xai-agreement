@@ -1,0 +1,2 @@
+dataset_slug,n_rows,n_columns,target_col,target_positive,target_negative,target_prevalence,n_missing_total,HighBP__pos_pct,HighChol__pos_pct,CholCheck__pos_pct,BMI__mean,BMI__median,Smoker__pos_pct,Stroke__pos_pct,HeartDiseaseorAttack__pos_pct,PhysActivity__pos_pct,NoDocbcCost__pos_pct,MentHlth__mean,MentHlth__median,PhysHlth__mean,PhysHlth__median,DiffWalk__pos_pct,Sex__pos_pct
+cdc_brfss_diabetes_2015,253680,18,Diabetes_binary,35346,218334,0.139333,0,42.9001,42.4121,96.267,28.3824,27.0,44.3169,4.0571,9.4186,75.6544,8.4177,3.1848,0.0,4.2421,0.0,16.8224,44.0342

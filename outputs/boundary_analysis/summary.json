@@ -1,0 +1,47 @@
+{
+  "run_time_sec": 17.3,
+  "cohorts": [
+    "cdc_brfss_diabetes_2015",
+    "cdc_brfss_diabetes_2021",
+    "cdc_brfss_diabetes_2023"
+  ],
+  "aucs": {
+    "cdc_brfss_diabetes_2015": {
+      "logistic_regression": 0.818481112196158,
+      "xgboost": 0.8256644411067632
+    },
+    "cdc_brfss_diabetes_2021": {
+      "logistic_regression": 0.8155993009271273,
+      "xgboost": 0.8228017353355449
+    },
+    "cdc_brfss_diabetes_2023": {
+      "logistic_regression": 0.806071800516841,
+      "xgboost": 0.8133783179479612
+    }
+  },
+  "global_J_A_per_cohort": {
+    "cdc_brfss_diabetes_2015": {
+      "logistic_regression__xgboost": 1.0
+    },
+    "cdc_brfss_diabetes_2021": {
+      "logistic_regression__xgboost": 0.8333333333333334
+    },
+    "cdc_brfss_diabetes_2023": {
+      "logistic_regression__xgboost": 1.0
+    }
+  },
+  "config": {
+    "validation_tree_n": 200,
+    "analysis_tree_n": 2000,
+    "n_bins": 5,
+    "seed": 42,
+    "models_for_validation": [
+      "logistic_regression",
+      "xgboost"
+    ],
+    "models_for_analysis": [
+      "logistic_regression",
+      "xgboost"
+    ]
+  }
+}

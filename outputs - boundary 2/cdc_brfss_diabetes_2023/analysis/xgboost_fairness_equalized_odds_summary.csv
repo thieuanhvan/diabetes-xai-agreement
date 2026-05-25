@@ -1,0 +1,4 @@
+attribute,delta_tpr,delta_fpr,delta_ppr,eo_violation,severity,worst_tpr_group,best_tpr_group,worst_fpr_group
+Age,0.2122,0.0345,0.0631,0.2122,severe,30-34,55-59,70-74
+Sex,0.0049,0.0056,0.0073,0.0056,good,Male,Female,Male
+Income,0.3047,0.0738,0.1311,0.3047,severe,$200K+,<$15K,<$15K
