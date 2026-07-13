@@ -10,10 +10,14 @@ authors:
   - family-names: "Thieu"
     given-names: "Van"
     orcid: "https://orcid.org/0009-0003-9637-0195"
-    affiliation: "University of Information Technology, VNU-HCM, Vietnam"
+    affiliation: >-
+      University of Information Technology, Ho Chi Minh City, Vietnam;
+      Vietnam National University, Ho Chi Minh City, Vietnam
   - family-names: "Tran"
     given-names: "Hung-Nghiep"
-    affiliation: "University of Information Technology, VNU-HCM, Vietnam"
+    affiliation: >-
+      University of Information Technology, Ho Chi Minh City, Vietnam;
+      Vietnam National University, Ho Chi Minh City, Vietnam
 license: MIT
 repository-code: "https://github.com/thieuanhvan/diabetes-xai-agreement"
 preferred-citation:
@@ -25,8 +29,14 @@ preferred-citation:
     - family-names: "Thieu"
       given-names: "Van"
       orcid: "https://orcid.org/0009-0003-9637-0195"
+      affiliation: >-
+        University of Information Technology, Ho Chi Minh City, Vietnam;
+        Vietnam National University, Ho Chi Minh City, Vietnam
     - family-names: "Tran"
       given-names: "Hung-Nghiep"
+      affiliation: >-
+        University of Information Technology, Ho Chi Minh City, Vietnam;
+        Vietnam National University, Ho Chi Minh City, Vietnam
   collection-title: >-
     Proceedings of the 2026 International Conference on Multimedia
     Analysis and Pattern Recognition (MAPR)
