@@ -2,9 +2,10 @@
 
 Research pipeline auditing explainable AI methods on population-scale
 diabetes risk prediction from CDC BRFSS data (2015, 2021, 2023). This
-repository reproduces the submitted anonymous paper. Additional
-exploratory outputs are included for completeness but are not required
-for the conference results.
+repository reproduces the results reported in the MAPR 2026 paper listed
+under [How to cite](#how-to-cite). Additional exploratory outputs are
+included for completeness but are not required for the conference
+results.
 
 > **Runtime note.** A full reproduction from scratch takes approximately
 > two to three hours on a standard desktop CPU; no GPU is required. The
@@ -12,6 +13,33 @@ for the conference results.
 > clock. If only the headline numbers are needed, the canonical
 > reference outputs are committed under `outputs/` and can be inspected
 > directly without re-execution.
+
+## How to cite
+
+If you found our work useful, please cite us.
+
+For the cABC-based XAI agreement audit and the harmonised multi-year
+BRFSS evaluation protocol implemented in this repository, please cite:
+
+Van Thieu, Hung-Nghiep Tran. Auditing Population-Level XAI Agreement
+with cABC: Evidence from Diabetes Risk Prediction. *International
+Conference on Multimedia Analysis and Pattern Recognition (MAPR)*, 2026.
+
+```bibtex
+@inproceedings{thieu2026auditing,
+  title     = {Auditing Population-Level {XAI} Agreement with {cABC}:
+               Evidence from Diabetes Risk Prediction},
+  author    = {Thieu, Van and Tran, Hung-Nghiep},
+  booktitle = {Proceedings of the 2026 International Conference on
+               Multimedia Analysis and Pattern Recognition (MAPR)},
+  year      = {2026},
+  publisher = {IEEE},
+  note      = {To appear}
+}
+```
+
+The IEEE Xplore DOI will be added here once the proceedings are
+published.
 
 ## What the pipeline computes
 
@@ -35,7 +63,6 @@ the pipeline derives four analytical axes:
 The cABC partition follows Ultsch and Lötsch (2015), with the
 breakpoint selected at the Lorenz-curve maximum gap; this removes the
 arbitrary-K choice of top-K overlap.
-
 
 ## Factorial design
 
@@ -77,15 +104,17 @@ diabetes-xai-agreement/
 │   ├── evaluation/                   # Classification metrics
 │   └── reporting/                    # Auto-generated tables and plots
 ├── outputs/                          # Reference run committed
-├── logs/                             # Generated during execution; not in this anonymous archive
+├── logs/                             # Generated during execution; not tracked
 ├── requirements.txt
+├── LICENSE
+├── CITATION.cff
 └── README.md
 ```
 
 ## Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/thieuanhvan/diabetes-xai-agreement.git
 cd diabetes-xai-agreement
 python -m venv .venv
 # Windows:  .venv\Scripts\activate
@@ -131,9 +160,9 @@ varies between runs while numerical results do not.
 
 ## Acceptance test
 
-The following invariants are headline numbers reported in the two
-papers. They are present in the committed `outputs/` and should be
-reproduced by any clean run.
+The following invariants are headline numbers reported in the paper.
+They are present in the committed `outputs/` and should be reproduced
+by any clean run.
 
 ### Agreement axis
 
@@ -234,15 +263,18 @@ expected runtimes per stage.
   interpreting model predictions. *NeurIPS 30*.
 - Lundberg, S. M. *et al.* (2020). From local explanations to global
   understanding with explainable AI for trees. *Nat. Mach. Intell.*,
-  2(1), 56–67.
-- Breiman, L. (2001). Random forests. *Mach. Learn.*, 45(1), 5–32.
+  2(1), 56-67.
+- Breiman, L. (2001). Random forests. *Mach. Learn.*, 45(1), 5-32.
 - Fisher, A., Rudin, C., and Dominici, F. (2019). All models are wrong
   but many are useful. *JMLR*, 20(177).
 - Hardt, M., Price, E., and Srebro, N. (2016). Equality of opportunity
   in supervised learning. *NeurIPS 29*.
 
-The full reference list is in each accompanying paper.
+The full reference list is in the accompanying paper.
 
 ## License
 
-Released under the MIT License.
+Code in this repository is released under the MIT License; see
+[LICENSE](LICENSE). The BRFSS data files under `data/` are derived from
+public-domain CDC survey releases; see [data/README.md](data/README.md)
+for provenance.

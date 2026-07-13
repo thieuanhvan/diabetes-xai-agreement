@@ -1,4 +1,0 @@
-dataset_slug,n_rows,n_columns,target_col,target_positive,target_negative,target_prevalence,n_missing_total,HighBP__pos_pct,HighChol__pos_pct,CholCheck__pos_pct,BMI__mean,BMI__median,Smoker__pos_pct,Stroke__pos_pct,HeartDiseaseorAttack__pos_pct,PhysActivity__pos_pct,NoDocbcCost__pos_pct,MentHlth__mean,MentHlth__median,PhysHlth__mean,PhysHlth__median,DiffWalk__pos_pct,Sex__pos_pct
-cdc_brfss_diabetes_2015,253680,18,Diabetes_binary,35346,218334,0.139333,0,42.9001,42.4121,96.267,28.3824,27.0,44.3169,4.0571,9.4186,75.6544,8.4177,3.1848,0.0,4.2421,0.0,16.8224,44.0342
-cdc_brfss_diabetes_2021,236378,18,Diabetes_binary,33568,202810,0.14201,0,41.8558,40.2059,96.3347,28.9536,28.0,41.1997,3.89,8.6548,77.9231,6.3737,3.9377,0.0,3.7513,0.0,15.3948,47.7824
-cdc_brfss_diabetes_2023,272769,18,Diabetes_binary,39878,232891,0.146197,0,42.9855,41.9076,96.5289,28.8071,28.0,39.7435,4.2135,8.8841,77.4769,7.4103,4.2006,0.0,4.4146,0.0,15.3416,48.4872

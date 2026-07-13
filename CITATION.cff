@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you found our work useful, please cite the paper below."
+title: "diabetes-xai-agreement"
+abstract: >-
+  Research pipeline auditing explainable AI methods (SHAP vs Permutation
+  Importance) on population-scale diabetes risk prediction from CDC BRFSS
+  data (2015, 2021, 2023), using a computed-ABC partition of ranked
+  feature importance.
+authors:
+  - family-names: "Thieu"
+    given-names: "Van"
+    orcid: "https://orcid.org/0009-0003-9637-0195"
+    affiliation: "University of Information Technology, VNU-HCM, Vietnam"
+  - family-names: "Tran"
+    given-names: "Hung-Nghiep"
+    affiliation: "University of Information Technology, VNU-HCM, Vietnam"
+license: MIT
+repository-code: "https://github.com/thieuanhvan/diabetes-xai-agreement"
+preferred-citation:
+  type: conference-paper
+  title: >-
+    Auditing Population-Level XAI Agreement with cABC: Evidence from
+    Diabetes Risk Prediction
+  authors:
+    - family-names: "Thieu"
+      given-names: "Van"
+      orcid: "https://orcid.org/0009-0003-9637-0195"
+    - family-names: "Tran"
+      given-names: "Hung-Nghiep"
+  collection-title: >-
+    Proceedings of the 2026 International Conference on Multimedia
+    Analysis and Pattern Recognition (MAPR)
+  publisher:
+    name: "IEEE"
+  year: 2026
+  notes: "To appear. DOI to be added once the IEEE Xplore record is live."

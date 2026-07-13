@@ -1,0 +1,3196 @@
+{
+  "models": [
+    "xgboost",
+    "random_forest",
+    "logistic_regression"
+  ],
+  "modelLabels": {
+    "xgboost": "XGBoost",
+    "random_forest": "Random Forest",
+    "logistic_regression": "Logistic Regression"
+  },
+  "years": [
+    "2015",
+    "2021",
+    "2023"
+  ],
+  "methods": [
+    "SHAP",
+    "PI"
+  ],
+  "cells": {
+    "xgboost|2015|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.229641,
+          "x": 0.058824,
+          "y": 0.229641
+        },
+        {
+          "name": "HighBP",
+          "share": 0.167698,
+          "x": 0.117647,
+          "y": 0.397339
+        },
+        {
+          "name": "BMI",
+          "share": 0.148267,
+          "x": 0.176471,
+          "y": 0.545606
+        },
+        {
+          "name": "Age",
+          "share": 0.138575,
+          "x": 0.235294,
+          "y": 0.684181
+        },
+        {
+          "name": "HighChol",
+          "share": 0.096561,
+          "x": 0.294118,
+          "y": 0.780742
+        },
+        {
+          "name": "Income",
+          "share": 0.050479,
+          "x": 0.352941,
+          "y": 0.831221
+        },
+        {
+          "name": "Sex",
+          "share": 0.045616,
+          "x": 0.411765,
+          "y": 0.876837
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.023345,
+          "x": 0.470588,
+          "y": 0.900181
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.02099,
+          "x": 0.529412,
+          "y": 0.921172
+        },
+        {
+          "name": "Education",
+          "share": 0.016062,
+          "x": 0.588235,
+          "y": 0.937233
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.015322,
+          "x": 0.647059,
+          "y": 0.952556
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.011513,
+          "x": 0.705882,
+          "y": 0.964069
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.01072,
+          "x": 0.764706,
+          "y": 0.974788
+        },
+        {
+          "name": "Smoker",
+          "share": 0.009468,
+          "x": 0.823529,
+          "y": 0.984257
+        },
+        {
+          "name": "Stroke",
+          "share": 0.006387,
+          "x": 0.882353,
+          "y": 0.990644
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.006309,
+          "x": 0.941176,
+          "y": 0.996953
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.003047,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "HighBP",
+        "BMI",
+        "Age",
+        "HighChol"
+      ],
+      "B": [
+        "Income",
+        "Sex",
+        "MentHlth",
+        "HeartDiseaseorAttack"
+      ],
+      "C": [
+        "Education",
+        "DiffWalk",
+        "PhysHlth",
+        "CholCheck",
+        "Smoker",
+        "Stroke",
+        "PhysActivity",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "HeartDiseaseorAttack"
+    },
+    "xgboost|2015|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.302418,
+          "x": 0.058824,
+          "y": 0.302418
+        },
+        {
+          "name": "BMI",
+          "share": 0.224636,
+          "x": 0.117647,
+          "y": 0.527055
+        },
+        {
+          "name": "Age",
+          "share": 0.198755,
+          "x": 0.176471,
+          "y": 0.72581
+        },
+        {
+          "name": "HighBP",
+          "share": 0.09581,
+          "x": 0.235294,
+          "y": 0.82162
+        },
+        {
+          "name": "HighChol",
+          "share": 0.071864,
+          "x": 0.294118,
+          "y": 0.893483
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.028869,
+          "x": 0.352941,
+          "y": 0.922353
+        },
+        {
+          "name": "Sex",
+          "share": 0.02112,
+          "x": 0.411765,
+          "y": 0.943473
+        },
+        {
+          "name": "Income",
+          "share": 0.021054,
+          "x": 0.470588,
+          "y": 0.964527
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.012863,
+          "x": 0.529412,
+          "y": 0.977389
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.00533,
+          "x": 0.588235,
+          "y": 0.982719
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.004507,
+          "x": 0.647059,
+          "y": 0.987226
+        },
+        {
+          "name": "Education",
+          "share": 0.004073,
+          "x": 0.705882,
+          "y": 0.991299
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.003453,
+          "x": 0.764706,
+          "y": 0.994752
+        },
+        {
+          "name": "Stroke",
+          "share": 0.00227,
+          "x": 0.823529,
+          "y": 0.997022
+        },
+        {
+          "name": "Smoker",
+          "share": 0.00158,
+          "x": 0.882353,
+          "y": 0.998603
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.001034,
+          "x": 0.941176,
+          "y": 0.999636
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.000364,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "BMI",
+        "Age",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "CholCheck",
+        "Sex",
+        "Income",
+        "HeartDiseaseorAttack"
+      ],
+      "C": [
+        "DiffWalk",
+        "MentHlth",
+        "Education",
+        "PhysHlth",
+        "Stroke",
+        "Smoker",
+        "NoDocbcCost",
+        "PhysActivity"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "HeartDiseaseorAttack"
+    },
+    "random_forest|2015|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.154154,
+          "x": 0.058824,
+          "y": 0.154154
+        },
+        {
+          "name": "BMI",
+          "share": 0.148095,
+          "x": 0.117647,
+          "y": 0.30225
+        },
+        {
+          "name": "HighBP",
+          "share": 0.136345,
+          "x": 0.176471,
+          "y": 0.438594
+        },
+        {
+          "name": "Age",
+          "share": 0.098252,
+          "x": 0.235294,
+          "y": 0.536846
+        },
+        {
+          "name": "HighChol",
+          "share": 0.092259,
+          "x": 0.294118,
+          "y": 0.629105
+        },
+        {
+          "name": "Income",
+          "share": 0.069148,
+          "x": 0.352941,
+          "y": 0.698253
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.051004,
+          "x": 0.411765,
+          "y": 0.749256
+        },
+        {
+          "name": "Education",
+          "share": 0.048139,
+          "x": 0.470588,
+          "y": 0.797395
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.043922,
+          "x": 0.529412,
+          "y": 0.841317
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.035644,
+          "x": 0.588235,
+          "y": 0.876961
+        },
+        {
+          "name": "Sex",
+          "share": 0.033165,
+          "x": 0.647059,
+          "y": 0.910127
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.025016,
+          "x": 0.705882,
+          "y": 0.935143
+        },
+        {
+          "name": "Smoker",
+          "share": 0.023394,
+          "x": 0.764706,
+          "y": 0.958536
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.019013,
+          "x": 0.823529,
+          "y": 0.97755
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.009412,
+          "x": 0.882353,
+          "y": 0.986962
+        },
+        {
+          "name": "Stroke",
+          "share": 0.008548,
+          "x": 0.941176,
+          "y": 0.99551
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.00449,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 6,
+      "kB": 5,
+      "A": [
+        "GenHlth",
+        "BMI",
+        "HighBP",
+        "Age",
+        "HighChol",
+        "Income"
+      ],
+      "B": [
+        "PhysHlth",
+        "Education",
+        "MentHlth",
+        "DiffWalk",
+        "Sex"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "Smoker",
+        "PhysActivity",
+        "NoDocbcCost",
+        "Stroke",
+        "CholCheck"
+      ],
+      "break_ab": "Income",
+      "break_bc": "Sex"
+    },
+    "random_forest|2015|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.293963,
+          "x": 0.058824,
+          "y": 0.293963
+        },
+        {
+          "name": "BMI",
+          "share": 0.217181,
+          "x": 0.117647,
+          "y": 0.511144
+        },
+        {
+          "name": "Age",
+          "share": 0.151411,
+          "x": 0.176471,
+          "y": 0.662555
+        },
+        {
+          "name": "HighBP",
+          "share": 0.135156,
+          "x": 0.235294,
+          "y": 0.797711
+        },
+        {
+          "name": "HighChol",
+          "share": 0.084003,
+          "x": 0.294118,
+          "y": 0.881715
+        },
+        {
+          "name": "Education",
+          "share": 0.027694,
+          "x": 0.352941,
+          "y": 0.909409
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.019166,
+          "x": 0.411765,
+          "y": 0.928575
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.012862,
+          "x": 0.470588,
+          "y": 0.941438
+        },
+        {
+          "name": "Smoker",
+          "share": 0.01204,
+          "x": 0.529412,
+          "y": 0.953478
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.010714,
+          "x": 0.588235,
+          "y": 0.964192
+        },
+        {
+          "name": "Sex",
+          "share": 0.008054,
+          "x": 0.647059,
+          "y": 0.972246
+        },
+        {
+          "name": "Income",
+          "share": 0.007072,
+          "x": 0.705882,
+          "y": 0.979318
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.00501,
+          "x": 0.764706,
+          "y": 0.984328
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.004996,
+          "x": 0.823529,
+          "y": 0.989324
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.004353,
+          "x": 0.882353,
+          "y": 0.993677
+        },
+        {
+          "name": "Stroke",
+          "share": 0.003183,
+          "x": 0.941176,
+          "y": 0.99686
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.00314,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 5,
+      "A": [
+        "GenHlth",
+        "BMI",
+        "Age",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "Education",
+        "HeartDiseaseorAttack",
+        "CholCheck",
+        "Smoker",
+        "MentHlth"
+      ],
+      "C": [
+        "Sex",
+        "Income",
+        "DiffWalk",
+        "PhysActivity",
+        "PhysHlth",
+        "Stroke",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "MentHlth"
+    },
+    "logistic_regression|2015|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.213809,
+          "x": 0.058824,
+          "y": 0.213809
+        },
+        {
+          "name": "Age",
+          "share": 0.154305,
+          "x": 0.117647,
+          "y": 0.368115
+        },
+        {
+          "name": "BMI",
+          "share": 0.146161,
+          "x": 0.176471,
+          "y": 0.514276
+        },
+        {
+          "name": "HighBP",
+          "share": 0.140635,
+          "x": 0.235294,
+          "y": 0.654911
+        },
+        {
+          "name": "HighChol",
+          "share": 0.115604,
+          "x": 0.294118,
+          "y": 0.770516
+        },
+        {
+          "name": "Sex",
+          "share": 0.057628,
+          "x": 0.352941,
+          "y": 0.828143
+        },
+        {
+          "name": "Income",
+          "share": 0.042367,
+          "x": 0.411765,
+          "y": 0.87051
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.039621,
+          "x": 0.470588,
+          "y": 0.910132
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.01846,
+          "x": 0.529412,
+          "y": 0.928591
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.016767,
+          "x": 0.588235,
+          "y": 0.945358
+        },
+        {
+          "name": "Education",
+          "share": 0.014009,
+          "x": 0.647059,
+          "y": 0.959367
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.012549,
+          "x": 0.705882,
+          "y": 0.971916
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.009857,
+          "x": 0.764706,
+          "y": 0.981773
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.007751,
+          "x": 0.823529,
+          "y": 0.989524
+        },
+        {
+          "name": "Stroke",
+          "share": 0.004713,
+          "x": 0.882353,
+          "y": 0.994237
+        },
+        {
+          "name": "Smoker",
+          "share": 0.00411,
+          "x": 0.941176,
+          "y": 0.998347
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.001653,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 3,
+      "A": [
+        "GenHlth",
+        "Age",
+        "BMI",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "Sex",
+        "Income",
+        "CholCheck"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "PhysHlth",
+        "Education",
+        "DiffWalk",
+        "MentHlth",
+        "PhysActivity",
+        "Stroke",
+        "Smoker",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "CholCheck"
+    },
+    "logistic_regression|2015|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.371977,
+          "x": 0.058824,
+          "y": 0.371977
+        },
+        {
+          "name": "BMI",
+          "share": 0.210208,
+          "x": 0.117647,
+          "y": 0.582185
+        },
+        {
+          "name": "Age",
+          "share": 0.160821,
+          "x": 0.176471,
+          "y": 0.743006
+        },
+        {
+          "name": "HighBP",
+          "share": 0.112575,
+          "x": 0.235294,
+          "y": 0.855582
+        },
+        {
+          "name": "HighChol",
+          "share": 0.068351,
+          "x": 0.294118,
+          "y": 0.923932
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.030717,
+          "x": 0.352941,
+          "y": 0.95465
+        },
+        {
+          "name": "Sex",
+          "share": 0.017215,
+          "x": 0.411765,
+          "y": 0.971864
+        },
+        {
+          "name": "Income",
+          "share": 0.013466,
+          "x": 0.470588,
+          "y": 0.985331
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.006047,
+          "x": 0.529412,
+          "y": 0.991378
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.002379,
+          "x": 0.588235,
+          "y": 0.993757
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.001947,
+          "x": 0.647059,
+          "y": 0.995704
+        },
+        {
+          "name": "Education",
+          "share": 0.00149,
+          "x": 0.705882,
+          "y": 0.997194
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.001062,
+          "x": 0.764706,
+          "y": 0.998256
+        },
+        {
+          "name": "Stroke",
+          "share": 0.000972,
+          "x": 0.823529,
+          "y": 0.999228
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.000462,
+          "x": 0.882353,
+          "y": 0.99969
+        },
+        {
+          "name": "Smoker",
+          "share": 0.000254,
+          "x": 0.941176,
+          "y": 0.999944
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 5.6e-05,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 3,
+      "A": [
+        "GenHlth",
+        "BMI",
+        "Age",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "CholCheck",
+        "Sex",
+        "Income"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "PhysHlth",
+        "DiffWalk",
+        "Education",
+        "MentHlth",
+        "Stroke",
+        "PhysActivity",
+        "Smoker",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "Income"
+    },
+    "xgboost|2021|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.209758,
+          "x": 0.058824,
+          "y": 0.209758
+        },
+        {
+          "name": "HighBP",
+          "share": 0.174017,
+          "x": 0.117647,
+          "y": 0.383775
+        },
+        {
+          "name": "Age",
+          "share": 0.146893,
+          "x": 0.176471,
+          "y": 0.530668
+        },
+        {
+          "name": "BMI",
+          "share": 0.11803,
+          "x": 0.235294,
+          "y": 0.648698
+        },
+        {
+          "name": "HighChol",
+          "share": 0.098808,
+          "x": 0.294118,
+          "y": 0.747506
+        },
+        {
+          "name": "Sex",
+          "share": 0.05004,
+          "x": 0.352941,
+          "y": 0.797546
+        },
+        {
+          "name": "Income",
+          "share": 0.041719,
+          "x": 0.411765,
+          "y": 0.839265
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.031312,
+          "x": 0.470588,
+          "y": 0.870577
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.022256,
+          "x": 0.529412,
+          "y": 0.892833
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.01923,
+          "x": 0.588235,
+          "y": 0.912063
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.019202,
+          "x": 0.647059,
+          "y": 0.931265
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.01772,
+          "x": 0.705882,
+          "y": 0.948986
+        },
+        {
+          "name": "Smoker",
+          "share": 0.017409,
+          "x": 0.764706,
+          "y": 0.966395
+        },
+        {
+          "name": "Education",
+          "share": 0.012024,
+          "x": 0.823529,
+          "y": 0.978419
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.009814,
+          "x": 0.882353,
+          "y": 0.988233
+        },
+        {
+          "name": "Stroke",
+          "share": 0.009471,
+          "x": 0.941176,
+          "y": 0.997704
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.002296,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "HighBP",
+        "Age",
+        "BMI",
+        "HighChol"
+      ],
+      "B": [
+        "Sex",
+        "Income",
+        "PhysActivity",
+        "HeartDiseaseorAttack"
+      ],
+      "C": [
+        "DiffWalk",
+        "MentHlth",
+        "CholCheck",
+        "Smoker",
+        "Education",
+        "PhysHlth",
+        "Stroke",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "HeartDiseaseorAttack"
+    },
+    "xgboost|2021|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.270731,
+          "x": 0.058824,
+          "y": 0.270731
+        },
+        {
+          "name": "Age",
+          "share": 0.244377,
+          "x": 0.117647,
+          "y": 0.515108
+        },
+        {
+          "name": "BMI",
+          "share": 0.169542,
+          "x": 0.176471,
+          "y": 0.68465
+        },
+        {
+          "name": "HighBP",
+          "share": 0.100966,
+          "x": 0.235294,
+          "y": 0.785616
+        },
+        {
+          "name": "HighChol",
+          "share": 0.075488,
+          "x": 0.294118,
+          "y": 0.861105
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.040512,
+          "x": 0.352941,
+          "y": 0.901617
+        },
+        {
+          "name": "Sex",
+          "share": 0.023305,
+          "x": 0.411765,
+          "y": 0.924922
+        },
+        {
+          "name": "Income",
+          "share": 0.022771,
+          "x": 0.470588,
+          "y": 0.947693
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.013567,
+          "x": 0.529412,
+          "y": 0.961259
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.008613,
+          "x": 0.588235,
+          "y": 0.969873
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.007382,
+          "x": 0.647059,
+          "y": 0.977255
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.006597,
+          "x": 0.705882,
+          "y": 0.983852
+        },
+        {
+          "name": "Smoker",
+          "share": 0.006347,
+          "x": 0.764706,
+          "y": 0.990199
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.004052,
+          "x": 0.823529,
+          "y": 0.994252
+        },
+        {
+          "name": "Stroke",
+          "share": 0.002274,
+          "x": 0.882353,
+          "y": 0.996526
+        },
+        {
+          "name": "Education",
+          "share": 0.002044,
+          "x": 0.941176,
+          "y": 0.998569
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.001431,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "Age",
+        "BMI",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "CholCheck",
+        "Sex",
+        "Income",
+        "HeartDiseaseorAttack"
+      ],
+      "C": [
+        "PhysActivity",
+        "DiffWalk",
+        "MentHlth",
+        "Smoker",
+        "PhysHlth",
+        "Stroke",
+        "Education",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "HeartDiseaseorAttack"
+    },
+    "random_forest|2021|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.14678,
+          "x": 0.058824,
+          "y": 0.14678
+        },
+        {
+          "name": "HighBP",
+          "share": 0.132772,
+          "x": 0.117647,
+          "y": 0.279552
+        },
+        {
+          "name": "BMI",
+          "share": 0.126671,
+          "x": 0.176471,
+          "y": 0.406223
+        },
+        {
+          "name": "Age",
+          "share": 0.097939,
+          "x": 0.235294,
+          "y": 0.504162
+        },
+        {
+          "name": "HighChol",
+          "share": 0.092227,
+          "x": 0.294118,
+          "y": 0.596389
+        },
+        {
+          "name": "Income",
+          "share": 0.091413,
+          "x": 0.352941,
+          "y": 0.687802
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.049128,
+          "x": 0.411765,
+          "y": 0.73693
+        },
+        {
+          "name": "Education",
+          "share": 0.044486,
+          "x": 0.470588,
+          "y": 0.781416
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.044201,
+          "x": 0.529412,
+          "y": 0.825617
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.039743,
+          "x": 0.588235,
+          "y": 0.86536
+        },
+        {
+          "name": "Sex",
+          "share": 0.032499,
+          "x": 0.647059,
+          "y": 0.897859
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.029962,
+          "x": 0.705882,
+          "y": 0.927821
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.025937,
+          "x": 0.764706,
+          "y": 0.953758
+        },
+        {
+          "name": "Smoker",
+          "share": 0.022405,
+          "x": 0.823529,
+          "y": 0.976163
+        },
+        {
+          "name": "Stroke",
+          "share": 0.008877,
+          "x": 0.882353,
+          "y": 0.98504
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.008136,
+          "x": 0.941176,
+          "y": 0.993176
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.006824,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 6,
+      "kB": 6,
+      "A": [
+        "GenHlth",
+        "HighBP",
+        "BMI",
+        "Age",
+        "HighChol",
+        "Income"
+      ],
+      "B": [
+        "PhysHlth",
+        "Education",
+        "MentHlth",
+        "DiffWalk",
+        "Sex",
+        "PhysActivity"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "Smoker",
+        "Stroke",
+        "CholCheck",
+        "NoDocbcCost"
+      ],
+      "break_ab": "Income",
+      "break_bc": "PhysActivity"
+    },
+    "random_forest|2021|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.271338,
+          "x": 0.058824,
+          "y": 0.271338
+        },
+        {
+          "name": "Age",
+          "share": 0.183587,
+          "x": 0.117647,
+          "y": 0.454925
+        },
+        {
+          "name": "BMI",
+          "share": 0.166919,
+          "x": 0.176471,
+          "y": 0.621845
+        },
+        {
+          "name": "HighBP",
+          "share": 0.150455,
+          "x": 0.235294,
+          "y": 0.7723
+        },
+        {
+          "name": "HighChol",
+          "share": 0.087126,
+          "x": 0.294118,
+          "y": 0.859426
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.029157,
+          "x": 0.352941,
+          "y": 0.888583
+        },
+        {
+          "name": "Income",
+          "share": 0.022015,
+          "x": 0.411765,
+          "y": 0.910598
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.01873,
+          "x": 0.470588,
+          "y": 0.929328
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.017343,
+          "x": 0.529412,
+          "y": 0.946671
+        },
+        {
+          "name": "Sex",
+          "share": 0.013716,
+          "x": 0.588235,
+          "y": 0.960387
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.013658,
+          "x": 0.647059,
+          "y": 0.974044
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.01297,
+          "x": 0.705882,
+          "y": 0.987014
+        },
+        {
+          "name": "Smoker",
+          "share": 0.005297,
+          "x": 0.764706,
+          "y": 0.992311
+        },
+        {
+          "name": "Stroke",
+          "share": 0.003641,
+          "x": 0.823529,
+          "y": 0.995952
+        },
+        {
+          "name": "Education",
+          "share": 0.003173,
+          "x": 0.882353,
+          "y": 0.999124
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.000805,
+          "x": 0.941176,
+          "y": 0.999929
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 7.1e-05,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 7,
+      "A": [
+        "GenHlth",
+        "Age",
+        "BMI",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "HeartDiseaseorAttack",
+        "Income",
+        "CholCheck",
+        "DiffWalk",
+        "Sex",
+        "MentHlth",
+        "PhysActivity"
+      ],
+      "C": [
+        "Smoker",
+        "Stroke",
+        "Education",
+        "PhysHlth",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "PhysActivity"
+    },
+    "logistic_regression|2021|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.187543,
+          "x": 0.058824,
+          "y": 0.187543
+        },
+        {
+          "name": "Age",
+          "share": 0.165772,
+          "x": 0.117647,
+          "y": 0.353315
+        },
+        {
+          "name": "HighBP",
+          "share": 0.140765,
+          "x": 0.176471,
+          "y": 0.49408
+        },
+        {
+          "name": "BMI",
+          "share": 0.137313,
+          "x": 0.235294,
+          "y": 0.631393
+        },
+        {
+          "name": "HighChol",
+          "share": 0.110032,
+          "x": 0.294118,
+          "y": 0.741425
+        },
+        {
+          "name": "Sex",
+          "share": 0.061022,
+          "x": 0.352941,
+          "y": 0.802447
+        },
+        {
+          "name": "Income",
+          "share": 0.04316,
+          "x": 0.411765,
+          "y": 0.845608
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.040663,
+          "x": 0.470588,
+          "y": 0.88627
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.027264,
+          "x": 0.529412,
+          "y": 0.913534
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.019827,
+          "x": 0.588235,
+          "y": 0.933362
+        },
+        {
+          "name": "Smoker",
+          "share": 0.016363,
+          "x": 0.647059,
+          "y": 0.949725
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.012393,
+          "x": 0.705882,
+          "y": 0.962117
+        },
+        {
+          "name": "Education",
+          "share": 0.010239,
+          "x": 0.764706,
+          "y": 0.972356
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.00979,
+          "x": 0.823529,
+          "y": 0.982147
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.009525,
+          "x": 0.882353,
+          "y": 0.991672
+        },
+        {
+          "name": "Stroke",
+          "share": 0.007699,
+          "x": 0.941176,
+          "y": 0.999371
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.000629,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 6,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "Age",
+        "HighBP",
+        "BMI",
+        "HighChol",
+        "Sex"
+      ],
+      "B": [
+        "Income",
+        "CholCheck",
+        "PhysActivity",
+        "HeartDiseaseorAttack"
+      ],
+      "C": [
+        "Smoker",
+        "PhysHlth",
+        "Education",
+        "DiffWalk",
+        "MentHlth",
+        "Stroke",
+        "NoDocbcCost"
+      ],
+      "break_ab": "Sex",
+      "break_bc": "HeartDiseaseorAttack"
+    },
+    "logistic_regression|2021|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.322874,
+          "x": 0.058824,
+          "y": 0.322874
+        },
+        {
+          "name": "Age",
+          "share": 0.18953,
+          "x": 0.117647,
+          "y": 0.512404
+        },
+        {
+          "name": "BMI",
+          "share": 0.187927,
+          "x": 0.176471,
+          "y": 0.700331
+        },
+        {
+          "name": "HighBP",
+          "share": 0.116187,
+          "x": 0.235294,
+          "y": 0.816517
+        },
+        {
+          "name": "HighChol",
+          "share": 0.074343,
+          "x": 0.294118,
+          "y": 0.89086
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.046433,
+          "x": 0.352941,
+          "y": 0.937293
+        },
+        {
+          "name": "Sex",
+          "share": 0.020621,
+          "x": 0.411765,
+          "y": 0.957914
+        },
+        {
+          "name": "Income",
+          "share": 0.015758,
+          "x": 0.470588,
+          "y": 0.973671
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.008467,
+          "x": 0.529412,
+          "y": 0.982138
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.007307,
+          "x": 0.588235,
+          "y": 0.989445
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.002206,
+          "x": 0.647059,
+          "y": 0.991651
+        },
+        {
+          "name": "Stroke",
+          "share": 0.00198,
+          "x": 0.705882,
+          "y": 0.993631
+        },
+        {
+          "name": "Smoker",
+          "share": 0.001757,
+          "x": 0.764706,
+          "y": 0.995388
+        },
+        {
+          "name": "Education",
+          "share": 0.001724,
+          "x": 0.823529,
+          "y": 0.997112
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.001529,
+          "x": 0.882353,
+          "y": 0.998641
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.001291,
+          "x": 0.941176,
+          "y": 0.999932
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 6.8e-05,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 3,
+      "A": [
+        "GenHlth",
+        "Age",
+        "BMI",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "CholCheck",
+        "Sex",
+        "Income"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "PhysActivity",
+        "DiffWalk",
+        "Stroke",
+        "Smoker",
+        "Education",
+        "PhysHlth",
+        "MentHlth",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "Income"
+    },
+    "xgboost|2023|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.181659,
+          "x": 0.058824,
+          "y": 0.181659
+        },
+        {
+          "name": "HighBP",
+          "share": 0.172476,
+          "x": 0.117647,
+          "y": 0.354135
+        },
+        {
+          "name": "Age",
+          "share": 0.137001,
+          "x": 0.176471,
+          "y": 0.491136
+        },
+        {
+          "name": "BMI",
+          "share": 0.124511,
+          "x": 0.235294,
+          "y": 0.615647
+        },
+        {
+          "name": "HighChol",
+          "share": 0.098577,
+          "x": 0.294118,
+          "y": 0.714225
+        },
+        {
+          "name": "Sex",
+          "share": 0.044499,
+          "x": 0.352941,
+          "y": 0.758724
+        },
+        {
+          "name": "Income",
+          "share": 0.041977,
+          "x": 0.411765,
+          "y": 0.8007
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.032659,
+          "x": 0.470588,
+          "y": 0.83336
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.026796,
+          "x": 0.529412,
+          "y": 0.860156
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.026607,
+          "x": 0.588235,
+          "y": 0.886763
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.024908,
+          "x": 0.647059,
+          "y": 0.911671
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.024243,
+          "x": 0.705882,
+          "y": 0.935913
+        },
+        {
+          "name": "Education",
+          "share": 0.019663,
+          "x": 0.764706,
+          "y": 0.955576
+        },
+        {
+          "name": "Smoker",
+          "share": 0.01956,
+          "x": 0.823529,
+          "y": 0.975137
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.011851,
+          "x": 0.882353,
+          "y": 0.986987
+        },
+        {
+          "name": "Stroke",
+          "share": 0.010923,
+          "x": 0.941176,
+          "y": 0.997911
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.002089,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 7,
+      "A": [
+        "GenHlth",
+        "HighBP",
+        "Age",
+        "BMI",
+        "HighChol"
+      ],
+      "B": [
+        "Sex",
+        "Income",
+        "PhysActivity",
+        "MentHlth",
+        "HeartDiseaseorAttack",
+        "CholCheck",
+        "DiffWalk"
+      ],
+      "C": [
+        "Education",
+        "Smoker",
+        "PhysHlth",
+        "Stroke",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "DiffWalk"
+    },
+    "xgboost|2023|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "Age",
+          "share": 0.267402,
+          "x": 0.058824,
+          "y": 0.267402
+        },
+        {
+          "name": "GenHlth",
+          "share": 0.252873,
+          "x": 0.117647,
+          "y": 0.520275
+        },
+        {
+          "name": "BMI",
+          "share": 0.161102,
+          "x": 0.176471,
+          "y": 0.681377
+        },
+        {
+          "name": "HighBP",
+          "share": 0.107726,
+          "x": 0.235294,
+          "y": 0.789103
+        },
+        {
+          "name": "HighChol",
+          "share": 0.072289,
+          "x": 0.294118,
+          "y": 0.861392
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.033844,
+          "x": 0.352941,
+          "y": 0.895236
+        },
+        {
+          "name": "Income",
+          "share": 0.021695,
+          "x": 0.411765,
+          "y": 0.916931
+        },
+        {
+          "name": "Sex",
+          "share": 0.020804,
+          "x": 0.470588,
+          "y": 0.937735
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.011985,
+          "x": 0.529412,
+          "y": 0.94972
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.011836,
+          "x": 0.588235,
+          "y": 0.961556
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.01136,
+          "x": 0.647059,
+          "y": 0.972916
+        },
+        {
+          "name": "Smoker",
+          "share": 0.007905,
+          "x": 0.705882,
+          "y": 0.980821
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.007609,
+          "x": 0.764706,
+          "y": 0.98843
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.003989,
+          "x": 0.823529,
+          "y": 0.992418
+        },
+        {
+          "name": "Education",
+          "share": 0.003723,
+          "x": 0.882353,
+          "y": 0.996142
+        },
+        {
+          "name": "Stroke",
+          "share": 0.003705,
+          "x": 0.941176,
+          "y": 0.999847
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.000153,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 5,
+      "A": [
+        "Age",
+        "GenHlth",
+        "BMI",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "CholCheck",
+        "Income",
+        "Sex",
+        "PhysActivity",
+        "HeartDiseaseorAttack"
+      ],
+      "C": [
+        "DiffWalk",
+        "Smoker",
+        "MentHlth",
+        "PhysHlth",
+        "Education",
+        "Stroke",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "HeartDiseaseorAttack"
+    },
+    "random_forest|2023|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "BMI",
+          "share": 0.142941,
+          "x": 0.058824,
+          "y": 0.142941
+        },
+        {
+          "name": "HighBP",
+          "share": 0.139361,
+          "x": 0.117647,
+          "y": 0.282301
+        },
+        {
+          "name": "GenHlth",
+          "share": 0.130082,
+          "x": 0.176471,
+          "y": 0.412383
+        },
+        {
+          "name": "HighChol",
+          "share": 0.089201,
+          "x": 0.235294,
+          "y": 0.501585
+        },
+        {
+          "name": "Age",
+          "share": 0.085147,
+          "x": 0.294118,
+          "y": 0.586732
+        },
+        {
+          "name": "Income",
+          "share": 0.06723,
+          "x": 0.352941,
+          "y": 0.653962
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.059054,
+          "x": 0.411765,
+          "y": 0.713016
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.054548,
+          "x": 0.470588,
+          "y": 0.767564
+        },
+        {
+          "name": "Education",
+          "share": 0.045299,
+          "x": 0.529412,
+          "y": 0.812863
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.041973,
+          "x": 0.588235,
+          "y": 0.854836
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.035406,
+          "x": 0.647059,
+          "y": 0.890242
+        },
+        {
+          "name": "Sex",
+          "share": 0.032826,
+          "x": 0.705882,
+          "y": 0.923069
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.027046,
+          "x": 0.764706,
+          "y": 0.950115
+        },
+        {
+          "name": "Smoker",
+          "share": 0.024485,
+          "x": 0.823529,
+          "y": 0.9746
+        },
+        {
+          "name": "Stroke",
+          "share": 0.009884,
+          "x": 0.882353,
+          "y": 0.984484
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.008953,
+          "x": 0.941176,
+          "y": 0.993437
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.006563,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 7,
+      "kB": 5,
+      "A": [
+        "BMI",
+        "HighBP",
+        "GenHlth",
+        "HighChol",
+        "Age",
+        "Income",
+        "PhysHlth"
+      ],
+      "B": [
+        "MentHlth",
+        "Education",
+        "DiffWalk",
+        "PhysActivity",
+        "Sex"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "Smoker",
+        "Stroke",
+        "CholCheck",
+        "NoDocbcCost"
+      ],
+      "break_ab": "PhysHlth",
+      "break_bc": "Sex"
+    },
+    "random_forest|2023|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.254706,
+          "x": 0.058824,
+          "y": 0.254706
+        },
+        {
+          "name": "Age",
+          "share": 0.204116,
+          "x": 0.117647,
+          "y": 0.458822
+        },
+        {
+          "name": "HighBP",
+          "share": 0.153383,
+          "x": 0.176471,
+          "y": 0.612205
+        },
+        {
+          "name": "BMI",
+          "share": 0.152027,
+          "x": 0.235294,
+          "y": 0.764232
+        },
+        {
+          "name": "HighChol",
+          "share": 0.086961,
+          "x": 0.294118,
+          "y": 0.851193
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.030445,
+          "x": 0.352941,
+          "y": 0.881638
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.029295,
+          "x": 0.411765,
+          "y": 0.910933
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.019326,
+          "x": 0.470588,
+          "y": 0.930259
+        },
+        {
+          "name": "Sex",
+          "share": 0.015576,
+          "x": 0.529412,
+          "y": 0.945835
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.01555,
+          "x": 0.588235,
+          "y": 0.961385
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.012101,
+          "x": 0.647059,
+          "y": 0.973486
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.010892,
+          "x": 0.705882,
+          "y": 0.984378
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 0.007701,
+          "x": 0.764706,
+          "y": 0.992079
+        },
+        {
+          "name": "Stroke",
+          "share": 0.006158,
+          "x": 0.823529,
+          "y": 0.998236
+        },
+        {
+          "name": "Education",
+          "share": 0.001032,
+          "x": 0.882353,
+          "y": 0.999269
+        },
+        {
+          "name": "Smoker",
+          "share": 0.000418,
+          "x": 0.941176,
+          "y": 0.999687
+        },
+        {
+          "name": "Income",
+          "share": 0.000313,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 5,
+      "A": [
+        "GenHlth",
+        "Age",
+        "HighBP",
+        "BMI",
+        "HighChol"
+      ],
+      "B": [
+        "DiffWalk",
+        "HeartDiseaseorAttack",
+        "MentHlth",
+        "Sex",
+        "CholCheck"
+      ],
+      "C": [
+        "PhysActivity",
+        "PhysHlth",
+        "NoDocbcCost",
+        "Stroke",
+        "Education",
+        "Smoker",
+        "Income"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "CholCheck"
+    },
+    "logistic_regression|2023|SHAP": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.180802,
+          "x": 0.058824,
+          "y": 0.180802
+        },
+        {
+          "name": "Age",
+          "share": 0.171963,
+          "x": 0.117647,
+          "y": 0.352765
+        },
+        {
+          "name": "HighBP",
+          "share": 0.138326,
+          "x": 0.176471,
+          "y": 0.491091
+        },
+        {
+          "name": "BMI",
+          "share": 0.128887,
+          "x": 0.235294,
+          "y": 0.619978
+        },
+        {
+          "name": "HighChol",
+          "share": 0.114274,
+          "x": 0.294118,
+          "y": 0.734252
+        },
+        {
+          "name": "Sex",
+          "share": 0.055554,
+          "x": 0.352941,
+          "y": 0.789806
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.044699,
+          "x": 0.411765,
+          "y": 0.834506
+        },
+        {
+          "name": "Income",
+          "share": 0.038091,
+          "x": 0.470588,
+          "y": 0.872596
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.030907,
+          "x": 0.529412,
+          "y": 0.903504
+        },
+        {
+          "name": "Education",
+          "share": 0.019305,
+          "x": 0.588235,
+          "y": 0.922809
+        },
+        {
+          "name": "Smoker",
+          "share": 0.016883,
+          "x": 0.647059,
+          "y": 0.939692
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.016599,
+          "x": 0.705882,
+          "y": 0.956291
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.012587,
+          "x": 0.764706,
+          "y": 0.968878
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.011669,
+          "x": 0.823529,
+          "y": 0.980547
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.01152,
+          "x": 0.882353,
+          "y": 0.992067
+        },
+        {
+          "name": "Stroke",
+          "share": 0.007839,
+          "x": 0.941176,
+          "y": 0.999905
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 9.5e-05,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "Age",
+        "HighBP",
+        "BMI",
+        "HighChol"
+      ],
+      "B": [
+        "Sex",
+        "CholCheck",
+        "Income",
+        "PhysActivity"
+      ],
+      "C": [
+        "Education",
+        "Smoker",
+        "HeartDiseaseorAttack",
+        "MentHlth",
+        "DiffWalk",
+        "PhysHlth",
+        "Stroke",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "PhysActivity"
+    },
+    "logistic_regression|2023|PI": {
+      "n": 17,
+      "features": [
+        {
+          "name": "GenHlth",
+          "share": 0.302393,
+          "x": 0.058824,
+          "y": 0.302393
+        },
+        {
+          "name": "Age",
+          "share": 0.217506,
+          "x": 0.117647,
+          "y": 0.519899
+        },
+        {
+          "name": "BMI",
+          "share": 0.181157,
+          "x": 0.176471,
+          "y": 0.701056
+        },
+        {
+          "name": "HighBP",
+          "share": 0.123454,
+          "x": 0.235294,
+          "y": 0.82451
+        },
+        {
+          "name": "HighChol",
+          "share": 0.071849,
+          "x": 0.294118,
+          "y": 0.896359
+        },
+        {
+          "name": "CholCheck",
+          "share": 0.040646,
+          "x": 0.352941,
+          "y": 0.937005
+        },
+        {
+          "name": "Sex",
+          "share": 0.018001,
+          "x": 0.411765,
+          "y": 0.955006
+        },
+        {
+          "name": "Income",
+          "share": 0.012265,
+          "x": 0.470588,
+          "y": 0.967271
+        },
+        {
+          "name": "PhysActivity",
+          "share": 0.009507,
+          "x": 0.529412,
+          "y": 0.976778
+        },
+        {
+          "name": "HeartDiseaseorAttack",
+          "share": 0.007315,
+          "x": 0.588235,
+          "y": 0.984093
+        },
+        {
+          "name": "Education",
+          "share": 0.005421,
+          "x": 0.647059,
+          "y": 0.989514
+        },
+        {
+          "name": "DiffWalk",
+          "share": 0.002861,
+          "x": 0.705882,
+          "y": 0.992375
+        },
+        {
+          "name": "Stroke",
+          "share": 0.002518,
+          "x": 0.764706,
+          "y": 0.994893
+        },
+        {
+          "name": "MentHlth",
+          "share": 0.001715,
+          "x": 0.823529,
+          "y": 0.996608
+        },
+        {
+          "name": "Smoker",
+          "share": 0.001705,
+          "x": 0.882353,
+          "y": 0.998312
+        },
+        {
+          "name": "PhysHlth",
+          "share": 0.001684,
+          "x": 0.941176,
+          "y": 0.999997
+        },
+        {
+          "name": "NoDocbcCost",
+          "share": 3e-06,
+          "x": 1.0,
+          "y": 1.0
+        }
+      ],
+      "kA": 5,
+      "kB": 4,
+      "A": [
+        "GenHlth",
+        "Age",
+        "BMI",
+        "HighBP",
+        "HighChol"
+      ],
+      "B": [
+        "CholCheck",
+        "Sex",
+        "Income",
+        "PhysActivity"
+      ],
+      "C": [
+        "HeartDiseaseorAttack",
+        "Education",
+        "DiffWalk",
+        "Stroke",
+        "MentHlth",
+        "Smoker",
+        "PhysHlth",
+        "NoDocbcCost"
+      ],
+      "break_ab": "HighChol",
+      "break_bc": "PhysActivity"
+    }
+  },
+  "compare": {
+    "cross-method": [
+      {
+        "label": "XGBoost · 2015 · SHAP vs PI",
+        "cellA": "xgboost|2015|SHAP",
+        "cellB": "xgboost|2015|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Random Forest · 2015 · SHAP vs PI",
+        "cellA": "random_forest|2015|SHAP",
+        "cellB": "random_forest|2015|PI",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · 2015 · SHAP vs PI",
+        "cellA": "logistic_regression|2015|SHAP",
+        "cellB": "logistic_regression|2015|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · 2021 · SHAP vs PI",
+        "cellA": "xgboost|2021|SHAP",
+        "cellB": "xgboost|2021|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Random Forest · 2021 · SHAP vs PI",
+        "cellA": "random_forest|2021|SHAP",
+        "cellB": "random_forest|2021|PI",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · 2021 · SHAP vs PI",
+        "cellA": "logistic_regression|2021|SHAP",
+        "cellB": "logistic_regression|2021|PI",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol",
+          "Sex"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · 2023 · SHAP vs PI",
+        "cellA": "xgboost|2023|SHAP",
+        "cellB": "xgboost|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "Age",
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Random Forest · 2023 · SHAP vs PI",
+        "cellA": "random_forest|2023|SHAP",
+        "cellB": "random_forest|2023|PI",
+        "J_A": 0.7143,
+        "A1": [
+          "BMI",
+          "HighBP",
+          "GenHlth",
+          "HighChol",
+          "Age",
+          "Income",
+          "PhysHlth"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · 2023 · SHAP vs PI",
+        "cellA": "logistic_regression|2023|SHAP",
+        "cellB": "logistic_regression|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      }
+    ],
+    "cross-model": [
+      {
+        "label": "2015 · SHAP · XGBoost vs Random Forest",
+        "cellA": "xgboost|2015|SHAP",
+        "cellB": "random_forest|2015|SHAP",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "Age",
+          "HighChol",
+          "Income"
+        ]
+      },
+      {
+        "label": "2015 · SHAP · XGBoost vs Logistic Regression",
+        "cellA": "xgboost|2015|SHAP",
+        "cellB": "logistic_regression|2015|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "2015 · SHAP · Random Forest vs Logistic Regression",
+        "cellA": "random_forest|2015|SHAP",
+        "cellB": "logistic_regression|2015|SHAP",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "2021 · SHAP · XGBoost vs Random Forest",
+        "cellA": "xgboost|2021|SHAP",
+        "cellB": "random_forest|2021|SHAP",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol",
+          "Income"
+        ]
+      },
+      {
+        "label": "2021 · SHAP · XGBoost vs Logistic Regression",
+        "cellA": "xgboost|2021|SHAP",
+        "cellB": "logistic_regression|2021|SHAP",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol",
+          "Sex"
+        ]
+      },
+      {
+        "label": "2021 · SHAP · Random Forest vs Logistic Regression",
+        "cellA": "random_forest|2021|SHAP",
+        "cellB": "logistic_regression|2021|SHAP",
+        "J_A": 0.7143,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol",
+          "Sex"
+        ]
+      },
+      {
+        "label": "2023 · SHAP · XGBoost vs Random Forest",
+        "cellA": "xgboost|2023|SHAP",
+        "cellB": "random_forest|2023|SHAP",
+        "J_A": 0.7143,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "BMI",
+          "HighBP",
+          "GenHlth",
+          "HighChol",
+          "Age",
+          "Income",
+          "PhysHlth"
+        ]
+      },
+      {
+        "label": "2023 · SHAP · XGBoost vs Logistic Regression",
+        "cellA": "xgboost|2023|SHAP",
+        "cellB": "logistic_regression|2023|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "2023 · SHAP · Random Forest vs Logistic Regression",
+        "cellA": "random_forest|2023|SHAP",
+        "cellB": "logistic_regression|2023|SHAP",
+        "J_A": 0.7143,
+        "A1": [
+          "BMI",
+          "HighBP",
+          "GenHlth",
+          "HighChol",
+          "Age",
+          "Income",
+          "PhysHlth"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      }
+    ],
+    "cross-year": [
+      {
+        "label": "XGBoost · SHAP · 2015 vs 2021",
+        "cellA": "xgboost|2015|SHAP",
+        "cellB": "xgboost|2021|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · SHAP · 2015 vs 2023",
+        "cellA": "xgboost|2015|SHAP",
+        "cellB": "xgboost|2023|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · SHAP · 2021 vs 2023",
+        "cellA": "xgboost|2021|SHAP",
+        "cellB": "xgboost|2023|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "HighBP",
+          "Age",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · PI · 2015 vs 2021",
+        "cellA": "xgboost|2015|PI",
+        "cellB": "xgboost|2021|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · PI · 2015 vs 2023",
+        "cellA": "xgboost|2015|PI",
+        "cellB": "xgboost|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "Age",
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "XGBoost · PI · 2021 vs 2023",
+        "cellA": "xgboost|2021|PI",
+        "cellB": "xgboost|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "Age",
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Random Forest · SHAP · 2015 vs 2021",
+        "cellA": "random_forest|2015|SHAP",
+        "cellB": "random_forest|2021|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol",
+          "Income"
+        ]
+      },
+      {
+        "label": "Random Forest · SHAP · 2015 vs 2023",
+        "cellA": "random_forest|2015|SHAP",
+        "cellB": "random_forest|2023|SHAP",
+        "J_A": 0.8571,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "HighBP",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "BMI",
+          "HighBP",
+          "GenHlth",
+          "HighChol",
+          "Age",
+          "Income",
+          "PhysHlth"
+        ]
+      },
+      {
+        "label": "Random Forest · SHAP · 2021 vs 2023",
+        "cellA": "random_forest|2021|SHAP",
+        "cellB": "random_forest|2023|SHAP",
+        "J_A": 0.8571,
+        "A1": [
+          "GenHlth",
+          "HighBP",
+          "BMI",
+          "Age",
+          "HighChol",
+          "Income"
+        ],
+        "A2": [
+          "BMI",
+          "HighBP",
+          "GenHlth",
+          "HighChol",
+          "Age",
+          "Income",
+          "PhysHlth"
+        ]
+      },
+      {
+        "label": "Random Forest · PI · 2015 vs 2021",
+        "cellA": "random_forest|2015|PI",
+        "cellB": "random_forest|2021|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Random Forest · PI · 2015 vs 2023",
+        "cellA": "random_forest|2015|PI",
+        "cellB": "random_forest|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Random Forest · PI · 2021 vs 2023",
+        "cellA": "random_forest|2021|PI",
+        "cellB": "random_forest|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · SHAP · 2015 vs 2021",
+        "cellA": "logistic_regression|2015|SHAP",
+        "cellB": "logistic_regression|2021|SHAP",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol",
+          "Sex"
+        ]
+      },
+      {
+        "label": "Logistic Regression · SHAP · 2015 vs 2023",
+        "cellA": "logistic_regression|2015|SHAP",
+        "cellB": "logistic_regression|2023|SHAP",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · SHAP · 2021 vs 2023",
+        "cellA": "logistic_regression|2021|SHAP",
+        "cellB": "logistic_regression|2023|SHAP",
+        "J_A": 0.8333,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol",
+          "Sex"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "HighBP",
+          "BMI",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · PI · 2015 vs 2021",
+        "cellA": "logistic_regression|2015|PI",
+        "cellB": "logistic_regression|2021|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · PI · 2015 vs 2023",
+        "cellA": "logistic_regression|2015|PI",
+        "cellB": "logistic_regression|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "BMI",
+          "Age",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      },
+      {
+        "label": "Logistic Regression · PI · 2021 vs 2023",
+        "cellA": "logistic_regression|2021|PI",
+        "cellB": "logistic_regression|2023|PI",
+        "J_A": 1.0,
+        "A1": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ],
+        "A2": [
+          "GenHlth",
+          "Age",
+          "BMI",
+          "HighBP",
+          "HighChol"
+        ]
+      }
+    ]
+  },
+  "coreA": [
+    "Age",
+    "BMI",
+    "GenHlth",
+    "HighBP",
+    "HighChol"
+  ],
+  "run": "outputs_20260425_1410_full"
+}

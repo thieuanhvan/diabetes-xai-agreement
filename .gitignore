@@ -41,6 +41,15 @@ _bk/
 *.bak
 *.backup
 
+# Local archives (never distribute a nested archive of outputs)
+*.rar
+*.zip
+*.7z
+
+# Local working notes (Vietnamese, private)
+readme-post-mapr.txt
+_post_mapr_cleanup/
+
 # =========================
 # Build artifacts
 # =========================

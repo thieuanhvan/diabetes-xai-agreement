@@ -23,11 +23,13 @@ reproduction in `README_REPRODUCIBILITY.md` reads them as-is; no raw
 | Period          | Pre-pandemic baseline | In-pandemic peak | Post-pandemic |
 | Source          | CDC BRFSS 2015 | CDC BRFSS 2021 | CDC BRFSS 2023 |
 
-**On the 2023 schema reduction:** CDC removed four lifestyle variables in
-BRFSS 2023 (`Fruits`, `Veggies`, `AnyHealthcare`, `HvyAlcoholConsump`) due
-to questionnaire modifications. The 2023 CSV therefore carries 17
-features instead of 21. The pipeline harmonises all three cohorts on the
-17-feature common schema.
+**On the 2023 schema reduction.** Four variables present in the 2015 and
+2021 cohorts (`Fruits`, `Veggies`, `AnyHealthcare`, `HvyAlcoholConsump`)
+are not carried into the 2023 CSV used here, which therefore has 17
+features instead of 21. This is a property of the recoded cohort adopted
+for this study, not a claim that the underlying CDC questionnaire items
+were discontinued. The pipeline harmonises all three cohorts on the
+17-feature common schema, so the analysis is unaffected either way.
 
 All features are survey self-report. No clinical biomarkers (HbA1c,
 fasting glucose, OGTT) are included.
