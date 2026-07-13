@@ -160,11 +160,17 @@ varies between runs while numerical results do not.
 
 ## Acceptance test
 
-The following invariants are headline numbers reported in the paper.
-They are present in the committed `outputs/` and should be reproduced
-by any clean run.
+The invariants below are present in the committed `outputs/` and should
+be reproduced by any clean run.
 
-### Agreement axis
+Only the **agreement axis** corresponds to headline numbers reported in
+the MAPR 2026 paper. The **temporal stability** and **fairness** outputs
+are exploratory additions produced by this pipeline; they are not audited
+in the paper, which explicitly defers both to extension work. They are
+included here because they are reproducible artefacts of the same run,
+not because they are results of the paper.
+
+### Agreement axis (reported in the paper)
 
 Cross-method Group-A Jaccard (SHAP vs Permutation Importance, by
 model-cohort cell):
@@ -194,7 +200,7 @@ Cross-model SHAP Group-A Jaccard, averaged over the three cohorts:
 Stable core set (Group A in all 18 rankings): `{Age, BMI, GenHlth,
 HighBP, HighChol}`.
 
-### Temporal stability axis
+### Temporal stability axis (exploratory; not in the paper)
 
 Group-A Jaccard across cohort pairs (2015 vs 2021, 2015 vs 2023, 2021
 vs 2023), for each (model, method) combination. Source:
@@ -206,7 +212,7 @@ vs 2023), for each (model, method) combination. Source:
 | Permutation Importance | 1.0000 | 9 / 9 |
 | Aggregate (both methods) | 0.9656 | 14 / 18 |
 
-### Fairness axis
+### Fairness axis (exploratory; not in the paper)
 
 Equalised Odds violation by protected attribute, per (model, cohort).
 Source: `outputs/<cohort>/analysis/<model>_fairness_equalized_odds_summary.csv`.
@@ -271,6 +277,11 @@ expected runtimes per stage.
   in supervised learning. *NeurIPS 29*.
 
 The full reference list is in the accompanying paper.
+
+## Funding
+
+This research was funded by University of Information Technology, Vietnam
+National University Ho Chi Minh City under grant number CS4-2026-80120.
 
 ## License
 
