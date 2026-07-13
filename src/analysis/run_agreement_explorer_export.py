@@ -199,7 +199,7 @@ select:focus{outline:none;border-color:var(--shap)}
 <body>
 <div class="wrap">
 <header>
-  <div class="kicker">XAI Feature Agreement &middot; BRFSS 2015 / 2021 / 2023 &middot; run 12</div>
+  <div class="kicker">XAI Feature Agreement &middot; BRFSS 2015 / 2021 / 2023</div>
   <h1>Feature Agreement Explorer</h1>
   <p class="sub">Do two methods (or two models, or two years) <b>agree on the most important features</b>? Pick a context and K. The lists show each side's top-K with <b>shared features in gold</b>; the panel below reports <b>every agreement metric</b> for that comparison &mdash; set overlap (cABC J<sub>A</sub>, mass Jaccard J@70/80/90, top-5/10), rank (RBO, Spearman&nbsp;&rho;) and vector (cosine).</p>
 </header>

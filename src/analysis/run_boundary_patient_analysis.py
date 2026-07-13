@@ -2,7 +2,8 @@
 analysis/run_boundary_patient_analysis.py
 ==========================================
 
-Boundary-patient sub-analysis for Paper 2 (post-MAPR extension).
+Boundary-patient sub-analysis: supplementary study accompanying the
+MAPR 2026 paper (see CITATION.cff).
 
 Research question
 -----------------
@@ -14,34 +15,32 @@ Hypothesis
 Near the decision boundary (predicted P(Diabetes=1) ≈ 0.5), XGBoost,
 Random Forest, and Logistic Regression are most uncertain. If their
 attribution rankings DISAGREE more in this regime, then the global
-cross-model J_A reported in P2 (0.8307) is an average over heterogeneous
+cross-model J_A reported in the main study (0.8307) is an average over heterogeneous
 patient subgroups — and operational deployment on boundary patients
 (precisely those who benefit most from explanation) should treat
 single-model explanations with more caution.
 
-If the agreement is STABLE across bins, P2's headline conclusion is
+If the agreement is STABLE across bins, the main study's conclusion is
 strengthened: cross-model agreement is robust to patient confidence.
-
-Either outcome is publishable for journal extension or MAPR R1 response.
 
 Scope
 -----
-Standalone. Reads existing P2 modules (src/datasets/loader.py,
+Standalone. Reads the existing pipeline modules (src/datasets/loader.py,
 src/models/baselines.py, src/models/proposal.py, sklearn pipeline
 pattern from step02/step03). DOES NOT modify any existing code,
-DOES NOT touch existing run 12/16 outputs. Adds new files only under
+DOES NOT touch the committed reference outputs. Adds new files only under
 outputs/boundary_analysis/.
 
 Pipeline
 --------
 Two passes per cohort:
 
-1. VALIDATION PASS (n=200 sample for tree SHAP, matches P2 exactly):
+1. VALIDATION PASS (n=200 sample for tree SHAP, matches the main pipeline):
      - Train models, compute SHAP with same seed-42 200-row sample for
        XGB/RF and full test set for LR (matches shap_analysis.py)
      - Aggregate mean(|SHAP|) per feature
      - Compare to existing outputs/cdc_brfss_diabetes_{year}/shap/
-       *_shap_feature_importance.csv (run 12 or run 16)
+       *_shap_feature_importance.csv (committed reference run)
      - If aggregates match within floating-point tolerance, reproducibility
        is confirmed -> trust the analysis pass
 
@@ -50,14 +49,14 @@ Two passes per cohort:
      - RF is EXCLUDED from the analysis pass because its unconstrained-depth
        trees (mean ≈ 40 levels on BRFSS) make TreeSHAP at n>=200 impractical
        on commodity hardware (>60s for n=50 in our environment). RF still
-       participates in the validation pass (n=200 matches P2 directly).
+       participates in the validation pass (n=200 matches the main pipeline).
      - Compute predicted P(Diabetes=1) for XGB and LR on that sample
      - Bin patients by XGBoost's predicted probability (quintile)
      - Within each bin, compute mean(|SHAP|) per (model, feature)
      - Compute cABC "Group A" features per model in each bin via Lorenz
-       breakpoint (matches P2 primary metric)
+       breakpoint (matches the primary metric of the paper)
      - Compute J_A for the XGB-LR pair per bin
-       (P2's headline showed this pair had the HIGHEST baseline agreement,
+       (this pair had the HIGHEST baseline agreement in the paper,
        J_A = 0.9444; the boundary question is whether even this strongest
        pair degrades near the decision threshold)
      - Output long-format CSV + line plot
@@ -72,7 +71,7 @@ outputs/boundary_analysis/
       sample_indices.npy
       feature_names.txt
   validation/
-    aggregate_match.csv          (existing run vs script aggregates)
+    aggregate_match.csv          (reference run vs script aggregates)
   jaccard_by_bin.csv             (long format: cohort, bin, pair, J_A)
   jaccard_by_bin.png             (3x3 line plot)
   summary.json                   (run metadata + headline numbers)
@@ -145,14 +144,14 @@ COHORTS = [
 
 # Models used in the VALIDATION pass (one-off sanity check; aggregates
 # should match the existing outputs/cdc_brfss_diabetes_{year}/shap/*.csv
-# files from P2's run 12 / run 16).
+# files of the committed reference run).
 #
-# RF is intentionally EXCLUDED from validation by default: although P2's
+# RF is intentionally EXCLUDED from validation by default: although the main
 # pipeline did produce RF SHAP at n=200, the unconstrained-depth RF (mean
 # depth ≈ 40 levels on BRFSS) makes TreeSHAP run-time highly host-dependent
 # (we observed timeouts at n=50 in a Linux container). LR + XGB validation
-# alone is sufficient as a reproducibility check — if those two match P2
-# at machine precision, the data pipeline is verified.
+# alone is sufficient as a reproducibility check — if those two match the
+# reference at machine precision, the data pipeline is verified.
 #
 # To include RF in validation (only do this if your host can run RF SHAP
 # at n=200 in <10 min), append "random_forest" to the list below.
@@ -162,11 +161,11 @@ MODELS_FOR_VALIDATION = ["logistic_regression", "xgboost"]
 # RF is excluded BY DEFAULT because its unconstrained-depth trees (mean
 # ≈ 40 levels on BRFSS) make TreeSHAP at n>=200 impractical on commodity
 # hardware. The strongest argument for "boundary disagreement" runs on
-# the XGB-LR pair, which had the HIGHEST baseline J_A in P2 (0.9444).
+# the XGB-LR pair, which had the HIGHEST baseline J_A in the paper (0.9444).
 # To include RF, append it here AND budget ≥30 min/cohort on a fast CPU.
 MODELS_FOR_ANALYSIS = ["logistic_regression", "xgboost"]
 
-# Validation pass: match P2's TreeSHAP n=200 + LinearSHAP full
+# Validation pass: match the main pipeline TreeSHAP n=200 + LinearSHAP full
 VALIDATION_TREE_N = 200
 
 # Analysis pass: larger sample for binning statistical power.
@@ -176,7 +175,7 @@ ANALYSIS_TREE_N = 2000
 # Quintile binning of predicted probabilities (5 bins, 5000 / 5 = 1000 per bin)
 N_BINS = 5
 
-# Random seed (matches P2 throughout)
+# Random seed (matches the main pipeline throughout)
 SEED = 42
 
 # Where to write
@@ -199,7 +198,7 @@ def log(msg: str, level: int = 0) -> None:
 
 
 def build_estimators() -> Dict[str, object]:
-    """Return the 3 estimators used in SHAP analysis. Matches P2 exactly."""
+    """Return the 3 estimators used in SHAP analysis. Matches the main pipeline."""
     baselines = get_baseline_estimators()
     proposed = get_proposed_estimators()
     return {
@@ -246,7 +245,7 @@ def compute_shap_values(
     seed: int = SEED,
 ) -> Tuple[np.ndarray, pd.DataFrame, np.ndarray]:
     """
-    Compute SHAP values per P2 convention.
+    Compute SHAP values per the main pipeline convention.
 
     Returns:
         shap_values: ndarray (n_sample, n_features) — class-0 SHAP per
@@ -299,13 +298,13 @@ def cabc_group_a(importance: pd.Series) -> List[str]:
     """
     Compute cABC 'Group A' features via Lorenz-curve argmax breakpoint.
 
-    Following Ultsch & Lötsch 2015 (refs [21][22][23] in P2):
+    Following Ultsch & Lötsch 2015 (cited in the paper):
         1. Sort importance descending.
         2. Compute cumulative share (Lorenz curve).
         3. Find breakpoint = argmax of (cumulative_share - uniform_diagonal).
         4. Group A = features up to the breakpoint (inclusive).
 
-    For 17 features (P2 schema), Group A typically has 3-7 members.
+    For the 17-feature harmonised schema, Group A typically has 3-7 members.
     """
     sorted_imp = importance.sort_values(ascending=False)
     total = sorted_imp.sum()
@@ -372,8 +371,8 @@ def process_cohort(cohort_name: str) -> Dict:
         aucs[model_name] = float(auc)
         log(f"AUC = {auc:.4f}  ({time.time() - t0:.1f}s)", 2)
 
-    # ── VALIDATION PASS (uses MODELS_FOR_VALIDATION; matches P2 aggregates)
-    log("VALIDATION PASS (matching P2 aggregates)…", 1)
+    # ── VALIDATION PASS (uses MODELS_FOR_VALIDATION; matches reference aggregates)
+    log("VALIDATION PASS (matching reference aggregates)…", 1)
     val_rows = []
     for model_name in MODELS_FOR_VALIDATION:
         pipe = pipelines[model_name]
@@ -382,7 +381,7 @@ def process_cohort(cohort_name: str) -> Dict:
         shap_vals, X_sample, _ = compute_shap_values(pipe, X_processed, model_name, n_sample=n)
         agg = aggregate_importance(shap_vals, list(X_processed.columns))
 
-        # Try to load existing P2 SHAP CSV for comparison
+        # Try to load the committed reference SHAP CSV for comparison
         existing_csv = (PROJECT_ROOT / "outputs" / cohort_name / "shap"
                         / f"{model_name}_shap_feature_importance.csv")
         if existing_csv.exists():
@@ -636,7 +635,7 @@ def plot_jaccard_by_bin(df: pd.DataFrame, out_path: Path) -> None:
 def main() -> int:
     t_start = time.time()
     log("=" * 60)
-    log("Boundary-Patient Sub-Analysis for P2")
+    log("Boundary-Patient Sub-Analysis (supplementary)")
     log("=" * 60)
     log(f"Project root: {PROJECT_ROOT}")
     log(f"Output dir:   {OUTPUT_DIR.relative_to(PROJECT_ROOT)}")

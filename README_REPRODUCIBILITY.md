@@ -1,9 +1,10 @@
 # Reproducibility Guide
 
 This document describes how to fully reproduce the numerical results
-reported in the submitted anonymous paper. Stability and fairness
-outputs are included as exploratory additions and are not required
-for the conference results.
+reported in the MAPR 2026 paper (see the How to cite section of
+`README.md`). Stability and fairness outputs are included as
+exploratory additions and are not required for the conference
+results.
 
 The reproduction has two stages. First, the per-cell pipeline trains
 each of three models on each of three BRFSS cohorts and computes SHAP
@@ -16,7 +17,7 @@ are produced as part of the per-cell pipeline.
 ## 1. Environment setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/thieuanhvan/diabetes-xai-agreement.git
 cd diabetes-xai-agreement
 python -m venv .venv
 # Windows:  .venv\Scripts\activate
@@ -99,13 +100,13 @@ outputs/xai_agreement/
     plots/crossmodel_jaccard.png       # Figure 2
 ```
 
-## 5. Verify against the papers
+## 5. Verify against the paper
 
 After Step 4 completes, the following invariants should hold. They are
 grouped by analytical axis. The acceptance test below covers the
 agreement axis; stability and fairness outputs are exploratory.
 
-### 5a. Agreement axis (both papers)
+### 5a. Agreement axis
 
 Headline aggregates:
 
@@ -132,7 +133,7 @@ Per-pair cross-model J_A (SHAP, by cohort):
 | XGB-RF | 0.8333 | 0.8333 | 0.7143 | 0.7936 |
 | RF-LR  | 0.8333 | 0.7143 | 0.7143 | 0.7540 |
 
-Test-set AUC (reported in the submitted paper):
+Test-set AUC (reported in the paper):
 
 | Model | 2015 | 2021 | 2023 |
 |---|---|---|---|
@@ -235,4 +236,5 @@ results.
 
 ## Contact
 
-For anonymous review, no contact information is provided in this archive.
+Questions about reproducing these results can be raised as a GitHub
+issue on this repository.
