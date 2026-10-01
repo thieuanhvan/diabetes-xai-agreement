@@ -1,0 +1,10 @@
+dataset,cohort,label,univariate_top5,overlap_with_core
+BRFSS,2015,diag,"Age,BMI,GenHlth,HighBP,HighChol",5
+BRFSS,2021,diag,"Age,BMI,GenHlth,HighBP,HighChol",5
+BRFSS,2023,diag,"Age,BMI,GenHlth,HighBP,HighChol",5
+NHANES,2017-2020,diag,"Age,BMI,GenHlth,HighBP,HighChol",5
+NHANES,2017-2020,lab,"Age,BMI,GenHlth,HighBP,HighChol",5
+NHANES,2017-2020,total,"Age,BMI,GenHlth,HighBP,HighChol",5
+NHANES,2021-2023,diag,"Age,BMI,GenHlth,HighBP,HighChol",5
+NHANES,2021-2023,lab,"Age,BMI,GenHlth,HighBP,HighChol",5
+NHANES,2021-2023,total,"Age,BMI,GenHlth,HighBP,HighChol",5

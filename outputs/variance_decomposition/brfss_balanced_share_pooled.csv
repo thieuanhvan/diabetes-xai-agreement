@@ -1,0 +1,9 @@
+source,pooled_eta2
+method,0.6272
+method x year,0.0196
+model,0.1333
+model x method,0.0957
+model x method x year,0.005
+model x year,0.0055
+residual (seed),0.0355
+year,0.0782

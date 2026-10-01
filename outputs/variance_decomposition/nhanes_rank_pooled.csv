@@ -1,0 +1,17 @@
+cycle,source,pooled_eta2
+2017-2020,label,0.1
+2017-2020,method,0.153
+2017-2020,method x label,0.0097
+2017-2020,model,0.2228
+2017-2020,model x label,0.035
+2017-2020,model x method,0.0589
+2017-2020,model x method x label,0.0126
+2017-2020,residual (seed),0.408
+2021-2023,label,0.0881
+2021-2023,method,0.081
+2021-2023,method x label,0.0124
+2021-2023,model,0.1151
+2021-2023,model x label,0.0244
+2021-2023,model x method,0.0382
+2021-2023,model x method x label,0.0218
+2021-2023,residual (seed),0.619

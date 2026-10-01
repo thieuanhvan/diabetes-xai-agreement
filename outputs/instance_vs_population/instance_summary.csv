@@ -1,0 +1,19 @@
+dataset,cohort,pair,metric,n_patients,population,instance_q25,instance_median,instance_q75,share_below_population
+BRFSS,2015,model: XGB vs LR,top5,2000,1.0,0.8,0.8,1.0,0.563
+BRFSS,2015,model: XGB vs LR,spearman,2000,0.9559,0.7819,0.8309,0.8701,0.997
+BRFSS,2021,model: XGB vs LR,top5,2000,1.0,0.8,1.0,1.0,0.475
+BRFSS,2021,model: XGB vs LR,spearman,2000,0.9485,0.7966,0.8456,0.8781,0.994
+BRFSS,2023,model: XGB vs LR,top5,2000,1.0,0.8,0.8,1.0,0.6265
+BRFSS,2023,model: XGB vs LR,spearman,2000,0.9461,0.7672,0.8162,0.8554,0.999
+NHANES,2017-2020,model: XGB vs LR (diag),top5,1245,0.8,0.6,0.8,0.8,0.3414
+NHANES,2017-2020,model: XGB vs LR (diag),spearman,1245,0.8418,0.6176,0.7143,0.7978,0.8538
+NHANES,2017-2020,label: diag vs lab (XGB),top5,1245,0.8,0.6,0.8,0.8,0.3542
+NHANES,2017-2020,label: diag vs lab (XGB),spearman,1245,0.9429,0.6615,0.7714,0.8418,0.9807
+NHANES,2017-2020,label: diag vs lab (LR),top5,1245,0.8,0.8,0.8,1.0,0.0795
+NHANES,2017-2020,label: diag vs lab (LR),spearman,1245,0.9297,0.8769,0.9033,0.9253,0.7518
+NHANES,2021-2023,model: XGB vs LR (diag),top5,837,1.0,0.6,0.8,0.8,0.8041
+NHANES,2021-2023,model: XGB vs LR (diag),spearman,837,0.9121,0.6967,0.7934,0.8593,0.9044
+NHANES,2021-2023,label: diag vs lab (XGB),top5,837,0.8,0.8,0.8,0.8,0.2342
+NHANES,2021-2023,label: diag vs lab (XGB),spearman,837,0.978,0.7363,0.8198,0.8813,0.9928
+NHANES,2021-2023,label: diag vs lab (LR),top5,837,0.8,0.8,0.8,1.0,0.0167
+NHANES,2021-2023,label: diag vs lab (LR),spearman,837,0.9165,0.9297,0.9429,0.9648,0.0777

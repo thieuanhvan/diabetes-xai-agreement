@@ -62,3 +62,34 @@ across all three cohorts and all three models, run:
 ```bash
 python -m src.pipelines.run_pipeline_all_combos
 ```
+
+## NHANES cohorts (label axis, journal extension)
+
+```
+data/
+├── cdc_nhanes_diabetes_2017-2020.csv    (8,702 rows x 29 cols)
+└── cdc_nhanes_diabetes_2021-2023.csv    (6,185 rows x 29 cols)
+```
+
+Built from the public CDC NHANES files (2017–March 2020 pre-pandemic
+release `P_*`; August 2021–August 2023 release `*_L`) by the companion
+repository `nhanes-diabetes` (branch `label-axis-columns`), adults aged 18+.
+Used only by `src/analysis/run_label_axis.py`; the MAPR pipeline does not
+read them.
+
+Columns used by the label axis:
+
+| Role | Columns |
+|---|---|
+| Labels | `Diabetes_self` (doctor-diagnosed), `Diabetes_lab_a1c` (HbA1c ≥ 6.5 %); "total" = either |
+| Exclusion | `Diabetes_borderline` = 1 (DIQ010 = 3) |
+| Features | HighBP, HighChol, BMI (measured), Smoker, Stroke, HeartDiseaseorAttack, PhysActivity_LTPA, AnyHealthcare, GenHlth, MentHlth, Sex, Age, Education, Income |
+| Survey design | `SEQN`, `WTMEC`, `SDMVPSU`, `SDMVSTRA` |
+| Not used as features | HbA1c, FastingGlucose, Diabetes_lab, Diabetes_treated, blood pressure |
+
+Construct differences from BRFSS: BMI is measured, MentHlth is a PHQ-9
+severity band expressed in days, AnyHealthcare (insurance) stands in for
+NoDocbcCost, Income is the poverty–income ratio in 5 bands, and
+PhysActivity_LTPA is not comparable across the two NHANES cycles
+(48.5 % vs 75.4 % active; instrument change). CholCheck, PhysHlth and
+DiffWalk have no counterpart in both cycles.

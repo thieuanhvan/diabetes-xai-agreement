@@ -1,0 +1,154 @@
+feature,source,ss,total_ss,eta2
+Age,model,6.37037,45.925926,0.13871
+Age,method,7.407407,45.925926,0.16129
+Age,year,13.592593,45.925926,0.295968
+Age,model x method,7.259259,45.925926,0.158065
+Age,model x year,1.962963,45.925926,0.042742
+Age,method x year,1.148148,45.925926,0.025
+Age,model x method x year,0.851852,45.925926,0.018548
+Age,residual (seed),7.333333,45.925926,0.159677
+Age,total,45.925926,45.925926,1.0
+BMI,model,0.703704,32.814815,0.021445
+BMI,method,14.518519,32.814815,0.442438
+BMI,year,7.148148,32.814815,0.217833
+BMI,model x method,2.481481,32.814815,0.075621
+BMI,model x year,2.296296,32.814815,0.069977
+BMI,method x year,1.814815,32.814815,0.055305
+BMI,model x method x year,0.518519,32.814815,0.015801
+BMI,residual (seed),3.333333,32.814815,0.10158
+BMI,total,32.814815,32.814815,1.0
+CholCheck,model,401.37037,623.648148,0.643585
+CholCheck,method,160.166667,623.648148,0.256822
+CholCheck,year,2.481481,623.648148,0.003979
+CholCheck,model x method,22.333333,623.648148,0.035811
+CholCheck,model x year,2.296296,623.648148,0.003682
+CholCheck,method x year,2.333333,623.648148,0.003741
+CholCheck,model x method x year,3.333333,623.648148,0.005345
+CholCheck,residual (seed),29.333333,623.648148,0.047035
+CholCheck,total,623.648148,623.648148,1.0
+DiffWalk,model,206.703704,344.759259,0.59956
+DiffWalk,method,2.240741,344.759259,0.006499
+DiffWalk,year,7.259259,344.759259,0.021056
+DiffWalk,model x method,42.259259,344.759259,0.122576
+DiffWalk,model x year,10.62963,344.759259,0.030832
+DiffWalk,method x year,1.037037,344.759259,0.003008
+DiffWalk,model x method x year,4.62963,344.759259,0.013429
+DiffWalk,residual (seed),70.0,344.759259,0.20304
+DiffWalk,total,344.759259,344.759259,1.0
+Education,model,36.027778,227.708333,0.158219
+Education,method,13.00463,227.708333,0.057111
+Education,year,20.333333,227.708333,0.089296
+Education,model x method,9.953704,227.708333,0.043713
+Education,model x year,27.555556,227.708333,0.121013
+Education,method x year,6.259259,227.708333,0.027488
+Education,model x method x year,7.407407,227.708333,0.03253
+Education,residual (seed),107.166667,227.708333,0.470631
+Education,total,227.708333,227.708333,1.0
+GenHlth,model,0.777778,5.333333,0.145833
+GenHlth,method,0.296296,5.333333,0.055556
+GenHlth,year,0.444444,5.333333,0.083333
+GenHlth,model x method,1.148148,5.333333,0.215278
+GenHlth,model x year,0.444444,5.333333,0.083333
+GenHlth,method x year,0.148148,5.333333,0.027778
+GenHlth,model x method x year,0.740741,5.333333,0.138889
+GenHlth,residual (seed),1.333333,5.333333,0.25
+GenHlth,total,5.333333,5.333333,1.0
+HeartDiseaseorAttack,model,94.37037,188.981481,0.499363
+HeartDiseaseorAttack,method,25.351852,188.981481,0.13415
+HeartDiseaseorAttack,year,18.37037,188.981481,0.097207
+HeartDiseaseorAttack,model x method,10.814815,188.981481,0.057227
+HeartDiseaseorAttack,model x year,6.740741,188.981481,0.035669
+HeartDiseaseorAttack,method x year,4.148148,188.981481,0.02195
+HeartDiseaseorAttack,model x method x year,4.518519,188.981481,0.02391
+HeartDiseaseorAttack,residual (seed),24.666667,188.981481,0.130524
+HeartDiseaseorAttack,total,188.981481,188.981481,1.0
+HighBP,model,3.37037,56.814815,0.059322
+HighBP,method,42.666667,56.814815,0.750978
+HighBP,year,0.592593,56.814815,0.01043
+HighBP,model x method,2.111111,56.814815,0.037158
+HighBP,model x year,4.518519,56.814815,0.079531
+HighBP,method x year,0.444444,56.814815,0.007823
+HighBP,model x method x year,0.444444,56.814815,0.007823
+HighBP,residual (seed),2.666667,56.814815,0.046936
+HighBP,total,56.814815,56.814815,1.0
+HighChol,model,0.592593,3.703704,0.16
+HighChol,method,0.296296,3.703704,0.08
+HighChol,year,0.148148,3.703704,0.04
+HighChol,model x method,0.592593,3.703704,0.16
+HighChol,model x year,0.296296,3.703704,0.08
+HighChol,method x year,0.148148,3.703704,0.04
+HighChol,model x method x year,0.296296,3.703704,0.08
+HighChol,residual (seed),1.333333,3.703704,0.36
+HighChol,total,3.703704,3.703704,1.0
+Income,model,19.75,143.208333,0.137911
+Income,method,43.560185,143.208333,0.304174
+Income,year,10.583333,143.208333,0.073902
+Income,model x method,13.675926,143.208333,0.095497
+Income,model x year,1.666667,143.208333,0.011638
+Income,method x year,2.398148,143.208333,0.016746
+Income,model x method x year,0.740741,143.208333,0.005172
+Income,residual (seed),50.833333,143.208333,0.354961
+Income,total,143.208333,143.208333,1.0
+MentHlth,model,107.175926,287.412037,0.3729
+MentHlth,method,31.893519,287.412037,0.110968
+MentHlth,year,6.037037,287.412037,0.021005
+MentHlth,model x method,14.287037,287.412037,0.049709
+MentHlth,model x year,10.740741,287.412037,0.037371
+MentHlth,method x year,6.703704,287.412037,0.023324
+MentHlth,model x method x year,8.740741,287.412037,0.030412
+MentHlth,residual (seed),101.833333,287.412037,0.354311
+MentHlth,total,287.412037,287.412037,1.0
+NoDocbcCost,model,9.361111,65.708333,0.142465
+NoDocbcCost,method,12.041667,65.708333,0.183259
+NoDocbcCost,year,1.0,65.708333,0.015219
+NoDocbcCost,model x method,9.361111,65.708333,0.142465
+NoDocbcCost,model x year,4.055556,65.708333,0.061721
+NoDocbcCost,method x year,1.0,65.708333,0.015219
+NoDocbcCost,model x method x year,4.055556,65.708333,0.061721
+NoDocbcCost,residual (seed),24.833333,65.708333,0.377933
+NoDocbcCost,total,65.708333,65.708333,1.0
+PhysActivity,model,2.111111,481.833333,0.004381
+PhysActivity,method,14.518519,481.833333,0.030132
+PhysActivity,year,377.444444,481.833333,0.783351
+PhysActivity,model x method,0.037037,481.833333,7.7e-05
+PhysActivity,model x year,6.111111,481.833333,0.012683
+PhysActivity,method x year,1.592593,481.833333,0.003305
+PhysActivity,model x method x year,14.851852,481.833333,0.030824
+PhysActivity,residual (seed),65.166667,481.833333,0.135247
+PhysActivity,total,481.833333,481.833333,1.0
+PhysHlth,model,15.509259,210.259259,0.073763
+PhysHlth,method,50.074074,210.259259,0.238154
+PhysHlth,year,59.509259,210.259259,0.283028
+PhysHlth,model x method,24.287037,210.259259,0.11551
+PhysHlth,model x year,3.740741,210.259259,0.017791
+PhysHlth,method x year,4.398148,210.259259,0.020918
+PhysHlth,model x method x year,5.740741,210.259259,0.027303
+PhysHlth,residual (seed),47.0,210.259259,0.223534
+PhysHlth,total,210.259259,210.259259,1.0
+Sex,model,49.787037,118.134259,0.421445
+Sex,method,3.893519,118.134259,0.032958
+Sex,year,2.287037,118.134259,0.01936
+Sex,model x method,5.898148,118.134259,0.049927
+Sex,model x year,13.351852,118.134259,0.113023
+Sex,method x year,2.064815,118.134259,0.017479
+Sex,model x method x year,4.351852,118.134259,0.036838
+Sex,residual (seed),36.5,118.134259,0.30897
+Sex,total,118.134259,118.134259,1.0
+Smoker,model,2.287037,169.912037,0.01346
+Smoker,method,2.041667,169.912037,0.012016
+Smoker,year,13.398148,169.912037,0.078853
+Smoker,model x method,15.25,169.912037,0.089752
+Smoker,model x year,11.685185,169.912037,0.068772
+Smoker,method x year,4.361111,169.912037,0.025667
+Smoker,model x method x year,24.722222,169.912037,0.1455
+Smoker,residual (seed),96.166667,169.912037,0.565979
+Smoker,total,169.912037,169.912037,1.0
+Stroke,model,14.037037,199.87037,0.070231
+Stroke,method,109.796296,199.87037,0.549338
+Stroke,year,3.37037,199.87037,0.016863
+Stroke,model x method,11.148148,199.87037,0.055777
+Stroke,model x year,10.296296,199.87037,0.051515
+Stroke,method x year,0.703704,199.87037,0.003521
+Stroke,model x method x year,4.518519,199.87037,0.022607
+Stroke,residual (seed),46.0,199.87037,0.230149
+Stroke,total,199.87037,199.87037,1.0

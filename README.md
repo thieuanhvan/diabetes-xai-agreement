@@ -265,6 +265,45 @@ importance, so it is scale-free and data-adaptive but not threshold-free;
 1 - p^k (0.833 for 17 features at p = 0.9); new analyses use the extrapolated
 RBO in `src/evaluation/agreement_metrics.py`.
 
+### Full journal-extension run order
+
+Inputs: the three BRFSS CSVs and the two NHANES CSVs in `data/` (see
+`data/README.md`). Runtimes are for a 2-core / 8 GB Linux container; the
+Random Forest TreeSHAP step dominates (about 5 s per explained row).
+
+```bash
+# 1. Metric comparison on the MAPR vectors (seconds)
+python -m src.analysis.run_metric_comparison
+python -m src.analysis.run_cabc_bootstrap
+# 2. NHANES label axis: 3 models x 3 labels x 10 seeds (~1.5-2 h)
+python -m src.analysis.run_label_axis --stage all --seeds 10
+# 3. BRFSS multi-seed grid (~6 h, resumable) and class-weight ablation
+python -m src.analysis.run_brfss_multiseed --stage all --seeds 5
+python -m src.analysis.run_brfss_multiseed --stage all --seeds 3 --class-weighting none
+python -m src.analysis.run_brfss_multiseed --stage all --seeds 3 --class-weighting balanced
+# 4. Analyses on the stored vectors and predictions (minutes)
+python -m src.analysis.run_label_fairness --seeds 10
+python -m src.analysis.run_variance_decomposition
+python -m src.analysis.run_instance_vs_population
+python -m src.analysis.run_brfss_income_harmonised
+python -m src.analysis.build_reproducibility_table
+# 5. Checks
+python -m tests.test_agreement_metrics
+python -m tests.test_journal_analyses
+```
+
+| Script | Output folder | Question |
+|---|---|---|
+| `run_metric_comparison` | `metric_comparison/` | Is cABC J_A informative beyond top-K, Spearman, Kendall, RBO? |
+| `run_cabc_bootstrap` | `metric_comparison/` | Is Group-A size stable under patient resampling? |
+| `run_label_axis` | `label_axis/` | Do attributions change when the label changes from diagnosis to HbA1c? |
+| `run_brfss_multiseed` | `brfss_multiseed/<class_weighting>/` | Are MAPR agreement results stable across seeds and class weighting? |
+| `run_label_fairness` | `label_fairness/` | Does the label change who is detected across socioeconomic groups? |
+| `run_variance_decomposition` | `variance_decomposition/` | How much attribution variation comes from model, method, label/year, seed? |
+| `run_instance_vs_population` | `instance_vs_population/` | Does population-level agreement hold patient by patient? Is the core trivial? |
+| `run_brfss_income_harmonised` | `brfss_income_harmonised/` | Correction of the MAPR Income-fairness result (bin count) |
+| `build_reproducibility_table` | `reproducibility/` | All settings, sample sizes, seeds and package versions in one table |
+
 ## Reproducibility
 
 All splits, samples, and stochastic estimators use `random_state = 42`.
