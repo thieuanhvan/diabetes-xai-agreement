@@ -238,7 +238,13 @@ def cosine_similarity_from_importance(df_a: pd.DataFrame, df_b: pd.DataFrame,
 
 def rbo_score(rank_a: List[str], rank_b: List[str], p: float = 0.90) -> float:
     """
-    Simple finite-depth RBO approximation.
+    Simple finite-depth RBO approximation (truncated sum, no extrapolation).
+
+    Caution: without the extrapolation term the score is bounded above by
+    1 - p^depth (0.8332 for 17 features at p = 0.9), so identical rankings do
+    not score 1.0. Kept unchanged so that outputs/xai_agreement/ reproduces
+    the MAPR 2026 outputs (git tag mapr2026-v1.0). For new analyses use
+    src.evaluation.agreement_metrics.rbo_ext.
     """
     depth = max(len(rank_a), len(rank_b))
     if depth == 0:

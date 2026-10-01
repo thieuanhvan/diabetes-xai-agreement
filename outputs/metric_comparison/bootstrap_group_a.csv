@@ -1,0 +1,7 @@
+year,model,n_patients,n_boot,size_A_point,A_point,P(size_A=5),top_flips,P(size_A=6)
+2015,xgboost,2000,2000,5,"GenHlth,HighBP,Age,BMI,HighChol",1.0,,
+2015,logistic_regression,2000,2000,5,"GenHlth,Age,BMI,HighBP,HighChol",0.9995,Sex:0.0005,0.0005
+2021,xgboost,2000,2000,5,"GenHlth,HighBP,Age,BMI,HighChol",1.0,,
+2021,logistic_regression,2000,2000,6,"GenHlth,Age,HighBP,BMI,HighChol,Sex",,,1.0
+2023,xgboost,2000,2000,5,"GenHlth,HighBP,Age,BMI,HighChol",1.0,,
+2023,logistic_regression,2000,2000,5,"GenHlth,Age,HighBP,BMI,HighChol",1.0,,

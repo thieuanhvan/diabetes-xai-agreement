@@ -244,6 +244,27 @@ If a clean run reproduces these values, the pipeline is reproducible.
 If any value differs, check that `random_state = 42` is honoured
 throughout and that all packages match `requirements.txt`.
 
+## Post-MAPR metric comparison (journal extension, work in progress)
+
+The MAPR 2026 outputs under `outputs/xai_agreement/` are frozen at git tag
+`mapr2026-v1.0`. Two scripts compare cABC Group-A Jaccard with the baselines
+requested by the MAPR reviewers (top-K overlap, Spearman, Kendall, weighted
+Kendall, extrapolated RBO) on the same 18 attribution vectors, without
+retraining:
+
+```bash
+python -m src.analysis.run_metric_comparison   # 45 pairs -> outputs/metric_comparison/
+python -m src.analysis.run_cabc_bootstrap      # patient-level bootstrap (XGB, LR)
+python -m tests.test_agreement_metrics         # checks, incl. reproduction of MAPR cABC CSVs
+```
+
+Two corrections relative to the MAPR wording: (i) the cABC A|B boundary used
+here selects exactly the features whose importance exceeds the mean
+importance, so it is scale-free and data-adaptive but not threshold-free;
+(ii) `rbo_score` in `run_xai_agreement.py` is a truncated sum bounded above by
+1 - p^k (0.833 for 17 features at p = 0.9); new analyses use the extrapolated
+RBO in `src/evaluation/agreement_metrics.py`.
+
 ## Reproducibility
 
 All splits, samples, and stochastic estimators use `random_state = 42`.
