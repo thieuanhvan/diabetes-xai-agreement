@@ -63,7 +63,35 @@ FEATURES = [
 ]
 
 
+# Transfer demonstration: the same protocol on a second outcome with a diagnosis
+# label and a measurement-based label for the same people (hypertension).
+FEATURES_HYPERTENSION = [
+    "Diabetes_self", "HighChol", "BMI", "Smoker", "Stroke", "HeartDiseaseorAttack",
+    "PhysActivity_LTPA", "AnyHealthcare", "GenHlth", "MentHlth",
+    "Sex", "Age", "Education", "Income",
+]
+OUTCOME = "diabetes"
+CLASS_WEIGHTING = "pipeline"
+
+
+def load_cycle_hypertension(cycle: str) -> pd.DataFrame:
+    """diag = told by a doctor they have high blood pressure (BPQ020);
+    lab = mean measured SBP >= 140 or DBP >= 90 mmHg; total = either."""
+    df = pd.read_csv(DATA_DIR / f"cdc_nhanes_hypertension_{cycle}.csv")
+    n0 = len(df)
+    df = df[df["Diabetes_borderline"] == 0]
+    df = df.dropna(subset=FEATURES + ["HighBP", "SBP_mean", "DBP_mean", "WTMEC"]).copy()
+    df["diag"] = df["HighBP"].astype(int)
+    df["lab"] = ((df["SBP_mean"] >= 140) | (df["DBP_mean"] >= 90)).astype(int)
+    df["total"] = (df["diag"] | df["lab"]).astype(int)
+    logging.info("%s (hypertension): %d -> %d rows | prevalence diag %.3f lab %.3f total %.3f",
+                 cycle, n0, len(df), df.diag.mean(), df.lab.mean(), df.total.mean())
+    return df.reset_index(drop=True)
+
+
 def load_cycle(cycle: str) -> pd.DataFrame:
+    if OUTCOME == "hypertension":
+        return load_cycle_hypertension(cycle)
     df = pd.read_csv(DATA_DIR / f"cdc_nhanes_diabetes_{cycle}.csv")
     n0 = len(df)
     df = df[(df["Diabetes_borderline"] == 0) & df["Diabetes_lab_a1c"].notna()]
@@ -90,7 +118,8 @@ def run_grid(seeds: int, shap_n: int | None, n_jobs: int, train_weighted: bool =
                     t0 = time.time()
                     r = fit_and_attribute(model, Xtr, df.loc[tr, label], Xte, df.loc[te, label],
                                           seed=seed, w_test=w_te, shap_n=shap_n, n_jobs=n_jobs,
-                                          w_train=df.loc[tr, "WTMEC"] if train_weighted else None)
+                                          w_train=df.loc[tr, "WTMEC"] if train_weighted else None,
+                                          class_weighting=CLASS_WEIGHTING)
                     key = dict(cycle=cycle, label=label, model=model, seed=seed)
                     perf_rows.append({**key, "n_train": len(tr), "n_test": len(te),
                                       "pos_test": int(df.loc[te, label].sum()),
@@ -253,10 +282,20 @@ def main() -> None:
     p.add_argument("--train-weighted", action="store_true",
                    help="sensitivity analysis: train with the NHANES MEC weight (WTMEC) as "
                         "sample weight; results go to outputs/label_axis_trainweighted/")
+    p.add_argument("--outcome", choices=["diabetes", "hypertension"], default="diabetes",
+                   help="hypertension: transfer demonstration; results go to "
+                        "outputs/label_axis_hypertension_<class weighting>/")
+    p.add_argument("--class-weighting", choices=["pipeline", "none", "balanced"], default="pipeline")
     args = p.parse_args()
-    global RESULT_DIR
+    global RESULT_DIR, OUTCOME, FEATURES, CLASS_WEIGHTING
+    OUTCOME, CLASS_WEIGHTING = args.outcome, args.class_weighting
     if args.train_weighted:
         RESULT_DIR = PROJECT_ROOT / "outputs" / "label_axis_trainweighted"
+    if OUTCOME == "hypertension":
+        FEATURES = FEATURES_HYPERTENSION
+        RESULT_DIR = PROJECT_ROOT / "outputs" / f"label_axis_hypertension_{CLASS_WEIGHTING}"
+    elif CLASS_WEIGHTING != "pipeline":
+        RESULT_DIR = PROJECT_ROOT / "outputs" / f"label_axis_{CLASS_WEIGHTING}"
     logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s",
                         handlers=[logging.StreamHandler(sys.stdout)])
     if args.stage in ("grid", "all"):

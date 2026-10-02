@@ -188,6 +188,32 @@ def sign_flip_checks() -> None:
         rep.reset_index().to_csv(DST / f"label_shift_replicated_{test}.csv", index=False)
 
 
+def patient_direction_checks() -> None:
+    """Patient-level agreement with signed SHAP (direction kept) next to |SHAP|,
+    XGBoost vs LR on the stored BRFSS test patients."""
+    from scipy.stats import spearmanr
+    rows = []
+    for year in [2015, 2021, 2023]:
+        d = OUT / "boundary_analysis" / "shap_per_patient" / f"cdc_brfss_diabetes_{year}"
+        A = np.load(d / "xgboost_shap_values.npy").astype(float)
+        B = np.load(d / "logistic_regression_shap_values.npy").astype(float)
+        rho_abs = np.array([spearmanr(np.abs(a), np.abs(b))[0] for a, b in zip(A, B)])
+        rho_sign = np.array([spearmanr(a, b)[0] for a, b in zip(A, B)])
+        agree = []
+        for a, b in zip(A, B):
+            top = set(np.argsort(-np.abs(a))[:5]) | set(np.argsort(-np.abs(b))[:5])
+            idx = np.array(sorted(top))
+            agree.append(float((np.sign(a[idx]) == np.sign(b[idx])).mean()))
+        agree = np.array(agree)
+        rows.append(dict(year=year, n=len(A), median_spearman_abs=np.median(rho_abs),
+                         median_spearman_signed=np.median(rho_sign),
+                         median_sign_agreement_top5=np.median(agree),
+                         share_patients_any_sign_conflict_top5=float((agree < 1).mean())))
+    out = pd.DataFrame(rows)
+    out.to_csv(DST / "patient_direction.csv", index=False)
+    logging.info("Patient-level agreement, signed vs absolute SHAP:\n%s", out.round(4).to_string(index=False))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--n-perm", type=int, default=999)
@@ -196,6 +222,7 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(message)s", handlers=[logging.StreamHandler(sys.stdout)])
     DST.mkdir(parents=True, exist_ok=True)
     seed_floor_checks()
+    patient_direction_checks()
     sign_flip_checks()
     variance_checks(0 if args.skip_permutation else args.n_perm, np.random.default_rng(20261002))
 

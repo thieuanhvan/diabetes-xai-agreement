@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 
 from src.analysis.run_label_axis import load_cycle
+from src.analysis import run_label_axis as _rla
 
 OUT = Path(__file__).resolve().parents[2] / "outputs"
 DST = OUT / "journal_numbers"
@@ -235,15 +236,75 @@ def sensitivity() -> None:
     for test in ["q_bh", "q_signflip"]:
         rep = pd.read_csv(d / f"label_shift_replicated_{test}.csv")
         put(f"se.shift.replicated.{test}", str(len(rep)))
+    pdir = pd.read_csv(d / "patient_direction.csv")
+    put("se.patient.signed_median_range", f"{t4(pdir.median_spearman_signed.min())}-{t4(pdir.median_spearman_signed.max())}")
+    put("se.patient.sign_conflict_pct_range", f"{pct(pdir.share_patients_any_sign_conflict_top5.min())}-{pct(pdir.share_patients_any_sign_conflict_top5.max())}")
     sfl = pd.read_csv(d / "label_shift_signflip.csv")
     u = sfl[sfl.weighting == "unweighted"]
     for cyc, g in u.groupby("cycle"):
         put(f"se.shift.nsig_signflip.{cyc}", str(int((g.q_signflip < 0.05).sum())))
 
 
+def load_cycle_htn(cycle: str) -> pd.DataFrame:
+    saved = _rla.FEATURES
+    _rla.FEATURES = _rla.FEATURES_HYPERTENSION
+    try:
+        return _rla.load_cycle_hypertension(cycle)
+    finally:
+        _rla.FEATURES = saved
+
+
+def hypertension() -> None:
+    """Transfer demonstration: the protocol applied to hypertension (NHANES)."""
+    base = OUT / "label_axis_hypertension_pipeline"
+    if not (base / "pairs.csv").exists():
+        return
+    perf = pd.read_csv(base / "performance.csv")
+    for (cyc, lab), g in perf.groupby(["cycle", "label"]):
+        put(f"htn.auc.{cyc}.{lab}", t4(g.auc.mean()))
+        put(f"htn.n.{cyc}", f"{int(g.n_train.iloc[0] + g.n_test.iloc[0]):,}")
+    for cyc in ["2017-2020", "2021-2023"]:
+        df = load_cycle_htn(cyc)
+        put(f"htn.prev.{cyc}.diag", t4(df.diag.mean())); put(f"htn.prev.{cyc}.lab", t4(df.lab.mean()))
+        put(f"htn.discord_pct.{cyc}", pct(float((df.diag != df.lab).mean())))
+    p = pd.read_csv(base / "pairs.csv")
+    p = p[p.weighting == "unweighted"]
+    lt = p[(p.J_A < 1) & (p.axis != "seed")]
+    put("htn.ja_lt1_nested", f"{int((lt.OC_A == 1).sum())}/{len(lt)}")
+    put("htn.ja_eq_sizeratio", f"{int((abs(p.J_A - p.size_ratio_A) < 1e-9).sum())}/{len(p)}")
+    for (cyc, ax), g in p.groupby(["cycle", "axis"]):
+        for c in ["J_A", "contradiction_A", "spearman", "rbo_ext_p90"]:
+            put(f"htn.pairs.{cyc}.{ax}.{c}", t4(g[c].mean()))
+    f = pd.read_csv(base / "label_vs_seed_floor.csv")
+    f = f[f.weighting == "unweighted"]
+    for (met, cyc), g in f.groupby(["metric", "cycle"]):
+        put(f"htn.floor.{cyc}.{met}", pct(g.label_share_below_seed_p5.mean()))
+    s = pd.read_csv(base / "feature_shift.csv")
+    s = s[(s.weighting == "unweighted") & (s.label_1 == "diag") & (s.label_2 == "lab")]
+    w = s.pivot_table(index=["method", "model", "feature"], columns="cycle", values=["diff", "q_bh"])
+    same = np.sign(w["diff"]["2017-2020"]) == np.sign(w["diff"]["2021-2023"])
+    rep = w[(w["q_bh"] < 0.05).all(axis=1) & same]
+    put("htn.n_replicated", str(len(rep)))
+    for (meth, mdl, feat), r in rep.iterrows():
+        put(f"htn.shift.{meth}.{mdl}.{feat}", f"{pct(r[('diff', '2017-2020')])} / {pct(r[('diff', '2021-2023')])}")
+    pre = ["Diabetes_self", "HeartDiseaseorAttack", "HighChol"]
+    shap = w.loc["SHAP"]["diff"]
+    for feat in pre:
+        x = shap.xs(feat, level="feature")
+        put(f"htn.prespec.{feat}.positive", f"{int((x > 0).values.sum())}/{x.size}")
+    none = OUT / "label_axis_hypertension_none" / "pairs.csv"
+    if none.exists():
+        for cw, path in [("pipeline", base / "pairs.csv"), ("none", none)]:
+            q = pd.read_csv(path)
+            q = q[(q.weighting == "unweighted") & (q.axis == "model") & (q.method == "SHAP")]
+            put(f"htn.cw.{cw}.model_SHAP.J_A", t4(q.J_A.mean()))
+            put(f"htn.cw.{cw}.model_SHAP.contradiction", t4(q.contradiction_A.mean()))
+            put(f"htn.cw.{cw}.model_SHAP.spearman", t4(q.spearman.mean()))
+
+
 def main() -> None:
     DST.mkdir(parents=True, exist_ok=True)
-    metric_comparison(); brfss(); variance(); nhanes(); instance(); fairness(); income(); sensitivity()
+    metric_comparison(); brfss(); variance(); nhanes(); instance(); fairness(); income(); sensitivity(); hypertension()
     (DST / "numbers.json").write_text(json.dumps(N, indent=1, ensure_ascii=False))
     (DST / "numbers.md").write_text("\n".join(f"- `{k}`: {v}" for k, v in N.items()) + "\n")
     print(f"{len(N)} values written to {DST}")

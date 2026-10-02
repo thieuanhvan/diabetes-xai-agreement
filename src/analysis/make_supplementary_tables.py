@@ -107,10 +107,33 @@ def income() -> str:
     return "\n".join(rows)
 
 
+def hypertension_shifts() -> str:
+    path = OUT / "label_axis_hypertension_pipeline" / "feature_shift.csv"
+    if not path.exists():
+        return ""
+    s = pd.read_csv(path)
+    s = s[(s.weighting == "unweighted") & (s.label_1 == "diag") & (s.label_2 == "lab")]
+    w = s.pivot_table(index=["method", "model", "feature"], columns="cycle", values=["diff", "q_bh"])
+    same = (w["diff"]["2017-2020"] > 0) == (w["diff"]["2021-2023"] > 0)
+    rep = (w["q_bh"] < 0.05).all(axis=1) & same
+    pre = w.index.get_level_values("feature").isin(["Diabetes_self", "HeartDiseaseorAttack", "HighChol"]) & \
+        (w.index.get_level_values("method") == "SHAP")
+    keep = w[rep | pre].sort_values([("diff", "2021-2023")], ascending=False)
+    rows = []
+    for (meth, mdl, feat), r in keep.iterrows():
+        mark = r"$^{\ast}$" if rep[(meth, mdl, feat)] else ""
+        cells = []
+        for cyc in ["2017-2020", "2021-2023"]:
+            cells += [pct(r[("diff", cyc)]), t4(r[("q_bh", cyc)])]
+        feat_tex = feat.replace("_", r"\_")
+        rows.append(f"{meth} & {MODEL[mdl]} & {feat_tex}{mark} & " + " & ".join(cells) + r" \\")
+    return "\n".join(rows)
+
+
 def main() -> None:
     DST.mkdir(parents=True, exist_ok=True)
     for name, fn in [("seed_reference", seed_reference), ("variance_sensitivity", variance_sensitivity),
-                     ("label_shift_tests", label_shift_tests), ("fairness", fairness), ("income", income)]:
+                     ("label_shift_tests", label_shift_tests), ("fairness", fairness), ("income", income), ("hypertension_shifts", hypertension_shifts)]:
         (DST / f"{name}.tex").write_text(fn() + "\n")
     print("Tables written to", DST)
 
