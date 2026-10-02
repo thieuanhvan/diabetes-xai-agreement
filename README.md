@@ -1,11 +1,19 @@
 # diabetes-xai-agreement
 
-Research pipeline auditing explainable AI methods on population-scale
-diabetes risk prediction from CDC BRFSS data (2015, 2021, 2023). This
-repository reproduces the results reported in the MAPR 2026 paper listed
-under [How to cite](#how-to-cite). Additional exploratory outputs are
-included for completeness but are not required for the conference
-results.
+Research pipeline for auditing population-level explainable AI agreement in
+clinical risk prediction. It contains two sets of results:
+
+* **Journal article (release `jbi-v1`)**: an audit protocol that separates
+  explanation agreement into contradiction, depth and head order, judges it
+  against a seed-noise reference, and tests metric, model, attribution
+  method, training configuration and outcome definition as sources of
+  apparent disagreement. Testbed: BRFSS 2015/2021/2023 and NHANES
+  2017-March 2020 and 2021-2023 (diabetes: diagnosis vs HbA1c; transfer
+  demonstration: hypertension, diagnosis vs measured blood pressure).
+  See [Journal article (JBI)](#journal-article-jbi-release-jbi-v1).
+* **Conference paper (tag `mapr2026-v1.0`)**: the MAPR 2026 pipeline on
+  BRFSS (18 attribution rankings, cABC Group-A Jaccard), documented in the
+  sections below.
 
 > **Runtime note.** A full reproduction from scratch takes approximately
 > two to three hours on a standard desktop CPU; no GPU is required. The
@@ -244,65 +252,90 @@ If a clean run reproduces these values, the pipeline is reproducible.
 If any value differs, check that `random_state = 42` is honoured
 throughout and that all packages match `requirements.txt`.
 
-## Post-MAPR metric comparison (journal extension, work in progress)
+## Journal article (JBI, release `jbi-v1`)
 
-The MAPR 2026 outputs under `outputs/xai_agreement/` are frozen at git tag
-`mapr2026-v1.0`. Two scripts compare cABC Group-A Jaccard with the baselines
-requested by the MAPR reviewers (top-K overlap, Spearman, Kendall, weighted
-Kendall, extrapolated RBO) on the same 18 attribution vectors, without
-retraining:
+### Environment
+
+The journal results were generated with **Python 3.11.15 on Linux**
+(2-core / 8 GB container) with the package versions pinned in
+`requirements.txt` (numpy 2.4.4, pandas 3.0.2, scipy 1.17.1,
+scikit-learn 1.8.0, xgboost 3.2.0, shap 0.51.0). The conference results
+under tag `mapr2026-v1.0` were generated with Python 3.12.10 on Windows 10
+with the same package versions. `outputs/reproducibility/settings.md`
+lists every setting of every journal analysis.
+
+### Inputs
+
+`data/` contains the BRFSS CSVs, the NHANES diabetes tables
+(`cdc_nhanes_diabetes_<cycle>.csv`, built by the companion repository
+nhanes-diabetes) and the NHANES hypertension tables
+(`cdc_nhanes_hypertension_<cycle>.csv`). The hypertension tables add the
+mean of up to three oscillometric blood-pressure readings and can be rebuilt
+from the raw NHANES BPXO files with
+`python -m src.data.build_nhanes_hypertension --raw-dir <raw NHANES dir>`.
+
+### Run order
+
+`run_jbi_v1.sh` at the repository root runs everything below in order.
+Runtimes are for the 2-core container; Random Forest TreeSHAP dominates.
 
 ```bash
-python -m src.analysis.run_metric_comparison   # 45 pairs -> outputs/metric_comparison/
-python -m src.analysis.run_cabc_bootstrap      # patient-level bootstrap (XGB, LR)
-python -m tests.test_agreement_metrics         # checks, incl. reproduction of MAPR cABC CSVs
-```
-
-Two corrections relative to the MAPR wording: (i) the cABC A|B boundary used
-here selects exactly the features whose importance exceeds the mean
-importance, so it is scale-free and data-adaptive but not threshold-free;
-(ii) `rbo_score` in `run_xai_agreement.py` is a truncated sum bounded above by
-1 - p^k (0.833 for 17 features at p = 0.9); new analyses use the extrapolated
-RBO in `src/evaluation/agreement_metrics.py`.
-
-### Full journal-extension run order
-
-Inputs: the three BRFSS CSVs and the two NHANES CSVs in `data/` (see
-`data/README.md`). Runtimes are for a 2-core / 8 GB Linux container; the
-Random Forest TreeSHAP step dominates (about 5 s per explained row).
-
-```bash
-# 1. Metric comparison on the MAPR vectors (seconds)
+# 1. Metric comparison on the 18 conference vectors (seconds)
 python -m src.analysis.run_metric_comparison
 python -m src.analysis.run_cabc_bootstrap
-# 2. NHANES label axis: 3 models x 3 labels x 10 seeds (~1.5-2 h)
-python -m src.analysis.run_label_axis --stage all --seeds 10
-# 3. BRFSS multi-seed grid (~6 h, resumable) and class-weight ablation
+# 2. BRFSS multi-seed grid (~6 h, resumable) and class-weighting ablation (~7 h)
 python -m src.analysis.run_brfss_multiseed --stage all --seeds 5
 python -m src.analysis.run_brfss_multiseed --stage all --seeds 3 --class-weighting none
 python -m src.analysis.run_brfss_multiseed --stage all --seeds 3 --class-weighting balanced
-# 4. Analyses on the stored vectors and predictions (minutes)
+python -m src.analysis.run_brfss_multiseed --stage cw-compare
+# 3. NHANES diabetes outcome-definition axis, 10 seeds (~1.5-2 h), and survey-weighted training
+python -m src.analysis.run_label_axis --stage all --seeds 10
+python -m src.analysis.run_label_axis --stage all --seeds 10 --train-weighted
+# 4. Hypertension transfer demonstration, 5 seeds, two class-weighting regimes (~1 h each)
+python -m src.analysis.run_label_axis --outcome hypertension --class-weighting pipeline --seeds 5
+python -m src.analysis.run_label_axis --outcome hypertension --class-weighting none --seeds 5
+# 5. Analyses on stored vectors and predictions (minutes)
 python -m src.analysis.run_label_fairness --seeds 10
 python -m src.analysis.run_variance_decomposition
 python -m src.analysis.run_instance_vs_population
 python -m src.analysis.run_brfss_income_harmonised
+python -m src.analysis.run_sensitivity_checks --n-perm 999
 python -m src.analysis.build_reproducibility_table
-# 5. Checks
+# 6. Manuscript values, supplementary tables, figures and the value check
+python -m src.analysis.manuscript_numbers
+python -m src.analysis.make_supplementary_tables
+python -m src.analysis.make_journal_figures
+python -m src.analysis.check_manuscript_numbers path/to/manuscript.tex
+# 7. Tests
 python -m tests.test_agreement_metrics
 python -m tests.test_journal_analyses
 ```
 
+The expectations for the hypertension transfer demonstration are in
+`docs/expectations_hypertension_transfer.md`. They were written before the
+hypertension models were fitted but are not an external, time-stamped
+registration.
+
 | Script | Output folder | Question |
 |---|---|---|
-| `run_metric_comparison` | `metric_comparison/` | Is cABC J_A informative beyond top-K, Spearman, Kendall, RBO? |
-| `run_cabc_bootstrap` | `metric_comparison/` | Is Group-A size stable under patient resampling? |
-| `run_label_axis` | `label_axis/` | Do attributions change when the label changes from diagnosis to HbA1c? |
-| `run_brfss_multiseed` | `brfss_multiseed/<class_weighting>/` | Are MAPR agreement results stable across seeds and class weighting? |
-| `run_label_fairness` | `label_fairness/` | Does the label change who is detected across socioeconomic groups? |
-| `run_variance_decomposition` | `variance_decomposition/` | How much attribution variation comes from model, method, label/year, seed? |
-| `run_instance_vs_population` | `instance_vs_population/` | Does population-level agreement hold patient by patient? Is the core trivial? |
-| `run_brfss_income_harmonised` | `brfss_income_harmonised/` | Correction of the MAPR Income-fairness result (bin count) |
-| `build_reproducibility_table` | `reproducibility/` | All settings, sample sizes, seeds and package versions in one table |
+| `run_metric_comparison` | `metric_comparison/` | What does cABC Group-A Jaccard measure compared with top-K, Spearman, Kendall, RBO? |
+| `run_cabc_bootstrap` | `metric_comparison/` | Is Group A stable under patient resampling? |
+| `run_brfss_multiseed` | `brfss_multiseed/<class_weighting>/` | Are conference results stable across seeds and class weighting? |
+| `run_label_axis` | `label_axis/`, `label_axis_trainweighted/` | Do attributions change from a diagnosis to an HbA1c label? |
+| `run_label_axis --outcome hypertension` | `label_axis_hypertension_<class_weighting>/` | Does the protocol transfer to a second outcome (diagnosis vs measured blood pressure)? |
+| `run_label_fairness` | `label_fairness/` | Does the label change detection gaps across groups? |
+| `run_variance_decomposition` | `variance_decomposition/` | How much attribution variation comes from model, method, year/label, seed? |
+| `run_instance_vs_population` | `instance_vs_population/` | Does population-level agreement hold patient by patient? Is the core univariate? |
+| `run_brfss_income_harmonised` | `brfss_income_harmonised/` | Does the income gap depend on the number of income bins? |
+| `run_sensitivity_checks` | `sensitivity/` | Crossed seed, CLR, per-feature and permutation checks of the decomposition; seed-reference percentiles; sign-flip test; signed patient-level SHAP |
+| `manuscript_numbers` | `journal_numbers/` | Every value quoted in the manuscript, truncated to four decimals |
+| `make_supplementary_tables` | `journal_tables/` | LaTeX fragments of the data-driven supplementary tables |
+| `make_journal_figures` | `journal_figures/` | Figures and graphical abstract |
+| `check_manuscript_numbers` | (stdout) | Every decimal in the manuscript source matches a generated value |
+
+Permutation p-values use p = (b + 1) / (B + 1), where b is the number of
+permuted statistics at least as large as the observed one and B = 999;
+the smallest attainable value is 0.001.
 
 ## Reproducibility
 

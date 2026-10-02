@@ -132,6 +132,26 @@ def build() -> pd.DataFrame:
         sample="MAPR test split (seed 42)", seeds="1", models="MAPR models", attribution="-",
         metrics="delta-TPR, native bins (8/11/7) vs 5 common bins",
         statistics="pooled TP / pooled positives", runtime="seconds"))
+    for cw in ["pipeline", "none"]:
+        perf_h = _perf(OUT / f"label_axis_hypertension_{cw}" / "performance.csv")
+        rows.append(dict(
+            analysis=f"Hypertension transfer demonstration (class weighting: {cw})",
+            script=f"src.analysis.run_label_axis --outcome hypertension --class-weighting {cw} --seeds 5",
+            data="NHANES as label axis, without the HbA1c restriction; labels diag (BPQ020), measured "
+                 "(mean oscillometric SBP >= 140 or DBP >= 90 mmHg), composite; diagnosed diabetes "
+                 "replaces HighBP among the 14 features; blood pressure never a feature",
+            sample="6,090 and 4,314 adults; same split for all labels", seeds="5 (0-4)",
+            models=MODELS_TXT, attribution="as label axis",
+            metrics="as label axis", statistics="corrected resampled t-test, BH; cross-cycle replication",
+            runtime=_runtime(perf_h)))
+    rows.append(dict(
+        analysis="Sensitivity analyses", script="src.analysis.run_sensitivity_checks --n-perm 999",
+        data="vectors and pairs of all grids; stored per-patient SHAP (BRFSS)", sample="-", seeds="-",
+        models="-", attribution="-",
+        metrics="crossed-seed and CLR decompositions, per-feature eta^2, permutation p (B = 999, "
+                "p = (b + 1)/(B + 1)), seed-reference percentiles 1/5/10, exact sign-flip test, "
+                "signed patient-level SHAP",
+        statistics="as listed", runtime="about 1 min"))
     return pd.DataFrame(rows)
 
 

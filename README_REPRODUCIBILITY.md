@@ -25,7 +25,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Tested with Python 3.12.10 (Anaconda) on Windows 10. For byte-level
+Tested with Python 3.12.10 (Anaconda) on Windows 10 (conference results, tag `mapr2026-v1.0`; the journal results in release `jbi-v1` were generated with Python 3.11.15 on Linux, see README). For byte-level
 reproducibility, install the exact package versions recorded in
 `outputs/cdc_brfss_diabetes_2015/reproducibility/environment.json` from
 the reference run.
