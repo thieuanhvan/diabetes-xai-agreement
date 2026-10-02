@@ -141,7 +141,8 @@ def variance_checks(n_perm: int, rng: np.random.Generator) -> None:
     pd.DataFrame(main_rows).to_csv(DST / "variance_specs.csv", index=False)
     pd.DataFrame(feat_rows).to_csv(DST / "variance_per_feature.csv", index=False)
     pd.DataFrame(perm_rows).to_csv(DST / "variance_permutation.csv", index=False)
-    pd.DataFrame(null_rows).to_csv(DST / "variance_permutation_null.csv.gz", index=False)
+    pd.DataFrame(null_rows).to_csv(DST / "variance_permutation_null.csv.gz", index=False,
+                                   compression={"method": "gzip", "mtime": 0})
 
 
 def seed_floor_checks() -> None:

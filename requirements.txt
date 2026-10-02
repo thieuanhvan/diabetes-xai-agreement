@@ -1,9 +1,8 @@
-# Exact package pins from the reference reproducibility run (run 14).
-# Tested with CPython 3.12.10 on Windows 10 x64.
-# Generated from outputs/cdc_brfss_diabetes_2015/reproducibility/environment.json
-#
-# For reviewer byte-level reproducibility: install Python 3.12.10 and
-# `pip install -r requirements.txt` in a fresh virtualenv.
+# Exact package pins. The same versions were used for both result sets:
+#   conference results (tag mapr2026-v1.0): CPython 3.12.10 on Windows 10 x64
+#   journal results (release jbi-v1):       CPython 3.11.15 on Linux
+# Install either Python version and `pip install -r requirements.txt`
+# in a fresh virtual environment.
 
 # === Direct dependencies ===
 numpy==2.4.4

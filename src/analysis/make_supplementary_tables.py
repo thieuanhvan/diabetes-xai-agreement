@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from src.analysis.manuscript_numbers import pct, t4
@@ -65,15 +66,16 @@ def label_shift_tests() -> str:
     nb = nb[(nb.weighting == "unweighted") & (nb.label_1 == "diag") & (nb.label_2 == "lab")].copy()
     nb["bonf"] = nb.groupby(["cycle", "method"]).p_corrected.transform(lambda p: (p * p.notna().sum()).clip(upper=1))
     bonf_ok = nb.groupby(["method", "model", "feature"]).bonf.max() < 0.05
+    rep = rep.assign(direction=np.where(rep["2017-2020"] > 0, "diagnosis", "HbA1c"))
     rows = []
-    for _, r in rep.sort_values(["method", "feature", "model"]).iterrows():
+    for _, r in rep.sort_values(["direction", "method", "feature", "model"]).iterrows():
         g = s[(s.method == r.method) & (s.model == r.model) & (s.feature == r.feature)].set_index("cycle")
         cells = []
         for cyc in ["2017-2020", "2021-2023"]:
             x = g.loc[cyc]
             cells += [pct(x["diff"]), t4(x.q_bh), t4(x.q_signflip)]
-        mark = r"$^{\dagger}$" if bonf_ok[(r.method, r.model, r.feature)] else ""
-        rows.append(f"{r.method} & {MODEL[r.model]} & {r.feature}{mark} & " + " & ".join(cells) + r" \\")
+        bonf = "yes" if bonf_ok[(r.method, r.model, r.feature)] else "no"
+        rows.append(f"{r.direction} & {r.method} & {MODEL[r.model]} & {r.feature} & " + " & ".join(cells) + f" & {bonf} \\\\")
     return "\n".join(rows)
 
 

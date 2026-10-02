@@ -42,6 +42,7 @@ FIG = OUT / "journal_figures"
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e6e5e0"
 C = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]   # validated categorical slots 1-4
 NOISE = "#b5b4ae"                                   # neutral for the seed residual
+PDF_META = {"CreationDate": None}               # no timestamp: byte-identical reruns
 MODEL_LABEL = {"logistic_regression": "LR", "random_forest": "RF", "xgboost": "XGBoost"}
 
 
@@ -82,7 +83,7 @@ def fig_variance() -> None:
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="upper center", ncol=5, frameon=False, fontsize=7, bbox_to_anchor=(0.5, 1.0))
     fig.tight_layout(rect=(0, 0, 1, 0.88))
-    fig.savefig(FIG / "fig2_variance_decomposition.pdf"); plt.close(fig)
+    fig.savefig(FIG / "fig2_variance_decomposition.pdf", metadata=PDF_META); plt.close(fig)
 
 
 def fig_label_shift() -> None:
@@ -111,7 +112,7 @@ def fig_label_shift() -> None:
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="upper center", ncol=6, frameon=False, fontsize=6.5, bbox_to_anchor=(0.5, 1.0))
     fig.tight_layout(rect=(0, 0, 1, 0.92))
-    fig.savefig(FIG / "fig3_label_shift.pdf"); plt.close(fig)
+    fig.savefig(FIG / "fig3_label_shift.pdf", metadata=PDF_META); plt.close(fig)
 
 
 def fig_instance() -> None:
@@ -144,7 +145,7 @@ def fig_instance() -> None:
     ax.set_ylabel("Spearman ρ of |SHAP| vectors")
     ax.yaxis.grid(True, color=GRID, linewidth=0.6); ax.set_axisbelow(True)
     ax.legend(frameon=False, fontsize=7, loc="lower left")
-    fig.tight_layout(); fig.savefig(FIG / "fig4_population_vs_patient.pdf"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig4_population_vs_patient.pdf", metadata=PDF_META); plt.close(fig)
 
 
 def fig_graphical_abstract() -> None:
@@ -195,7 +196,7 @@ def _graphical_abstract_panels(pairs, cw, sh) -> None:
     for a in axes:
         a.grid(True, color=GRID, linewidth=0.5); a.set_axisbelow(True)
     fig.tight_layout(pad=0.4)
-    fig.savefig(FIG / "graphical_abstract.pdf"); fig.savefig(FIG / "graphical_abstract.png", dpi=300)
+    fig.savefig(FIG / "graphical_abstract.pdf", metadata=PDF_META); fig.savefig(FIG / "graphical_abstract.png", dpi=300)
     fig.savefig(FIG / "graphical_abstract.tiff", dpi=300); plt.close(fig)
 
 
@@ -228,7 +229,7 @@ def fig_permutation() -> None:
     axes[0].plot([], [], "o", ms=4, color=C[0], label="observed")
     axes[0].plot([], [], "s", ms=6, color=GRID, markeredgecolor=NOISE, label="permuted (box: quartiles; whiskers: min–max)")
     axes[0].legend(loc="lower left", bbox_to_anchor=(0, 1.04), frameon=False, ncol=2, fontsize=7)
-    fig.tight_layout(); fig.savefig(FIG / "figS2_permutation.pdf"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "figS2_permutation.pdf", metadata=PDF_META); plt.close(fig)
 
 
 def main() -> None:
