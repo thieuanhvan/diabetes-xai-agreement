@@ -2,7 +2,7 @@
 LaTeX fragments for the data-driven supplementary tables of the journal manuscript.
 Values are truncated to four decimals (percentages to two), as in the manuscript.
 
-Writes outputs/journal_tables/{seed_reference,variance_sensitivity,label_shift_tests,fairness,income,hypertension_shifts}.tex
+Writes outputs/journal_tables/{seed_reference,variance_sensitivity,label_shift_tests,fairness,income,hypertension_shifts,dependence,soa_comparison}.tex
 Usage:
     python -m src.analysis.make_supplementary_tables
 """
@@ -130,10 +130,78 @@ def hypertension_shifts() -> str:
     return "\n".join(rows)
 
 
+def dependence() -> str:
+    d = OUT / "dependence"
+    if not (d / "domain_shift_replicated.csv").exists():
+        return ""
+    rows = [r"\multicolumn{6}{@{}l}{\textit{(a) Predictor pairs with $|\rho|\ge 0.4$ (Spearman)}} \\"]
+    c = pd.read_csv(d / "predictor_correlation_strong.csv")
+    for _, r in c[c.rho.abs() >= 0.4].iterrows():
+        rows.append(f"{r.cohort.replace('-', '--')} & \\multicolumn{{3}}{{l}}{{{r.feature_1.replace('_', chr(92) + '_')} -- {r.feature_2.replace('_', chr(92) + '_')}}} & \\multicolumn{{2}}{{l}}{{{t4(r.rho)}}} \\\\")
+    rows.append(r"\midrule")
+    rows.append(r"\multicolumn{6}{@{}l}{\textit{(b) Domain-level diag-minus-lab share shifts replicated in both cycles (percentage points)}} \\")
+    rows.append(r"Domain & Method & Model & 2017--2020 & 2021--2023 & \\")
+    rep = pd.read_csv(d / "domain_shift_replicated.csv")
+    for _, r in rep.sort_values(["domain", "method", "model"]).iterrows():
+        rows.append(f"{r.domain} & {r.method} & {MODEL[r.model]} & {pct(r['2017-2020'])} & {pct(r['2021-2023'])} & \\\\")
+    rows.append(r"\midrule")
+    rows.append(r"\multicolumn{6}{@{}l}{\textit{(c) RBO persistence $p$: NHANES label pairs below the seed 5th percentile (\%); BRFSS mean RBO}} \\")
+    rows.append(r" & & & $p=0.8$ & $p=0.9$ & $p=0.95$ \\")
+    rb = pd.read_csv(d / "rbo_persistence_summary.csv")
+    for _, r in rb.iterrows():
+        f = pct if r.analysis.startswith("NHANES") else t4
+        name = {"NHANES label pairs below seed p5": "NHANES label pairs", "BRFSS mean RBO, method axis": "BRFSS SHAP vs.\\ PI",
+                "BRFSS mean RBO, model axis": "BRFSS cross-model"}[r.analysis]
+        rows.append(f"{name} & {str(r.cycle).replace('-', '--')} & & {f(r['0.8'])} & {f(r['0.9'])} & {f(r['0.95'])} \\\\")
+    rows.append(r"\midrule")
+    rows.append(r"\multicolumn{6}{@{}l}{\textit{(d) Replicated PI label shifts by handling of negative PI values (percentage points)}} \\")
+    rows.append(r"Handling & Model & Feature & 2017--2020 & 2021--2023 & \\")
+    pi = pd.read_csv(d / "pi_negative_handling.csv")
+    for h in ["share, negative PI clipped at 0", "share, negative PI as absolute value", "rank of raw PI"]:
+        g = pi[pi.handling == h]
+        if len(g):
+            for _, r in g.iterrows():
+                rows.append(f"{h} & {MODEL[r.model]} & {r.feature} & {pct(r['2017-2020'])} & {pct(r['2021-2023'])} & \\\\")
+        else:
+            rows.append(f"{h} & \\multicolumn{{5}}{{l}}{{none replicated}} \\\\")
+    return "\n".join(rows)
+
+
+def soa_comparison() -> str:
+    path = OUT / "soa_comparison" / "summary.csv"
+    if not path.exists():
+        return ""
+    d = pd.read_csv(path)
+    name = {"feature_agreement": "Feature agreement@5", "rank_agreement": "Rank agreement@5",
+            "rank_correlation": "Rank correlation (Spearman)", "pairwise_rank_agreement": "Pairwise rank agreement",
+            "J_A": r"$J_A$ (conference metric)", "contradiction_A (triad)": r"Contradiction flag (triad)"}
+    rows = [r"\multicolumn{4}{@{}l}{\textit{(a) Conference vectors, 45 pairs: mean and number of pairs below 1 (flag: pairs flagged)}} \\"]
+    for _, r in d[d.case.str.startswith("A.")].iterrows():
+        rows.append(f"{name[r.quantity]} & {t4(r.value)} & {int(r.pairs_below_1)} & \\\\")
+    rows.append(r"\midrule")
+    rows.append(r"\multicolumn{4}{@{}l}{\textit{(b) BRFSS cross-model SHAP pairs (45 with conference weighting, 27 without): mean}} \\")
+    rows.append(r" & Conference weighting & No weighting & \\")
+    b = d[d.case.str.startswith("B.")]
+    for q in ["feature_agreement", "rank_agreement", "rank_correlation", "pairwise_rank_agreement", "J_A"]:
+        x = b[b.quantity == q].set_index("case").value
+        rows.append(f"{name[q]} & {t4(x['B. BRFSS cross-model SHAP, weighting pipeline'])} & {t4(x['B. BRFSS cross-model SHAP, weighting none'])} & \\\\")
+    rows.append(r"\midrule")
+    rows.append(r"\multicolumn{4}{@{}l}{\textit{(c) NHANES label pairs: mean (seed-pair mean) and share of label pairs below the seed 5th percentile}} \\")
+    rows.append(r" & 2017--2020 & 2021--2023 & \\")
+    c = d[d.case.str.startswith("C.")]
+    for q in ["feature_agreement", "rank_agreement", "rank_correlation", "pairwise_rank_agreement", "J_A"]:
+        cells = []
+        for cyc in ["2017-2020", "2021-2023"]:
+            r = c[(c.quantity == q) & (c.case.str.endswith(cyc))].iloc[0]
+            cells.append(f"{t4(r.value)} ({t4(r.seed_value)}); {pct(r.label_below_seed_p5)}\\%")
+        rows.append(f"{name[q]} & {cells[0]} & {cells[1]} & \\\\")
+    return "\n".join(rows)
+
+
 def main() -> None:
     DST.mkdir(parents=True, exist_ok=True)
     for name, fn in [("seed_reference", seed_reference), ("variance_sensitivity", variance_sensitivity),
-                     ("label_shift_tests", label_shift_tests), ("fairness", fairness), ("income", income), ("hypertension_shifts", hypertension_shifts)]:
+                     ("label_shift_tests", label_shift_tests), ("fairness", fairness), ("income", income), ("hypertension_shifts", hypertension_shifts), ("dependence", dependence), ("soa_comparison", soa_comparison)]:
         (DST / f"{name}.tex").write_text(fn() + "\n")
     print("Tables written to", DST)
 

@@ -1,0 +1,23 @@
+\multicolumn{4}{@{}l}{\textit{(a) Conference vectors, 45 pairs: mean and number of pairs below 1 (flag: pairs flagged)}} \\
+Feature agreement@5 & 1.0000 & 0 & \\
+Rank agreement@5 & 0.5777 & 36 & \\
+Rank correlation (Spearman) & 0.8687 & 45 & \\
+Pairwise rank agreement & 0.8756 & 45 & \\
+$J_A$ (conference metric) & 0.9349 & 15 & \\
+Contradiction flag (triad) & 0.0222 & 1 & \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{(b) BRFSS cross-model SHAP pairs (45 with conference weighting, 27 without): mean}} \\
+ & Conference weighting & No weighting & \\
+Feature agreement@5 & 0.9911 & 1.0000 & \\
+Rank agreement@5 & 0.4444 & 0.5333 & \\
+Rank correlation (Spearman) & 0.8269 & 0.8717 & \\
+Pairwise rank agreement & 0.8401 & 0.8720 & \\
+$J_A$ (conference metric) & 0.8571 & 0.9417 & \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{(c) NHANES label pairs: mean (seed-pair mean) and share of label pairs below the seed 5th percentile}} \\
+ & 2017--2020 & 2021--2023 & \\
+Feature agreement@5 & 0.9477 (0.9395); 0.00\% & 0.8877 (0.9464); 1.66\% & \\
+Rank agreement@5 & 0.6377 (0.7501); 5.00\% & 0.3955 (0.4893); 4.44\% & \\
+Rank correlation (Spearman) & 0.9122 (0.9210); 18.33\% & 0.9201 (0.9072); 12.22\% & \\
+Pairwise rank agreement & 0.9018 (0.9105); 18.33\% & 0.9046 (0.8992); 11.11\% & \\
+$J_A$ (conference metric) & 0.9114 (0.9100); 0.55\% & 0.8426 (0.9045); 8.88\% & \\

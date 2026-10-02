@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 NUMBERS = Path(__file__).resolve().parents[2] / "outputs" / "journal_numbers" / "numbers.json"
-ALLOWED = {"0.51", "3.11", "3.12", "0.05", "0.25", "0.70", "0.35", "0.45"}  # versions, alpha, column widths
+ALLOWED = {"0.51", "3.11", "3.12", "0.05", "0.25", "0.70", "0.35", "0.45", "0.95"}  # versions, alpha, column widths, RBO p
 QUOTED = {"0.8307", "0.9127"}  # conference values quoted as printed in the conference paper
 
 

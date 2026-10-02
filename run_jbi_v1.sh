@@ -19,6 +19,8 @@ run src.analysis.run_variance_decomposition
 run src.analysis.run_instance_vs_population
 run src.analysis.run_brfss_income_harmonised
 run src.analysis.run_sensitivity_checks --n-perm 999
+run src.analysis.run_dependence_checks
+run src.analysis.run_soa_comparison
 run src.analysis.build_reproducibility_table
 run src.analysis.manuscript_numbers
 run src.analysis.make_supplementary_tables

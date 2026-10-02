@@ -873,3 +873,107 @@
 - `htn.cw.none.model_SHAP.J_A`: 0.8511
 - `htn.cw.none.model_SHAP.contradiction`: 0.0333
 - `htn.cw.none.model_SHAP.spearman`: 0.8292
+- `dep.max_abs_rho`: 0.4963
+- `dep.max_abs_rho.nhanes`: 0.4963
+- `dep.domain.n_replicated`: 9
+- `dep.domain.Body size.PI.n_models`: 1
+- `dep.domain.Body size.PI.range`: -10.68 to -6.16
+- `dep.domain.Body size.SHAP.n_models`: 3
+- `dep.domain.Body size.SHAP.range`: -4.79 to -2.37
+- `dep.domain.Self-reported comorbidity diagnoses.PI.n_models`: 1
+- `dep.domain.Self-reported comorbidity diagnoses.PI.range`: 5.65 to 16.92
+- `dep.domain.Self-reported comorbidity diagnoses.SHAP.n_models`: 3
+- `dep.domain.Self-reported comorbidity diagnoses.SHAP.range`: 3.76 to 10.28
+- `dep.domain.Socioeconomic and access.SHAP.n_models`: 1
+- `dep.domain.Socioeconomic and access.SHAP.range`: -2.50 to -2.31
+- `dep.rbo.BRFSS mean RBO, method axis.2015.p0.8`: 0.8700
+- `dep.rbo.BRFSS mean RBO, method axis.2015.p0.9`: 0.8923
+- `dep.rbo.BRFSS mean RBO, method axis.2015.p0.95`: 0.9271
+- `dep.rbo.BRFSS mean RBO, method axis.2021.p0.8`: 0.8386
+- `dep.rbo.BRFSS mean RBO, method axis.2021.p0.9`: 0.8764
+- `dep.rbo.BRFSS mean RBO, method axis.2021.p0.95`: 0.9195
+- `dep.rbo.BRFSS mean RBO, method axis.2023.p0.8`: 0.7251
+- `dep.rbo.BRFSS mean RBO, method axis.2023.p0.9`: 0.8146
+- `dep.rbo.BRFSS mean RBO, method axis.2023.p0.95`: 0.8865
+- `dep.rbo.BRFSS mean RBO, model axis.2015.p0.8`: 0.9057
+- `dep.rbo.BRFSS mean RBO, model axis.2015.p0.9`: 0.9157
+- `dep.rbo.BRFSS mean RBO, model axis.2015.p0.95`: 0.9407
+- `dep.rbo.BRFSS mean RBO, model axis.2021.p0.8`: 0.8934
+- `dep.rbo.BRFSS mean RBO, model axis.2021.p0.9`: 0.9119
+- `dep.rbo.BRFSS mean RBO, model axis.2021.p0.95`: 0.9401
+- `dep.rbo.BRFSS mean RBO, model axis.2023.p0.8`: 0.7699
+- `dep.rbo.BRFSS mean RBO, model axis.2023.p0.9`: 0.8442
+- `dep.rbo.BRFSS mean RBO, model axis.2023.p0.95`: 0.9041
+- `dep.rbo.NHANES label pairs below seed p5.2017-2020.p0.8`: 6.66
+- `dep.rbo.NHANES label pairs below seed p5.2017-2020.p0.9`: 8.88
+- `dep.rbo.NHANES label pairs below seed p5.2017-2020.p0.95`: 11.66
+- `dep.rbo.NHANES label pairs below seed p5.2021-2023.p0.8`: 15.55
+- `dep.rbo.NHANES label pairs below seed p5.2021-2023.p0.9`: 15.55
+- `dep.rbo.NHANES label pairs below seed p5.2021-2023.p0.95`: 14.44
+- `perm.obs_over_max.range`: 1.5654--10.8182
+- `dep.pi.share, negative PI clipped at 0.logistic_regression.BMI`: -6.16 / -10.68
+- `dep.pi.share, negative PI as absolute value.logistic_regression.BMI`: -6.08 / -10.59
+- `dep.pi.share_negative_pct`: 22.99
+- `dep.pi.neg_mass_median_pct`: 1.90
+- `soa.A.feature_agreement.value`: 1.0000
+- `soa.A.feature_agreement.n_below_1`: 0
+- `soa.A.rank_agreement.value`: 0.5777
+- `soa.A.rank_agreement.n_below_1`: 36
+- `soa.A.rank_correlation.value`: 0.8687
+- `soa.A.rank_correlation.n_below_1`: 45
+- `soa.A.pairwise_rank_agreement.value`: 0.8756
+- `soa.A.pairwise_rank_agreement.n_below_1`: 45
+- `soa.A.J_A.value`: 0.9349
+- `soa.A.J_A.n_below_1`: 15
+- `soa.A.contradiction_A.value`: 0.0222
+- `soa.A.contradiction_A.n_below_1`: 1
+- `soa.B.feature_agreement.none.value`: 1.0000
+- `soa.B.feature_agreement.none.n_below_1`: 0
+- `soa.B.rank_agreement.none.value`: 0.5333
+- `soa.B.rank_agreement.none.n_below_1`: 22
+- `soa.B.rank_correlation.none.value`: 0.8717
+- `soa.B.rank_correlation.none.n_below_1`: 27
+- `soa.B.pairwise_rank_agreement.none.value`: 0.8720
+- `soa.B.pairwise_rank_agreement.none.n_below_1`: 27
+- `soa.B.J_A.none.value`: 0.9417
+- `soa.B.J_A.none.n_below_1`: 8
+- `soa.B.feature_agreement.pipeline.value`: 0.9911
+- `soa.B.feature_agreement.pipeline.n_below_1`: 2
+- `soa.B.rank_agreement.pipeline.value`: 0.4444
+- `soa.B.rank_agreement.pipeline.n_below_1`: 45
+- `soa.B.rank_correlation.pipeline.value`: 0.8269
+- `soa.B.rank_correlation.pipeline.n_below_1`: 45
+- `soa.B.pairwise_rank_agreement.pipeline.value`: 0.8401
+- `soa.B.pairwise_rank_agreement.pipeline.n_below_1`: 45
+- `soa.B.J_A.pipeline.value`: 0.8571
+- `soa.B.J_A.pipeline.n_below_1`: 35
+- `soa.C.feature_agreement.2017-2020.value`: 0.9477
+- `soa.C.feature_agreement.2017-2020.seed`: 0.9395
+- `soa.C.feature_agreement.2017-2020.below_p5`: 0.00
+- `soa.C.rank_agreement.2017-2020.value`: 0.6377
+- `soa.C.rank_agreement.2017-2020.seed`: 0.7501
+- `soa.C.rank_agreement.2017-2020.below_p5`: 5.00
+- `soa.C.rank_correlation.2017-2020.value`: 0.9122
+- `soa.C.rank_correlation.2017-2020.seed`: 0.9210
+- `soa.C.rank_correlation.2017-2020.below_p5`: 18.33
+- `soa.C.pairwise_rank_agreement.2017-2020.value`: 0.9018
+- `soa.C.pairwise_rank_agreement.2017-2020.seed`: 0.9105
+- `soa.C.pairwise_rank_agreement.2017-2020.below_p5`: 18.33
+- `soa.C.J_A.2017-2020.value`: 0.9114
+- `soa.C.J_A.2017-2020.seed`: 0.9100
+- `soa.C.J_A.2017-2020.below_p5`: 0.55
+- `soa.C.feature_agreement.2021-2023.value`: 0.8877
+- `soa.C.feature_agreement.2021-2023.seed`: 0.9464
+- `soa.C.feature_agreement.2021-2023.below_p5`: 1.66
+- `soa.C.rank_agreement.2021-2023.value`: 0.3955
+- `soa.C.rank_agreement.2021-2023.seed`: 0.4893
+- `soa.C.rank_agreement.2021-2023.below_p5`: 4.44
+- `soa.C.rank_correlation.2021-2023.value`: 0.9201
+- `soa.C.rank_correlation.2021-2023.seed`: 0.9072
+- `soa.C.rank_correlation.2021-2023.below_p5`: 12.22
+- `soa.C.pairwise_rank_agreement.2021-2023.value`: 0.9046
+- `soa.C.pairwise_rank_agreement.2021-2023.seed`: 0.8992
+- `soa.C.pairwise_rank_agreement.2021-2023.below_p5`: 11.11
+- `soa.C.J_A.2021-2023.value`: 0.8426
+- `soa.C.J_A.2021-2023.seed`: 0.9045
+- `soa.C.J_A.2021-2023.below_p5`: 8.88

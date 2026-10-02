@@ -12,7 +12,7 @@ silent change in the outputs breaks the build instead of the paper.
 
 Fig. 1 (study design) is drawn in TikZ inside the manuscript.
 
-Writes outputs/journal_figures/fig{2,3,4}_*.pdf and graphical_abstract.pdf
+Writes outputs/journal_figures/fig{2,3,4}_*.pdf, figS2_permutation.pdf and graphical_abstract.pdf
 Usage:
     python -m src.analysis.make_journal_figures
 """
@@ -199,9 +199,41 @@ def _graphical_abstract_panels(pairs, cw, sh) -> None:
     fig.savefig(FIG / "graphical_abstract.tiff", dpi=300); plt.close(fig)
 
 
+def fig_permutation() -> None:
+    """Supplementary Fig. S2: observed pooled eta^2 of each main effect against its
+    permutation distribution (999 whole-vector permutations within strata)."""
+    perm = pd.read_csv(OUT / "sensitivity" / "variance_permutation.csv")
+    null = pd.read_csv(OUT / "sensitivity" / "variance_permutation_null.csv.gz")
+    design = {"brfss_pipeline": "BRFSS, conference", "brfss_none": "BRFSS, none weighted",
+              "brfss_balanced": "BRFSS, all weighted", "nhanes_2017-2020": "NHANES 2017–20",
+              "nhanes_2021-2023": "NHANES 2021–23"}
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 4.6), sharey=True)
+    for ax, resp in zip(axes, ["share", "rank"]):
+        p = perm[perm.response == resp].reset_index(drop=True)
+        labels = []
+        for i, r in p.iterrows():
+            x = null[(null.design == r.design) & (null.response == resp) & (null.factor == r.factor)].eta2_perm.to_numpy()
+            ax.boxplot(x, positions=[i], vert=False, widths=0.55, whis=(0, 100), showfliers=False,
+                       patch_artist=True, boxprops=dict(facecolor=GRID, edgecolor=NOISE, linewidth=0.6),
+                       medianprops=dict(color=INK2, linewidth=0.8), whiskerprops=dict(color=NOISE, linewidth=0.6),
+                       capprops=dict(color=NOISE, linewidth=0.6))
+            ax.plot(r.eta2, i, "o", ms=4, color=C[0], zorder=3)
+            labels.append(f"{design[r.design]}: {r.factor}")
+        ax.set_xscale("log")
+        ax.set_yticks(range(len(labels)), labels)
+        ax.invert_yaxis()
+        ax.set_xlabel(r"pooled $\eta^2$ (log scale)")
+        ax.set_title(f"{resp.capitalize()} scale", loc="left")
+        ax.grid(axis="x", color=GRID, linewidth=0.5)
+    axes[0].plot([], [], "o", ms=4, color=C[0], label="observed")
+    axes[0].plot([], [], "s", ms=6, color=GRID, markeredgecolor=NOISE, label="permuted (box: quartiles; whiskers: min–max)")
+    axes[0].legend(loc="lower left", bbox_to_anchor=(0, 1.04), frameon=False, ncol=2, fontsize=7)
+    fig.tight_layout(); fig.savefig(FIG / "figS2_permutation.pdf"); plt.close(fig)
+
+
 def main() -> None:
     FIG.mkdir(parents=True, exist_ok=True)
-    fig_variance(); fig_label_shift(); fig_instance(); fig_graphical_abstract()
+    fig_variance(); fig_label_shift(); fig_instance(); fig_graphical_abstract(); fig_permutation()
     print("Figures written to", FIG)
 
 

@@ -1,0 +1,27 @@
+case,quantity,value,pairs_below_1,seed_value,label_below_seed_p5
+A. Conference vectors (45 pairs),feature_agreement,1.0,0.0,,
+A. Conference vectors (45 pairs),rank_agreement,0.5777777777777778,36.0,,
+A. Conference vectors (45 pairs),rank_correlation,0.8687908496732027,45.0,,
+A. Conference vectors (45 pairs),pairwise_rank_agreement,0.8756535947712418,45.0,,
+A. Conference vectors (45 pairs),J_A,0.934920634920635,15.0,,
+A. Conference vectors (45 pairs),contradiction_A (triad),0.022222222222222223,1.0,,
+"B. BRFSS cross-model SHAP, weighting none",feature_agreement,1.0,0.0,,
+"B. BRFSS cross-model SHAP, weighting none",rank_agreement,0.5333333333333333,22.0,,
+"B. BRFSS cross-model SHAP, weighting none",rank_correlation,0.8717320261437911,27.0,,
+"B. BRFSS cross-model SHAP, weighting none",pairwise_rank_agreement,0.8720043572984749,27.0,,
+"B. BRFSS cross-model SHAP, weighting none",J_A,0.9417989417989417,8.0,,
+"B. BRFSS cross-model SHAP, weighting pipeline",feature_agreement,0.9911111111111112,2.0,,
+"B. BRFSS cross-model SHAP, weighting pipeline",rank_agreement,0.4444444444444444,45.0,,
+"B. BRFSS cross-model SHAP, weighting pipeline",rank_correlation,0.8269607843137255,45.0,,
+"B. BRFSS cross-model SHAP, weighting pipeline",pairwise_rank_agreement,0.8401960784313728,45.0,,
+"B. BRFSS cross-model SHAP, weighting pipeline",J_A,0.8571428571428572,35.0,,
+C. NHANES label pairs 2017-2020,feature_agreement,0.9477777777777777,,0.9395061728395062,0.0
+C. NHANES label pairs 2017-2020,rank_agreement,0.6377777777777779,,0.7501234567901234,0.05000000000000001
+C. NHANES label pairs 2017-2020,rank_correlation,0.91229032677423,,0.9210668431275835,0.18333333333333335
+C. NHANES label pairs 2017-2020,pairwise_rank_agreement,0.9018315018315017,,0.9105006105006107,0.18333333333333335
+C. NHANES label pairs 2017-2020,J_A,0.9114814814814817,,0.9100617283950617,0.005555555555555556
+C. NHANES label pairs 2021-2023,feature_agreement,0.8877777777777777,,0.9464197530864198,0.016666666666666666
+C. NHANES label pairs 2021-2023,rank_agreement,0.3955555555555555,,0.4893827160493827,0.044444444444444446
+C. NHANES label pairs 2021-2023,rank_correlation,0.9201914302140817,,0.9072630521313201,0.12222222222222223
+C. NHANES label pairs 2021-2023,pairwise_rank_agreement,0.9046398046398048,,0.8992809659476327,0.11111111111111112
+C. NHANES label pairs 2021-2023,J_A,0.8426851851851852,,0.9045943562610229,0.08888888888888889

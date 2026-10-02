@@ -1,0 +1,42 @@
+\multicolumn{6}{@{}l}{\textit{(a) Predictor pairs with $|\rho|\ge 0.4$ (Spearman)}} \\
+BRFSS 2015 & \multicolumn{3}{l}{Education -- Income} & \multicolumn{2}{l}{0.4519} \\
+BRFSS 2015 & \multicolumn{3}{l}{GenHlth -- PhysHlth} & \multicolumn{2}{l}{0.4518} \\
+BRFSS 2015 & \multicolumn{3}{l}{GenHlth -- DiffWalk} & \multicolumn{2}{l}{0.4227} \\
+BRFSS 2015 & \multicolumn{3}{l}{PhysHlth -- DiffWalk} & \multicolumn{2}{l}{0.4150} \\
+BRFSS 2021 & \multicolumn{3}{l}{GenHlth -- PhysHlth} & \multicolumn{2}{l}{0.4300} \\
+BRFSS 2021 & \multicolumn{3}{l}{Education -- Income} & \multicolumn{2}{l}{0.4298} \\
+BRFSS 2023 & \multicolumn{3}{l}{GenHlth -- PhysHlth} & \multicolumn{2}{l}{0.4404} \\
+BRFSS 2023 & \multicolumn{3}{l}{Education -- Income} & \multicolumn{2}{l}{0.4277} \\
+NHANES 2017--2020 & \multicolumn{3}{l}{Education -- Income} & \multicolumn{2}{l}{0.4511} \\
+NHANES 2017--2020 & \multicolumn{3}{l}{HighBP -- Age} & \multicolumn{2}{l}{0.4209} \\
+NHANES 2017--2020 & \multicolumn{3}{l}{HighChol -- Age} & \multicolumn{2}{l}{0.4033} \\
+NHANES 2021--2023 & \multicolumn{3}{l}{Education -- Income} & \multicolumn{2}{l}{0.4963} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{(b) Domain-level diag-minus-lab share shifts replicated in both cycles (percentage points)}} \\
+Domain & Method & Model & 2017--2020 & 2021--2023 & \\
+Body size & PI & LR & -6.16 & -10.68 & \\
+Body size & SHAP & LR & -2.37 & -3.92 & \\
+Body size & SHAP & RF & -3.27 & -3.29 & \\
+Body size & SHAP & XGBoost & -2.59 & -4.79 & \\
+Self-reported comorbidity diagnoses & PI & LR & 5.65 & 16.92 & \\
+Self-reported comorbidity diagnoses & SHAP & LR & 5.05 & 9.97 & \\
+Self-reported comorbidity diagnoses & SHAP & RF & 5.85 & 8.27 & \\
+Self-reported comorbidity diagnoses & SHAP & XGBoost & 3.76 & 10.28 & \\
+Socioeconomic and access & SHAP & RF & -2.31 & -2.50 & \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{(c) RBO persistence $p$: NHANES label pairs below the seed 5th percentile (\%); BRFSS mean RBO}} \\
+ & & & $p=0.8$ & $p=0.9$ & $p=0.95$ \\
+BRFSS SHAP vs.\ PI & 2015 & & 0.8700 & 0.8923 & 0.9271 \\
+BRFSS SHAP vs.\ PI & 2021 & & 0.8386 & 0.8764 & 0.9195 \\
+BRFSS SHAP vs.\ PI & 2023 & & 0.7251 & 0.8146 & 0.8865 \\
+BRFSS cross-model & 2015 & & 0.9057 & 0.9157 & 0.9407 \\
+BRFSS cross-model & 2021 & & 0.8934 & 0.9119 & 0.9401 \\
+BRFSS cross-model & 2023 & & 0.7699 & 0.8442 & 0.9041 \\
+NHANES label pairs & 2017--2020 & & 6.66 & 8.88 & 11.66 \\
+NHANES label pairs & 2021--2023 & & 15.55 & 15.55 & 14.44 \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{(d) Replicated PI label shifts by handling of negative PI values (percentage points)}} \\
+Handling & Model & Feature & 2017--2020 & 2021--2023 & \\
+share, negative PI clipped at 0 & LR & BMI & -6.16 & -10.68 & \\
+share, negative PI as absolute value & LR & BMI & -6.08 & -10.59 & \\
+rank of raw PI & \multicolumn{5}{l}{none replicated} \\

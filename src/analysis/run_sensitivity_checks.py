@@ -79,7 +79,7 @@ def variance_checks(n_perm: int, rng: np.random.Generator) -> None:
         b = pd.read_csv(OUT / "brfss_multiseed" / cw / "vectors.csv", dtype={"year": str})
         designs.append((f"brfss_{cw}", b, ["model", "method", "year"]))
 
-    main_rows, feat_rows, perm_rows = [], [], []
+    main_rows, feat_rows, perm_rows, null_rows = [], [], [], []
     for name, v, factors in designs:
         keys = factors + ["seed"]
         for kind in ["share", "rank", "clr"]:
@@ -124,18 +124,24 @@ def variance_checks(n_perm: int, rng: np.random.Generator) -> None:
 
                 obs = ss_main(np.arange(len(Y)))
                 assert abs(obs - base[fac]) < 1e-9, (name, kind, fac, obs, base[fac])
-                count = 0
-                for _ in range(n_perm):
+                null = np.empty(n_perm)
+                for i in range(n_perm):
                     order = np.arange(len(Y))
                     for idx in strata:
                         order[idx] = rng.permutation(idx)
-                    count += int(ss_main(order) >= obs - 1e-12)
+                    null[i] = ss_main(order)
+                count = int((null >= obs - 1e-12).sum())
                 pval = (count + 1) / (n_perm + 1)
-                perm_rows.append(dict(design=name, response=kind, factor=fac, eta2=obs, n_perm=n_perm, p_perm=pval))
+                perm_rows.append(dict(design=name, response=kind, factor=fac, eta2=obs, n_perm=n_perm, p_perm=pval,
+                                      null_median=float(np.median(null)) if n_perm else np.nan,
+                                      null_p99=float(np.quantile(null, 0.99)) if n_perm else np.nan,
+                                      null_max=float(null.max()) if n_perm else np.nan))
+                null_rows.extend(dict(design=name, response=kind, factor=fac, eta2_perm=x) for x in null)
                 logging.info("%s %s %s eta2=%.4f p=%.4f", name, kind, fac, obs, pval)
     pd.DataFrame(main_rows).to_csv(DST / "variance_specs.csv", index=False)
     pd.DataFrame(feat_rows).to_csv(DST / "variance_per_feature.csv", index=False)
     pd.DataFrame(perm_rows).to_csv(DST / "variance_permutation.csv", index=False)
+    pd.DataFrame(null_rows).to_csv(DST / "variance_permutation_null.csv.gz", index=False)
 
 
 def seed_floor_checks() -> None:

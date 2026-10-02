@@ -145,3 +145,27 @@ Python 3.11.15; numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, scikit-learn 1.8.0, xgb
 - **metrics**: crossed-seed and CLR decompositions, per-feature eta^2, permutation p (B = 999, p = (b + 1)/(B + 1)), seed-reference percentiles 1/5/10, exact sign-flip test, signed patient-level SHAP
 - **statistics**: as listed
 - **runtime**: about 1 min
+
+## Feature dependence and parameter checks
+
+- **script**: src.analysis.run_dependence_checks
+- **data**: NHANES and BRFSS predictors; label-axis and BRFSS multi-seed vectors
+- **sample**: -
+- **seeds**: -
+- **models**: -
+- **attribution**: -
+- **metrics**: Spearman correlation between predictors; shares summed within six predictor domains; RBO p = 0.8, 0.9, 0.95; negative PI clipped, absolute or ranked
+- **statistics**: corrected resampled t-test, BH, cross-cycle replication (domain and PI checks)
+- **runtime**: about 3 min
+
+## Comparison with standard disagreement metrics
+
+- **script**: src.analysis.run_soa_comparison
+- **data**: conference vectors; BRFSS multi-seed vectors (two regimes); NHANES label-axis vectors
+- **sample**: -
+- **seeds**: -
+- **models**: -
+- **attribution**: -
+- **metrics**: Krishna et al. feature agreement and rank agreement (top 5), rank correlation, pairwise rank agreement
+- **statistics**: means; share of label pairs below the seed 5th percentile
+- **runtime**: seconds

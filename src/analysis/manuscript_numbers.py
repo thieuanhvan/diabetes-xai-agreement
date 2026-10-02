@@ -304,9 +304,60 @@ def hypertension() -> None:
             put(f"htn.cw.{cw}.model_SHAP.spearman", t4(q.spearman.mean()))
 
 
+def dependence() -> None:
+    """Feature dependence, RBO persistence and negative-PI checks (run_dependence_checks)."""
+    d = OUT / "dependence"
+    if not (d / "domain_shift_replicated.csv").exists():
+        return
+    c = pd.read_csv(d / "predictor_correlation.csv")
+    put("dep.max_abs_rho", t4(c.rho.abs().max()))
+    nh = c[c.cohort.str.startswith("NHANES")]
+    put("dep.max_abs_rho.nhanes", t4(nh.rho.abs().max()))
+    rep = pd.read_csv(d / "domain_shift_replicated.csv")
+    put("dep.domain.n_replicated", str(len(rep)))
+    for (dom, meth), g in rep.groupby(["domain", "method"]):
+        put(f"dep.domain.{dom}.{meth}.n_models", str(len(g)))
+        put(f"dep.domain.{dom}.{meth}.range", f"{pct(g[['2017-2020', '2021-2023']].min().min())} to {pct(g[['2017-2020', '2021-2023']].max().max())}")
+    rb = pd.read_csv(d / "rbo_persistence_summary.csv")
+    for _, r in rb.iterrows():
+        for p in ["0.8", "0.9", "0.95"]:
+            f = pct if r.analysis.startswith("NHANES") else t4
+            put(f"dep.rbo.{r.analysis}.{r.cycle}.p{p}", f(r[p]))
+    pm = pd.read_csv(OUT / "sensitivity" / "variance_permutation.csv")
+    if "null_max" in pm:
+        r = pm.eta2 / pm.null_max
+        put("perm.obs_over_max.range", f"{t4(r.min())}--{t4(r.max())}")
+    pi = pd.read_csv(d / "pi_negative_handling.csv")
+    for _, r in pi.iterrows():
+        put(f"dep.pi.{r.handling}.{r.model}.{r.feature}", f"{pct(r['2017-2020'])} / {pct(r['2021-2023'])}")
+    ps = pd.read_csv(d / "pi_negative_summary.csv").iloc[0]
+    put("dep.pi.share_negative_pct", pct(ps.share_negative_values))
+    put("dep.pi.neg_mass_median_pct", pct(ps.neg_mass_over_pos_mass_median))
+
+
+def soa() -> None:
+    """Disagreement metrics of Krishna et al. on the audit's vectors (run_soa_comparison)."""
+    path = OUT / "soa_comparison" / "summary.csv"
+    if not path.exists():
+        return
+    d = pd.read_csv(path)
+    for _, r in d.iterrows():
+        key = r.case.split(".")[0] + "." + r.quantity.split(" ")[0]
+        if r.case.startswith("B."):
+            key += "." + r.case.split()[-1]
+        if r.case.startswith("C."):
+            key += "." + r.case.split()[-1]
+        put(f"soa.{key}.value", t4(r.value))
+        if pd.notna(r.get("pairs_below_1")):
+            put(f"soa.{key}.n_below_1", str(int(r.pairs_below_1)))
+        if pd.notna(r.get("seed_value")):
+            put(f"soa.{key}.seed", t4(r.seed_value))
+            put(f"soa.{key}.below_p5", pct(r.label_below_seed_p5))
+
+
 def main() -> None:
     DST.mkdir(parents=True, exist_ok=True)
-    metric_comparison(); brfss(); variance(); nhanes(); instance(); fairness(); income(); sensitivity(); hypertension()
+    metric_comparison(); brfss(); variance(); nhanes(); instance(); fairness(); income(); sensitivity(); hypertension(); dependence(); soa()
     (DST / "numbers.json").write_text(json.dumps(N, indent=1, ensure_ascii=False))
     (DST / "numbers.md").write_text("\n".join(f"- `{k}`: {v}" for k, v in N.items()) + "\n")
     print(f"{len(N)} values written to {DST}")

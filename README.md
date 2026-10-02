@@ -307,6 +307,8 @@ python -m src.analysis.run_variance_decomposition
 python -m src.analysis.run_instance_vs_population
 python -m src.analysis.run_brfss_income_harmonised
 python -m src.analysis.run_sensitivity_checks --n-perm 999
+python -m src.analysis.run_dependence_checks
+python -m src.analysis.run_soa_comparison
 python -m src.analysis.build_reproducibility_table
 # 6. Manuscript values, supplementary tables, figures and the value check
 python -m src.analysis.manuscript_numbers
@@ -339,6 +341,8 @@ and in `outputs/label_axis_hypertension_*` this label is named `measured`
 | `run_instance_vs_population` | `instance_vs_population/` | Does population-level agreement hold patient by patient? Is the core univariate? |
 | `run_brfss_income_harmonised` | `brfss_income_harmonised/` | Does the income gap depend on the number of income bins? |
 | `run_sensitivity_checks` | `sensitivity/` | Crossed seed, CLR, per-feature and permutation checks of the decomposition; seed-reference percentiles; sign-flip test; signed patient-level SHAP |
+| `run_soa_comparison` | `soa_comparison/` | What do the disagreement metrics of Krishna et al. (OpenXAI) conclude on the same vectors? |
+| `run_dependence_checks` | `dependence/` | Do label shifts survive aggregation into predictor domains (feature dependence)? RBO persistence p; handling of negative PI |
 | `manuscript_numbers` | `journal_numbers/` | Every value quoted in the manuscript, truncated to four decimals |
 | `make_supplementary_tables` | `journal_tables/` | LaTeX fragments of the data-driven supplementary tables |
 | `make_journal_figures` | `journal_figures/` | Figures and graphical abstract |

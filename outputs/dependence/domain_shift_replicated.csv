@@ -1,0 +1,10 @@
+method,model,domain,2017-2020,2021-2023
+PI,logistic_regression,Body size,-0.06169856379762543,-0.10684099006843065
+PI,logistic_regression,Self-reported comorbidity diagnoses,0.05652721382756656,0.1692160017199011
+SHAP,logistic_regression,Body size,-0.023718355269222863,-0.039221846776132566
+SHAP,logistic_regression,Self-reported comorbidity diagnoses,0.05055101178704933,0.09975262742223431
+SHAP,random_forest,Body size,-0.03275456151075076,-0.03295530466286269
+SHAP,random_forest,Self-reported comorbidity diagnoses,0.058553046469397255,0.08277385881648688
+SHAP,random_forest,Socioeconomic and access,-0.023126234306357157,-0.025081227154463103
+SHAP,xgboost,Body size,-0.0259529958728028,-0.047909672756291974
+SHAP,xgboost,Self-reported comorbidity diagnoses,0.03765387226962662,0.10286978980518166
