@@ -202,6 +202,10 @@
 - `sh.nsig.2017-2020`: 22
 - `sh.nsig.2021-2023`: 29
 - `sh.n_replicated`: 13
+- `sh.replicated_bonferroni_both`: 6/13
+- `sh.sign_agree_sig_any`: 30/38
+- `sh.sign_agree_sig_any_pct`: 78.94
+- `sh.sign_agree_all`: 55/84
 - `sh.PI.logistic_regression.BMI`: -6.16 / -10.68
 - `sh.SHAP.logistic_regression.BMI`: -2.37 / -3.92
 - `sh.SHAP.logistic_regression.Education`: -1.27 / -1.84

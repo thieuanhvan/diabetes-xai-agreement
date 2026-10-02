@@ -147,6 +147,18 @@ def nhanes() -> None:
     rep = sig.dropna()
     rep = rep[np.sign(rep["2017-2020"]) == np.sign(rep["2021-2023"])]
     put("sh.n_replicated", str(len(rep)))
+
+    # Stricter and cross-cycle checks of the label shifts (corrected t-test p-values).
+    s2 = u.copy()
+    s2["bonf"] = s2.groupby(["cycle", "method"]).p_corrected.transform(lambda p: np.minimum(p * p.notna().sum(), 1))
+    w2 = s2.pivot_table(index=["method", "model", "feature"], columns="cycle", values=["diff", "q_bh", "bonf"])
+    same = np.sign(w2["diff"]["2017-2020"]) == np.sign(w2["diff"]["2021-2023"])
+    repl = w2[(w2["q_bh"] < 0.05).all(axis=1) & same]
+    put("sh.replicated_bonferroni_both", f"{int((repl['bonf'] < 0.05).all(axis=1).sum())}/{len(repl)}")
+    any_sig = (w2["q_bh"] < 0.05).any(axis=1)
+    put("sh.sign_agree_sig_any", f"{int(same[any_sig].sum())}/{int(any_sig.sum())}")
+    put("sh.sign_agree_sig_any_pct", pct(float(same[any_sig].mean())))
+    put("sh.sign_agree_all", f"{int(same.sum())}/{len(same)}")
     for (meth, mdl, feat), row in rep.iterrows():
         put(f"sh.{meth}.{mdl}.{feat}", f"{pct(row['2017-2020'])} / {pct(row['2021-2023'])}")
     w = pd.read_csv(OUT / "label_axis_trainweighted" / "feature_shift.csv")

@@ -61,6 +61,10 @@ def label_shift_tests() -> str:
     s = pd.read_csv(OUT / "sensitivity" / "label_shift_signflip.csv")
     s = s[s.weighting == "unweighted"]
     rep = pd.read_csv(OUT / "sensitivity" / "label_shift_replicated_q_bh.csv")
+    nb = pd.read_csv(OUT / "label_axis" / "feature_shift.csv")
+    nb = nb[(nb.weighting == "unweighted") & (nb.label_1 == "diag") & (nb.label_2 == "lab")].copy()
+    nb["bonf"] = nb.groupby(["cycle", "method"]).p_corrected.transform(lambda p: (p * p.notna().sum()).clip(upper=1))
+    bonf_ok = nb.groupby(["method", "model", "feature"]).bonf.max() < 0.05
     rows = []
     for _, r in rep.sort_values(["method", "feature", "model"]).iterrows():
         g = s[(s.method == r.method) & (s.model == r.model) & (s.feature == r.feature)].set_index("cycle")
@@ -68,7 +72,8 @@ def label_shift_tests() -> str:
         for cyc in ["2017-2020", "2021-2023"]:
             x = g.loc[cyc]
             cells += [pct(x["diff"]), t4(x.q_bh), t4(x.q_signflip)]
-        rows.append(f"{r.method} & {MODEL[r.model]} & {r.feature} & " + " & ".join(cells) + r" \\")
+        mark = r"$^{\dagger}$" if bonf_ok[(r.method, r.model, r.feature)] else ""
+        rows.append(f"{r.method} & {MODEL[r.model]} & {r.feature}{mark} & " + " & ".join(cells) + r" \\")
     return "\n".join(rows)
 
 
