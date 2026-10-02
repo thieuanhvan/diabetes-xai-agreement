@@ -54,6 +54,8 @@ RESULT_DIR = PROJECT_ROOT / "outputs" / "label_axis"
 
 CYCLES = ["2017-2020", "2021-2023"]
 LABELS = ["diag", "lab", "total"]
+# Second label: "lab" (HbA1c) for diabetes, "measured" (blood pressure) for hypertension.
+LABELS_HYPERTENSION = ["diag", "measured", "total"]
 FEATURES = [
     "HighBP", "HighChol", "BMI", "Smoker", "Stroke", "HeartDiseaseorAttack",
     "PhysActivity_LTPA",          # leisure-time activity; within-cycle use only
@@ -76,16 +78,16 @@ CLASS_WEIGHTING = "pipeline"
 
 def load_cycle_hypertension(cycle: str) -> pd.DataFrame:
     """diag = told by a doctor they have high blood pressure (BPQ020);
-    lab = mean measured SBP >= 140 or DBP >= 90 mmHg; total = either."""
+    measured = mean measured SBP >= 140 or DBP >= 90 mmHg; total = either."""
     df = pd.read_csv(DATA_DIR / f"cdc_nhanes_hypertension_{cycle}.csv")
     n0 = len(df)
     df = df[df["Diabetes_borderline"] == 0]
     df = df.dropna(subset=FEATURES + ["HighBP", "SBP_mean", "DBP_mean", "WTMEC"]).copy()
     df["diag"] = df["HighBP"].astype(int)
-    df["lab"] = ((df["SBP_mean"] >= 140) | (df["DBP_mean"] >= 90)).astype(int)
-    df["total"] = (df["diag"] | df["lab"]).astype(int)
-    logging.info("%s (hypertension): %d -> %d rows | prevalence diag %.3f lab %.3f total %.3f",
-                 cycle, n0, len(df), df.diag.mean(), df.lab.mean(), df.total.mean())
+    df["measured"] = ((df["SBP_mean"] >= 140) | (df["DBP_mean"] >= 90)).astype(int)
+    df["total"] = (df["diag"] | df["measured"]).astype(int)
+    logging.info("%s (hypertension): %d -> %d rows | prevalence diag %.3f measured %.3f total %.3f",
+                 cycle, n0, len(df), df.diag.mean(), df.measured.mean(), df.total.mean())
     return df.reset_index(drop=True)
 
 
@@ -108,7 +110,7 @@ def run_grid(seeds: int, shap_n: int | None, n_jobs: int, train_weighted: bool =
     vec_rows, perf_rows = [], []
     for cycle in CYCLES:
         df = load_cycle(cycle)
-        strata = df["diag"].astype(str) + df["lab"].astype(str)
+        strata = df["diag"].astype(str) + df[LABELS[1]].astype(str)
         for seed in range(seeds):
             tr, te = train_test_split(df.index, test_size=0.2, random_state=seed, stratify=strata)
             Xtr, Xte = df.loc[tr, FEATURES], df.loc[te, FEATURES]
@@ -265,9 +267,9 @@ def run_shift() -> None:
         ok = p.notna()
         out.loc[p[ok].index, "q_bh"] = false_discovery_control(p[ok].to_numpy(), method="bh")
     out.to_csv(RESULT_DIR / "feature_shift.csv", index=False)
-    sig = out[(out.weighting == "unweighted") & (out.label_1 == "diag") & (out.label_2 == "lab")
+    sig = out[(out.weighting == "unweighted") & (out.label_1 == "diag") & (out.label_2 == LABELS[1])
               & (out.q_bh < 0.05)]
-    logging.info("diag vs lab, unweighted, BH q < 0.05:\n%s",
+    logging.info("diag vs %s, unweighted, BH q < 0.05:\n%s", LABELS[1],
                  sig.sort_values(["cycle", "method", "diff"])[
                      ["cycle", "method", "model", "feature", "diff", "t_corrected", "p_corrected", "q_bh"]
                  ].round(4).to_string(index=False))
@@ -287,12 +289,12 @@ def main() -> None:
                         "outputs/label_axis_hypertension_<class weighting>/")
     p.add_argument("--class-weighting", choices=["pipeline", "none", "balanced"], default="pipeline")
     args = p.parse_args()
-    global RESULT_DIR, OUTCOME, FEATURES, CLASS_WEIGHTING
+    global RESULT_DIR, OUTCOME, FEATURES, LABELS, CLASS_WEIGHTING
     OUTCOME, CLASS_WEIGHTING = args.outcome, args.class_weighting
     if args.train_weighted:
         RESULT_DIR = PROJECT_ROOT / "outputs" / "label_axis_trainweighted"
     if OUTCOME == "hypertension":
-        FEATURES = FEATURES_HYPERTENSION
+        FEATURES, LABELS = FEATURES_HYPERTENSION, LABELS_HYPERTENSION
         RESULT_DIR = PROJECT_ROOT / "outputs" / f"label_axis_hypertension_{CLASS_WEIGHTING}"
     elif CLASS_WEIGHTING != "pipeline":
         RESULT_DIR = PROJECT_ROOT / "outputs" / f"label_axis_{CLASS_WEIGHTING}"

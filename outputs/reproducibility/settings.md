@@ -120,7 +120,7 @@ Python 3.11.15; numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, scikit-learn 1.8.0, xgb
 - **attribution**: as label axis
 - **metrics**: as label axis
 - **statistics**: corrected resampled t-test, BH; cross-cycle replication
-- **runtime**: logistic_regression: 1 s/run; random_forest: 105 s/run; xgboost: 4 s/run
+- **runtime**: logistic_regression: 1 s/run; random_forest: 108 s/run; xgboost: 3 s/run
 
 ## Hypertension transfer demonstration (class weighting: none)
 

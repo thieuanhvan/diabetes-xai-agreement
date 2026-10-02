@@ -2,7 +2,7 @@
 LaTeX fragments for the data-driven supplementary tables of the journal manuscript.
 Values are truncated to four decimals (percentages to two), as in the manuscript.
 
-Writes outputs/journal_tables/{seed_reference,variance_sensitivity,label_shift_tests,fairness,income}.tex
+Writes outputs/journal_tables/{seed_reference,variance_sensitivity,label_shift_tests,fairness,income,hypertension_shifts}.tex
 Usage:
     python -m src.analysis.make_supplementary_tables
 """
@@ -112,13 +112,13 @@ def hypertension_shifts() -> str:
     if not path.exists():
         return ""
     s = pd.read_csv(path)
-    s = s[(s.weighting == "unweighted") & (s.label_1 == "diag") & (s.label_2 == "lab")]
+    s = s[(s.weighting == "unweighted") & (s.label_1 == "diag") & (s.label_2 == "measured")]
     w = s.pivot_table(index=["method", "model", "feature"], columns="cycle", values=["diff", "q_bh"])
     same = (w["diff"]["2017-2020"] > 0) == (w["diff"]["2021-2023"] > 0)
     rep = (w["q_bh"] < 0.05).all(axis=1) & same
-    pre = w.index.get_level_values("feature").isin(["Diabetes_self", "HeartDiseaseorAttack", "HighChol"]) & \
+    expected = w.index.get_level_values("feature").isin(["Diabetes_self", "HeartDiseaseorAttack", "HighChol"]) & \
         (w.index.get_level_values("method") == "SHAP")
-    keep = w[rep | pre].sort_values([("diff", "2021-2023")], ascending=False)
+    keep = w[rep | expected].sort_values([("diff", "2021-2023")], ascending=False)
     rows = []
     for (meth, mdl, feat), r in keep.iterrows():
         mark = r"$^{\ast}$" if rep[(meth, mdl, feat)] else ""

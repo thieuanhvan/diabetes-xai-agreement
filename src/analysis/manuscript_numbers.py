@@ -265,8 +265,10 @@ def hypertension() -> None:
         put(f"htn.n.{cyc}", f"{int(g.n_train.iloc[0] + g.n_test.iloc[0]):,}")
     for cyc in ["2017-2020", "2021-2023"]:
         df = load_cycle_htn(cyc)
-        put(f"htn.prev.{cyc}.diag", t4(df.diag.mean())); put(f"htn.prev.{cyc}.lab", t4(df.lab.mean()))
-        put(f"htn.discord_pct.{cyc}", pct(float((df.diag != df.lab).mean())))
+        put(f"htn.prev.{cyc}.diag", t4(df.diag.mean())); put(f"htn.prev.{cyc}.measured", t4(df.measured.mean()))
+        put(f"htn.discord_pct.{cyc}", pct(float((df.diag != df.measured).mean())))
+        put(f"htn.diag_only_pct.{cyc}", pct(float(((df.diag == 1) & (df.measured == 0)).mean())))
+        put(f"htn.measured_only_pct.{cyc}", pct(float(((df.diag == 0) & (df.measured == 1)).mean())))
     p = pd.read_csv(base / "pairs.csv")
     p = p[p.weighting == "unweighted"]
     lt = p[(p.J_A < 1) & (p.axis != "seed")]
@@ -280,18 +282,18 @@ def hypertension() -> None:
     for (met, cyc), g in f.groupby(["metric", "cycle"]):
         put(f"htn.floor.{cyc}.{met}", pct(g.label_share_below_seed_p5.mean()))
     s = pd.read_csv(base / "feature_shift.csv")
-    s = s[(s.weighting == "unweighted") & (s.label_1 == "diag") & (s.label_2 == "lab")]
+    s = s[(s.weighting == "unweighted") & (s.label_1 == "diag") & (s.label_2 == "measured")]
     w = s.pivot_table(index=["method", "model", "feature"], columns="cycle", values=["diff", "q_bh"])
     same = np.sign(w["diff"]["2017-2020"]) == np.sign(w["diff"]["2021-2023"])
     rep = w[(w["q_bh"] < 0.05).all(axis=1) & same]
     put("htn.n_replicated", str(len(rep)))
     for (meth, mdl, feat), r in rep.iterrows():
         put(f"htn.shift.{meth}.{mdl}.{feat}", f"{pct(r[('diff', '2017-2020')])} / {pct(r[('diff', '2021-2023')])}")
-    pre = ["Diabetes_self", "HeartDiseaseorAttack", "HighChol"]
+    expected = ["Diabetes_self", "HeartDiseaseorAttack", "HighChol"]
     shap = w.loc["SHAP"]["diff"]
-    for feat in pre:
+    for feat in expected:
         x = shap.xs(feat, level="feature")
-        put(f"htn.prespec.{feat}.positive", f"{int((x > 0).values.sum())}/{x.size}")
+        put(f"htn.expected.{feat}.positive", f"{int((x > 0).values.sum())}/{x.size}")
     none = OUT / "label_axis_hypertension_none" / "pairs.csv"
     if none.exists():
         for cw, path in [("pipeline", base / "pairs.csv"), ("none", none)]:

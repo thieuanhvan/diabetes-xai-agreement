@@ -773,18 +773,22 @@
 - `se.shift.nsig_signflip.2021-2023`: 47
 - `htn.auc.2017-2020.diag`: 0.8077
 - `htn.n.2017-2020`: 6,090
-- `htn.auc.2017-2020.lab`: 0.7145
+- `htn.auc.2017-2020.measured`: 0.7145
 - `htn.auc.2017-2020.total`: 0.8063
 - `htn.auc.2021-2023.diag`: 0.8027
 - `htn.n.2021-2023`: 4,314
-- `htn.auc.2021-2023.lab`: 0.6592
+- `htn.auc.2021-2023.measured`: 0.6592
 - `htn.auc.2021-2023.total`: 0.7851
 - `htn.prev.2017-2020.diag`: 0.3771
-- `htn.prev.2017-2020.lab`: 0.2193
+- `htn.prev.2017-2020.measured`: 0.2193
 - `htn.discord_pct.2017-2020`: 31.24
+- `htn.diag_only_pct.2017-2020`: 23.51
+- `htn.measured_only_pct.2017-2020`: 7.73
 - `htn.prev.2021-2023.diag`: 0.3620
-- `htn.prev.2021-2023.lab`: 0.1740
+- `htn.prev.2021-2023.measured`: 0.1740
 - `htn.discord_pct.2021-2023`: 32.01
+- `htn.diag_only_pct.2021-2023`: 25.40
+- `htn.measured_only_pct.2021-2023`: 6.60
 - `htn.ja_lt1_nested`: 245/302
 - `htn.ja_eq_sizeratio`: 737/810
 - `htn.pairs.2017-2020.label.J_A`: 0.6157
@@ -860,9 +864,9 @@
 - `htn.shift.SHAP.xgboost.Income`: -1.96 / -5.59
 - `htn.shift.SHAP.xgboost.PhysActivity_LTPA`: -1.81 / -3.22
 - `htn.shift.SHAP.xgboost.Sex`: -3.33 / -2.10
-- `htn.prespec.Diabetes_self.positive`: 6/6
-- `htn.prespec.HeartDiseaseorAttack.positive`: 5/6
-- `htn.prespec.HighChol.positive`: 6/6
+- `htn.expected.Diabetes_self.positive`: 6/6
+- `htn.expected.HeartDiseaseorAttack.positive`: 5/6
+- `htn.expected.HighChol.positive`: 6/6
 - `htn.cw.pipeline.model_SHAP.J_A`: 0.8781
 - `htn.cw.pipeline.model_SHAP.contradiction`: 0.0111
 - `htn.cw.pipeline.model_SHAP.spearman`: 0.8349

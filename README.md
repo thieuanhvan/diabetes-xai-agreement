@@ -130,7 +130,11 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Tested with Python 3.12.10 (Anaconda) on Windows 10. The version
+Two reference environments, same package versions: the conference
+results (tag `mapr2026-v1.0`) were generated with Python 3.12.10
+(Anaconda) on Windows 10, and the journal results (release `jbi-v1`)
+with Python 3.11.15 on Linux (see
+[Environment](#environment)). The version
 ranges in `requirements.txt` allow patch updates within the tested
 major range; exact pins from the reference run are available in
 `outputs/<cohort>/reproducibility/environment.json`.
@@ -171,10 +175,13 @@ varies between runs while numerical results do not.
 The invariants below are present in the committed `outputs/` and should
 be reproduced by any clean run.
 
-Only the **agreement axis** corresponds to headline numbers reported in
-the MAPR 2026 paper. The **temporal stability** and **fairness** outputs
-are exploratory additions produced by this pipeline; they are not audited
-in the paper, which explicitly defers both to extension work. They are
+This section describes the conference pipeline only. Within it, only the
+**agreement axis** corresponds to headline numbers reported in the MAPR
+2026 paper. The **temporal stability** and **fairness** outputs of this
+pipeline are exploratory additions; they are not audited in the MAPR
+paper, which defers both to extension work. The fairness analysis reported
+in the journal article is a separate script (`run_label_fairness`, see
+[Journal article (JBI)](#journal-article-jbi-release-jbi-v1)). They are
 included here because they are reproducible artefacts of the same run,
 not because they are results of the paper.
 
@@ -314,7 +321,11 @@ python -m tests.test_journal_analyses
 The expectations for the hypertension transfer demonstration are in
 `docs/expectations_hypertension_transfer.md`. They were written before the
 hypertension models were fitted but are not an external, time-stamped
-registration.
+registration. The file is kept byte-identical to its first version and uses the
+earlier code name `lab` for the measured blood-pressure label; in the code
+and in `outputs/label_axis_hypertension_*` this label is named `measured`
+(labels `diag`, `measured`, `total`). For diabetes the second label is
+`lab` (HbA1c >= 6.5%).
 
 | Script | Output folder | Question |
 |---|---|---|
@@ -336,6 +347,18 @@ registration.
 Permutation p-values use p = (b + 1) / (B + 1), where b is the number of
 permuted statistics at least as large as the observed one and B = 999;
 the smallest attainable value is 0.001.
+
+### Verifying the release
+
+`MANIFEST_jbi-v1.sha256` lists the SHA-256 of every committed file
+except itself. After a clone or a download of the release archive:
+
+```bash
+sha256sum -c MANIFEST_jbi-v1.sha256
+```
+
+`.gitattributes` fixes line endings to LF, so the hashes also hold on a
+Windows checkout.
 
 ## Reproducibility
 

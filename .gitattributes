@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.tiff binary
+*.npy binary
+*.npz binary
+*.pkl binary
+*.joblib binary
+*.xlsx binary
