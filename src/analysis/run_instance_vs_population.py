@@ -144,13 +144,13 @@ def main() -> None:
                                   instance_q25=s.quantile(0.25), instance_median=s.median(),
                                   instance_q75=s.quantile(0.75),
                                   share_below_population=float((s < pop[metric]).mean())))
-    pd.concat(inst_rows).round(4).to_csv(RESULT_DIR / "instance_level.csv", index=False)
+    pd.concat(inst_rows).to_csv(RESULT_DIR / "instance_level.csv", index=False)
     summ = pd.DataFrame(summ_rows)
-    summ.round(4).to_csv(RESULT_DIR / "instance_summary.csv", index=False)
+    summ.to_csv(RESULT_DIR / "instance_summary.csv", index=False)
     logging.info("Population vs instance level:\n%s", summ.round(3).to_string(index=False))
 
     u = univariate()
-    u.round(5).to_csv(RESULT_DIR / "univariate_rank.csv", index=False)
+    u.to_csv(RESULT_DIR / "univariate_rank.csv", index=False)
     core = (u[u["rank"] <= 5].groupby(["dataset", "cohort", "label"])["feature"]
             .apply(lambda s: sorted(s)).reset_index(name="univariate_top5"))
     core["overlap_with_core"] = core["univariate_top5"].map(lambda s: len(set(s) & CORE))

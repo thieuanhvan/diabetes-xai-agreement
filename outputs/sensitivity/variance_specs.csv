@@ -1,0 +1,256 @@
+design,response,model_spec,source,eta2
+nhanes_2017-2020,share,seed as replicate,label,0.04572656742084438
+nhanes_2017-2020,share,seed as replicate,method,0.6731893954677192
+nhanes_2017-2020,share,seed as replicate,method x label,0.005371711713691289
+nhanes_2017-2020,share,seed as replicate,model,0.15729158144435798
+nhanes_2017-2020,share,seed as replicate,model x label,0.0038184198040867945
+nhanes_2017-2020,share,seed as replicate,model x method,0.022068566360928434
+nhanes_2017-2020,share,seed as replicate,model x method x label,0.001890059632464111
+nhanes_2017-2020,share,seed as replicate,residual (seed),0.09064369815590795
+nhanes_2017-2020,share,seed crossed,label,0.04572656742084438
+nhanes_2017-2020,share,seed crossed,method,0.6731893954677192
+nhanes_2017-2020,share,seed crossed,method x label,0.005371711713691289
+nhanes_2017-2020,share,seed crossed,model,0.15729158144435798
+nhanes_2017-2020,share,seed crossed,model x label,0.0038184198040867945
+nhanes_2017-2020,share,seed crossed,model x method,0.022068566360928434
+nhanes_2017-2020,share,seed crossed,model x method x label,0.001890059632464111
+nhanes_2017-2020,share,seed crossed,seed,0.013772170253851352
+nhanes_2017-2020,share,seed crossed,seed x factors,0.07687152790205645
+nhanes_2017-2020,rank,seed as replicate,label,0.09996913311541843
+nhanes_2017-2020,rank,seed as replicate,method,0.15303009916976
+nhanes_2017-2020,rank,seed as replicate,method x label,0.009709613847359322
+nhanes_2017-2020,rank,seed as replicate,model,0.2228169593744312
+nhanes_2017-2020,rank,seed as replicate,model x label,0.03501056597202978
+nhanes_2017-2020,rank,seed as replicate,model x method,0.05885206847699624
+nhanes_2017-2020,rank,seed as replicate,model x method x label,0.012620202771687948
+nhanes_2017-2020,rank,seed as replicate,residual (seed),0.40799135727231717
+nhanes_2017-2020,rank,seed crossed,label,0.09996913311541843
+nhanes_2017-2020,rank,seed crossed,method,0.15303009916976
+nhanes_2017-2020,rank,seed crossed,method x label,0.009709613847359322
+nhanes_2017-2020,rank,seed crossed,model,0.2228169593744312
+nhanes_2017-2020,rank,seed crossed,model x label,0.03501056597202978
+nhanes_2017-2020,rank,seed crossed,model x method,0.05885206847699624
+nhanes_2017-2020,rank,seed crossed,model x method x label,0.012620202771687948
+nhanes_2017-2020,rank,seed crossed,seed,0.05283381744216418
+nhanes_2017-2020,rank,seed crossed,seed x factors,0.3551575398301529
+nhanes_2017-2020,clr,seed as replicate,label,0.04796305868146092
+nhanes_2017-2020,clr,seed as replicate,method,0.30432704821638695
+nhanes_2017-2020,clr,seed as replicate,method x label,0.01681343448320742
+nhanes_2017-2020,clr,seed as replicate,model,0.1233260604550762
+nhanes_2017-2020,clr,seed as replicate,model x label,0.021698665482798002
+nhanes_2017-2020,clr,seed as replicate,model x method,0.024237580848595106
+nhanes_2017-2020,clr,seed as replicate,model x method x label,0.012116242108921062
+nhanes_2017-2020,clr,seed as replicate,residual (seed),0.4495179097235544
+nhanes_2017-2020,clr,seed crossed,label,0.04796305868146092
+nhanes_2017-2020,clr,seed crossed,method,0.30432704821638695
+nhanes_2017-2020,clr,seed crossed,method x label,0.01681343448320742
+nhanes_2017-2020,clr,seed crossed,model,0.1233260604550762
+nhanes_2017-2020,clr,seed crossed,model x label,0.021698665482798002
+nhanes_2017-2020,clr,seed crossed,model x method,0.024237580848595106
+nhanes_2017-2020,clr,seed crossed,model x method x label,0.012116242108921062
+nhanes_2017-2020,clr,seed crossed,seed,0.06721191416651041
+nhanes_2017-2020,clr,seed crossed,seed x factors,0.38230599555704387
+nhanes_2021-2023,share,seed as replicate,label,0.21521199044008735
+nhanes_2021-2023,share,seed as replicate,method,0.2591777052276747
+nhanes_2021-2023,share,seed as replicate,method x label,0.02880042737640904
+nhanes_2021-2023,share,seed as replicate,model,0.09009727556134735
+nhanes_2021-2023,share,seed as replicate,model x label,0.011888213639954412
+nhanes_2021-2023,share,seed as replicate,model x method,0.032168916292042916
+nhanes_2021-2023,share,seed as replicate,model x method x label,0.008638894121014826
+nhanes_2021-2023,share,seed as replicate,residual (seed),0.3540165773414695
+nhanes_2021-2023,share,seed crossed,label,0.21521199044008735
+nhanes_2021-2023,share,seed crossed,method,0.2591777052276747
+nhanes_2021-2023,share,seed crossed,method x label,0.02880042737640904
+nhanes_2021-2023,share,seed crossed,model,0.09009727556134735
+nhanes_2021-2023,share,seed crossed,model x label,0.011888213639954412
+nhanes_2021-2023,share,seed crossed,model x method,0.032168916292042916
+nhanes_2021-2023,share,seed crossed,model x method x label,0.008638894121014826
+nhanes_2021-2023,share,seed crossed,seed,0.07621075133847283
+nhanes_2021-2023,share,seed crossed,seed x factors,0.2778058260029966
+nhanes_2021-2023,rank,seed as replicate,label,0.08806938941962693
+nhanes_2021-2023,rank,seed as replicate,method,0.0810066320951967
+nhanes_2021-2023,rank,seed as replicate,method x label,0.012435368939814371
+nhanes_2021-2023,rank,seed as replicate,model,0.11514016071619929
+nhanes_2021-2023,rank,seed as replicate,model x label,0.02440960437487716
+nhanes_2021-2023,rank,seed as replicate,model x method,0.03817149392527699
+nhanes_2021-2023,rank,seed as replicate,model x method x label,0.021811411632245134
+nhanes_2021-2023,rank,seed as replicate,residual (seed),0.6189559388967635
+nhanes_2021-2023,rank,seed crossed,label,0.08806938941962693
+nhanes_2021-2023,rank,seed crossed,method,0.0810066320951967
+nhanes_2021-2023,rank,seed crossed,method x label,0.012435368939814371
+nhanes_2021-2023,rank,seed crossed,model,0.11514016071619929
+nhanes_2021-2023,rank,seed crossed,model x label,0.02440960437487716
+nhanes_2021-2023,rank,seed crossed,model x method,0.03817149392527699
+nhanes_2021-2023,rank,seed crossed,model x method x label,0.021811411632245134
+nhanes_2021-2023,rank,seed crossed,seed,0.06703245861860047
+nhanes_2021-2023,rank,seed crossed,seed x factors,0.5519234802781631
+nhanes_2021-2023,clr,seed as replicate,label,0.05077669323272682
+nhanes_2021-2023,clr,seed as replicate,method,0.21834054453689825
+nhanes_2021-2023,clr,seed as replicate,method x label,0.02109124530095214
+nhanes_2021-2023,clr,seed as replicate,model,0.07207410621006043
+nhanes_2021-2023,clr,seed as replicate,model x label,0.016728567076966374
+nhanes_2021-2023,clr,seed as replicate,model x method,0.013825132948593572
+nhanes_2021-2023,clr,seed as replicate,model x method x label,0.014745415687345421
+nhanes_2021-2023,clr,seed as replicate,residual (seed),0.592418295006457
+nhanes_2021-2023,clr,seed crossed,label,0.05077669323272682
+nhanes_2021-2023,clr,seed crossed,method,0.21834054453689825
+nhanes_2021-2023,clr,seed crossed,method x label,0.02109124530095214
+nhanes_2021-2023,clr,seed crossed,model,0.07207410621006043
+nhanes_2021-2023,clr,seed crossed,model x label,0.016728567076966374
+nhanes_2021-2023,clr,seed crossed,model x method,0.013825132948593572
+nhanes_2021-2023,clr,seed crossed,model x method x label,0.014745415687345421
+nhanes_2021-2023,clr,seed crossed,seed,0.07160690858066457
+nhanes_2021-2023,clr,seed crossed,seed x factors,0.5208113864257924
+brfss_pipeline,share,seed as replicate,method,0.6035683141901941
+brfss_pipeline,share,seed as replicate,method x year,0.023629674962416688
+brfss_pipeline,share,seed as replicate,model,0.1277901983404263
+brfss_pipeline,share,seed as replicate,model x method,0.09196943820379348
+brfss_pipeline,share,seed as replicate,model x method x year,0.0039023541524924356
+brfss_pipeline,share,seed as replicate,model x year,0.004638502499409542
+brfss_pipeline,share,seed as replicate,residual (seed),0.05490574454892218
+brfss_pipeline,share,seed as replicate,year,0.08959577310234544
+brfss_pipeline,share,seed crossed,method,0.6035683141901941
+brfss_pipeline,share,seed crossed,method x year,0.023629674962416688
+brfss_pipeline,share,seed crossed,model,0.1277901983404263
+brfss_pipeline,share,seed crossed,model x method,0.09196943820379348
+brfss_pipeline,share,seed crossed,model x method x year,0.0039023541524924356
+brfss_pipeline,share,seed crossed,model x year,0.004638502499409542
+brfss_pipeline,share,seed crossed,seed,0.00592424983054855
+brfss_pipeline,share,seed crossed,year,0.08959577310234544
+brfss_pipeline,share,seed crossed,seed x factors,0.048981494718373715
+brfss_pipeline,rank,seed as replicate,method,0.23058874543186247
+brfss_pipeline,rank,seed as replicate,method x year,0.008128482946538257
+brfss_pipeline,rank,seed as replicate,model,0.22130272535686138
+brfss_pipeline,rank,seed as replicate,model x method,0.15920361445561756
+brfss_pipeline,rank,seed as replicate,model x method x year,0.020545365349952903
+brfss_pipeline,rank,seed as replicate,model x year,0.02922138173185925
+brfss_pipeline,rank,seed as replicate,residual (seed),0.208637799283062
+brfss_pipeline,rank,seed as replicate,year,0.12237188544424625
+brfss_pipeline,rank,seed crossed,method,0.23058874543186247
+brfss_pipeline,rank,seed crossed,method x year,0.008128482946538257
+brfss_pipeline,rank,seed crossed,model,0.22130272535686138
+brfss_pipeline,rank,seed crossed,model x method,0.15920361445561756
+brfss_pipeline,rank,seed crossed,model x method x year,0.020545365349952903
+brfss_pipeline,rank,seed crossed,model x year,0.02922138173185925
+brfss_pipeline,rank,seed crossed,seed,0.013773773148445868
+brfss_pipeline,rank,seed crossed,year,0.12237188544424625
+brfss_pipeline,rank,seed crossed,seed x factors,0.19486402613461618
+brfss_pipeline,clr,seed as replicate,method,0.3884036272563239
+brfss_pipeline,clr,seed as replicate,method x year,0.022691237029820534
+brfss_pipeline,clr,seed as replicate,model,0.08841028139663022
+brfss_pipeline,clr,seed as replicate,model x method,0.12357846007821792
+brfss_pipeline,clr,seed as replicate,model x method x year,0.014956872164538153
+brfss_pipeline,clr,seed as replicate,model x year,0.014414950240115252
+brfss_pipeline,clr,seed as replicate,residual (seed),0.2612837594275149
+brfss_pipeline,clr,seed as replicate,year,0.0862608124068393
+brfss_pipeline,clr,seed crossed,method,0.3884036272563239
+brfss_pipeline,clr,seed crossed,method x year,0.022691237029820534
+brfss_pipeline,clr,seed crossed,model,0.08841028139663022
+brfss_pipeline,clr,seed crossed,model x method,0.12357846007821792
+brfss_pipeline,clr,seed crossed,model x method x year,0.014956872164538153
+brfss_pipeline,clr,seed crossed,model x year,0.014414950240115252
+brfss_pipeline,clr,seed crossed,seed,0.01708587681585746
+brfss_pipeline,clr,seed crossed,year,0.0862608124068393
+brfss_pipeline,clr,seed crossed,seed x factors,0.24419788261165748
+brfss_none,share,seed as replicate,method,0.6075269735023332
+brfss_none,share,seed as replicate,method x year,0.020119287049533342
+brfss_none,share,seed as replicate,model,0.16104235691051824
+brfss_none,share,seed as replicate,model x method,0.06673298069902875
+brfss_none,share,seed as replicate,model x method x year,0.0050403588217789105
+brfss_none,share,seed as replicate,model x year,0.012494956680967196
+brfss_none,share,seed as replicate,residual (seed),0.04224612200208711
+brfss_none,share,seed as replicate,year,0.08479696433375339
+brfss_none,share,seed crossed,method,0.6075269735023332
+brfss_none,share,seed crossed,method x year,0.020119287049533342
+brfss_none,share,seed crossed,model,0.16104235691051824
+brfss_none,share,seed crossed,model x method,0.06673298069902875
+brfss_none,share,seed crossed,model x method x year,0.0050403588217789105
+brfss_none,share,seed crossed,model x year,0.012494956680967196
+brfss_none,share,seed crossed,seed,0.0027448025155902274
+brfss_none,share,seed crossed,year,0.08479696433375339
+brfss_none,share,seed crossed,seed x factors,0.03950131948649693
+brfss_none,rank,seed as replicate,method,0.16648904985111945
+brfss_none,rank,seed as replicate,method x year,0.012695992213740917
+brfss_none,rank,seed as replicate,model,0.3026503894573589
+brfss_none,rank,seed as replicate,model x method,0.06016733525679363
+brfss_none,rank,seed as replicate,model x method x year,0.028216525006425915
+brfss_none,rank,seed as replicate,model x year,0.03692696916398794
+brfss_none,rank,seed as replicate,residual (seed),0.2231733626762088
+brfss_none,rank,seed as replicate,year,0.1696803763743643
+brfss_none,rank,seed crossed,method,0.16648904985111945
+brfss_none,rank,seed crossed,method x year,0.012695992213740917
+brfss_none,rank,seed crossed,model,0.3026503894573589
+brfss_none,rank,seed crossed,model x method,0.06016733525679363
+brfss_none,rank,seed crossed,model x method x year,0.028216525006425915
+brfss_none,rank,seed crossed,model x year,0.03692696916398794
+brfss_none,rank,seed crossed,seed,0.014564578874862443
+brfss_none,rank,seed crossed,year,0.1696803763743643
+brfss_none,rank,seed crossed,seed x factors,0.20860878380134634
+brfss_none,clr,seed as replicate,method,0.34433952415999214
+brfss_none,clr,seed as replicate,method x year,0.03768193670739626
+brfss_none,clr,seed as replicate,model,0.1250315637747133
+brfss_none,clr,seed as replicate,model x method,0.06327880178651342
+brfss_none,clr,seed as replicate,model x method x year,0.033062912245894895
+brfss_none,clr,seed as replicate,model x year,0.030149580129595413
+brfss_none,clr,seed as replicate,residual (seed),0.26329401802712227
+brfss_none,clr,seed as replicate,year,0.10316166316877227
+brfss_none,clr,seed crossed,method,0.34433952415999214
+brfss_none,clr,seed crossed,method x year,0.03768193670739626
+brfss_none,clr,seed crossed,model,0.1250315637747133
+brfss_none,clr,seed crossed,model x method,0.06327880178651342
+brfss_none,clr,seed crossed,model x method x year,0.033062912245894895
+brfss_none,clr,seed crossed,model x year,0.030149580129595413
+brfss_none,clr,seed crossed,seed,0.021767328038112353
+brfss_none,clr,seed crossed,year,0.10316166316877227
+brfss_none,clr,seed crossed,seed x factors,0.24152668998900992
+brfss_balanced,share,seed as replicate,method,0.6271856414785457
+brfss_balanced,share,seed as replicate,method x year,0.019637962912875506
+brfss_balanced,share,seed as replicate,model,0.1332782947441735
+brfss_balanced,share,seed as replicate,model x method,0.09569555286308151
+brfss_balanced,share,seed as replicate,model x method x year,0.0050307997005187306
+brfss_balanced,share,seed as replicate,model x year,0.005489112075978098
+brfss_balanced,share,seed as replicate,residual (seed),0.035519537690069394
+brfss_balanced,share,seed as replicate,year,0.07816309853475764
+brfss_balanced,share,seed crossed,method,0.6271856414785457
+brfss_balanced,share,seed crossed,method x year,0.019637962912875506
+brfss_balanced,share,seed crossed,model,0.1332782947441735
+brfss_balanced,share,seed crossed,model x method,0.09569555286308151
+brfss_balanced,share,seed crossed,model x method x year,0.0050307997005187306
+brfss_balanced,share,seed crossed,model x year,0.005489112075978098
+brfss_balanced,share,seed crossed,seed,0.002868638880549049
+brfss_balanced,share,seed crossed,year,0.07816309853475764
+brfss_balanced,share,seed crossed,seed x factors,0.03265089880952031
+brfss_balanced,rank,seed as replicate,method,0.2615142068501048
+brfss_balanced,rank,seed as replicate,method x year,0.01571452624274864
+brfss_balanced,rank,seed as replicate,model,0.22699071924570272
+brfss_balanced,rank,seed as replicate,model x method,0.16361219814589004
+brfss_balanced,rank,seed as replicate,model x method x year,0.019979897651494716
+brfss_balanced,rank,seed as replicate,model x year,0.04498028031041287
+brfss_balanced,rank,seed as replicate,residual (seed),0.13913478267524498
+brfss_balanced,rank,seed as replicate,year,0.12807338887840122
+brfss_balanced,rank,seed crossed,method,0.2615142068501048
+brfss_balanced,rank,seed crossed,method x year,0.01571452624274864
+brfss_balanced,rank,seed crossed,model,0.22699071924570272
+brfss_balanced,rank,seed crossed,model x method,0.16361219814589004
+brfss_balanced,rank,seed crossed,model x method x year,0.019979897651494716
+brfss_balanced,rank,seed crossed,model x year,0.04498028031041287
+brfss_balanced,rank,seed crossed,seed,0.00812512436414844
+brfss_balanced,rank,seed crossed,year,0.12807338887840122
+brfss_balanced,rank,seed crossed,seed x factors,0.13100965831109657
+brfss_balanced,clr,seed as replicate,method,0.43040101109014584
+brfss_balanced,clr,seed as replicate,method x year,0.02924205551502893
+brfss_balanced,clr,seed as replicate,model,0.101966767610592
+brfss_balanced,clr,seed as replicate,model x method,0.14115874031691925
+brfss_balanced,clr,seed as replicate,model x method x year,0.017421207487522683
+brfss_balanced,clr,seed as replicate,model x year,0.0165703392652833
+brfss_balanced,clr,seed as replicate,residual (seed),0.17482475692732302
+brfss_balanced,clr,seed as replicate,year,0.088415121787185
+brfss_balanced,clr,seed crossed,method,0.43040101109014584
+brfss_balanced,clr,seed crossed,method x year,0.02924205551502893
+brfss_balanced,clr,seed crossed,model,0.101966767610592
+brfss_balanced,clr,seed crossed,model x method,0.14115874031691925
+brfss_balanced,clr,seed crossed,model x method x year,0.017421207487522683
+brfss_balanced,clr,seed crossed,model x year,0.0165703392652833
+brfss_balanced,clr,seed crossed,seed,0.008963284506241178
+brfss_balanced,clr,seed crossed,year,0.088415121787185
+brfss_balanced,clr,seed crossed,seed x factors,0.16586147242108185

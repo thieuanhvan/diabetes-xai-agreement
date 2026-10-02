@@ -133,13 +133,13 @@ def run_pairs(out_dir: Path) -> None:
                         dict(year=year, seed=-1, method=method, model=model))
 
     pairs = pd.DataFrame(rows)
-    pairs.round(4).to_csv(out_dir / "pairs.csv", index=False)
+    pairs.to_csv(out_dir / "pairs.csv", index=False)
     cols = ["J_A", "OC_A", "size_ratio_A", "contradiction_A", "top5",
             "spearman", "kendall_tau_b", "weighted_tau", "rbo_ext_p90"]
     g = pairs.groupby("axis")[cols]
     summary = pd.concat({"mean": g.mean(), "p2.5": g.quantile(0.025), "p97.5": g.quantile(0.975)}, axis=1)
     summary.columns = [f"{c}_{stat}" for stat, c in summary.columns]
-    summary.round(4).to_csv(out_dir / "pairs_summary.csv")
+    summary.to_csv(out_dir / "pairs_summary.csv")
     by_method = pairs[pairs.axis.isin(["model", "year", "seed"])].groupby(["axis", "method"])[cols].mean()
     logging.info("Pairs: %d\n%s\n\nBy method:\n%s", len(pairs), g.mean().round(3).to_string(),
                  by_method.round(3).to_string())
@@ -170,8 +170,8 @@ def compare_class_weighting() -> None:
         .groupby(["class_weighting", "method", "pair"])[["J_A", "spearman", "rbo_ext_p90"]].mean()
     out = OUT_ROOT / "class_weighting_comparison"
     out.mkdir(parents=True, exist_ok=True)
-    summary.round(4).to_csv(out / "axis_summary.csv")
-    by_pair.round(4).to_csv(out / "model_pairs.csv")
+    summary.to_csv(out / "axis_summary.csv")
+    by_pair.to_csv(out / "model_pairs.csv")
     logging.info("Seeds compared: %s\n%s\n\n%s", sorted(common), summary.round(3).to_string(),
                  by_pair.round(3).to_string())
 

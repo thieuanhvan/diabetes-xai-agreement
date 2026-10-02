@@ -158,14 +158,14 @@ def run_pairs() -> None:
                 dict(cycle=cycle, seed=-1, weighting=weighting, method=method, model=model, label=label))
 
     pairs = pd.DataFrame(rows)
-    pairs.round(4).to_csv(RESULT_DIR / "pairs.csv", index=False)
+    pairs.to_csv(RESULT_DIR / "pairs.csv", index=False)
     cols = ["J_A", "OC_A", "size_ratio_A", "contradiction_A", "top5",
             "spearman", "kendall_tau_b", "weighted_tau", "rbo_ext_p90"]
     grouped = pairs.groupby(["weighting", "axis"])[cols]
     summary = pd.concat({"mean": grouped.mean(), "p2.5": grouped.quantile(0.025),
                          "p97.5": grouped.quantile(0.975)}, axis=1)
     summary.columns = [f"{c}_{stat}" for stat, c in summary.columns]
-    summary.round(4).to_csv(RESULT_DIR / "pairs_summary.csv")
+    summary.to_csv(RESULT_DIR / "pairs_summary.csv")
     # Exceedance over the seed noise floor: for each configuration, the share
     # of factor pairs whose metric falls below the 5th percentile of the
     # seed pairs of the same configuration (lower = more disagreement).
@@ -181,7 +181,7 @@ def run_pairs() -> None:
                                  seed_mean=seed_g[metric].mean(),
                                  label_share_below_seed_p5=float((lab[metric] < floor).mean())))
     exc = pd.DataFrame(exc_rows)
-    exc.round(4).to_csv(RESULT_DIR / "label_vs_seed_floor.csv", index=False)
+    exc.to_csv(RESULT_DIR / "label_vs_seed_floor.csv", index=False)
     logging.info("Label pairs below the seed 5th percentile (unweighted):\n%s",
                  exc[exc.weighting == "unweighted"].pivot_table(
                      index=["metric", "cycle"], columns="method",
@@ -235,7 +235,7 @@ def run_shift() -> None:
         p = out.loc[idx, "p_corrected"]
         ok = p.notna()
         out.loc[p[ok].index, "q_bh"] = false_discovery_control(p[ok].to_numpy(), method="bh")
-    out.round(5).to_csv(RESULT_DIR / "feature_shift.csv", index=False)
+    out.to_csv(RESULT_DIR / "feature_shift.csv", index=False)
     sig = out[(out.weighting == "unweighted") & (out.label_1 == "diag") & (out.label_2 == "lab")
               & (out.q_bh < 0.05)]
     logging.info("diag vs lab, unweighted, BH q < 0.05:\n%s",

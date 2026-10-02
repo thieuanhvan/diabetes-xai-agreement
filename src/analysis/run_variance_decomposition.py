@@ -87,13 +87,13 @@ def decompose(vec: pd.DataFrame, factors: list[str], name: str, group: list[str]
     tot = by_feat[by_feat.source == "total"].set_index(idx)["ss"].rename("total_ss")
     by_feat = by_feat.join(tot, on=idx)
     by_feat["eta2"] = by_feat["ss"] / by_feat["total_ss"]
-    by_feat.round(6).to_csv(RESULT_DIR / f"{name}_by_feature.csv", index=False)
+    by_feat.to_csv(RESULT_DIR / f"{name}_by_feature.csv", index=False)
 
     g = list(group or [])
     pooled = by_feat[by_feat.source != "total"].groupby(g + ["source"])["ss"].sum()
     pooled = pooled / (pooled.groupby(level=g).transform("sum") if g else pooled.sum())
     pooled = pooled.rename("pooled_eta2").reset_index()
-    pooled.round(4).to_csv(RESULT_DIR / f"{name}_pooled.csv", index=False)
+    pooled.to_csv(RESULT_DIR / f"{name}_pooled.csv", index=False)
     logging.info("%s pooled eta^2:\n%s", name, pooled.round(3).to_string(index=False))
 
 

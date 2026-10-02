@@ -106,8 +106,8 @@ def main() -> None:
 
     g = pd.DataFrame(group_rows)
     p = pd.DataFrame(pair_rows)
-    g.round(4).to_csv(RESULT_DIR / "bootstrap_group_a.csv", index=False)
-    p.round(4).to_csv(RESULT_DIR / "bootstrap_xgb_lr.csv", index=False)
+    g.to_csv(RESULT_DIR / "bootstrap_group_a.csv", index=False)
+    p.to_csv(RESULT_DIR / "bootstrap_xgb_lr.csv", index=False)
     logging.info("Group A size:\n%s", g.to_string(index=False))
     logging.info("XGB-LR pair:\n%s", p.to_string(index=False))
 

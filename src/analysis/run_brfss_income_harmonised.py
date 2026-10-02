@@ -62,7 +62,7 @@ def main() -> None:
                              delta_tpr_harmonised=h["TPR"].max() - h["TPR"].min()))
     res = pd.DataFrame(rows)
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    res.round(4).to_csv(RESULT_DIR / "delta_tpr.csv", index=False)
+    res.to_csv(RESULT_DIR / "delta_tpr.csv", index=False)
     wide = res.pivot(index="model", columns="year", values=["delta_tpr_native", "delta_tpr_harmonised"])
     logging.info("Income delta-TPR, native vs harmonised (5 common bins):\n%s", wide.round(3).to_string())
 

@@ -98,7 +98,7 @@ def run(seeds: int) -> None:
 
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     gm = pd.DataFrame(rows)
-    gm.round(5).to_csv(RESULT_DIR / "group_metrics.csv", index=False)
+    gm.to_csv(RESULT_DIR / "group_metrics.csv", index=False)
 
     keys = ["cycle", "seed", "model", "train_label", "truth", "attribute"]
     gaps = gm.groupby(keys).agg(
@@ -114,13 +114,13 @@ def run(seeds: int) -> None:
             np.where(piv.index.get_level_values("attribute") == "Education",
                      piv.get("HS_or_less") - piv.get("some_college+"), np.nan)),
     }, index=piv.index).reset_index(), on=keys, how="left")
-    gaps.round(5).to_csv(RESULT_DIR / "gaps.csv", index=False)
+    gaps.to_csv(RESULT_DIR / "gaps.csv", index=False)
 
     s_keys = ["cycle", "model", "train_label", "truth", "attribute"]
     g = gaps.groupby(s_keys)[["tpr_gap_weighted", "signed_gap_weighted"]]
     summary = pd.concat({"mean": g.mean(), "p2.5": g.quantile(0.025), "p97.5": g.quantile(0.975)}, axis=1)
     summary.columns = [f"{c}_{stat}" for stat, c in summary.columns]
-    summary.round(4).to_csv(RESULT_DIR / "gaps_summary.csv")
+    summary.to_csv(RESULT_DIR / "gaps_summary.csv")
     view = gaps[gaps.attribute.isin(["Income", "Education"])].groupby(
         ["cycle", "attribute", "train_label", "truth"])["signed_gap_weighted"].mean().unstack("truth")
     logging.info("Signed weighted TPR gap (disadvantaged - advantaged), mean over models x seeds:\n%s",

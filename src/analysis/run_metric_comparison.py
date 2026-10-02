@@ -128,10 +128,10 @@ def main() -> None:
     rank_corr = pairs[["J_A", "top6", "top10", "spearman", "kendall_tau_b",
                        "weighted_tau", "rbo_ext_p90", "rbo_ext_p50"]].corr(method="spearman")
 
-    pairs.round(4).to_csv(RESULT_DIR / "pairs.csv", index=False)
-    axis_means.round(4).to_csv(RESULT_DIR / "axis_means.csv")
-    vectors.round(4).to_csv(RESULT_DIR / "vectors.csv", index=False)
-    rank_corr.round(4).to_csv(RESULT_DIR / "metric_rank_corr.csv")
+    pairs.to_csv(RESULT_DIR / "pairs.csv", index=False)
+    axis_means.to_csv(RESULT_DIR / "axis_means.csv")
+    vectors.to_csv(RESULT_DIR / "vectors.csv", index=False)
+    rank_corr.to_csv(RESULT_DIR / "metric_rank_corr.csv")
 
     n_lt1 = int((pairs["J_A"] < 1).sum())
     n_contra = int(pairs["contradiction_A"].sum())

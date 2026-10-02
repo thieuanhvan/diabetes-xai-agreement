@@ -1,9 +1,9 @@
 source,pooled_eta2
-method,0.6036
-method x year,0.0236
-model,0.1278
-model x method,0.092
-model x method x year,0.0039
-model x year,0.0046
-residual (seed),0.0549
-year,0.0896
+method,0.6035683141901939
+method x year,0.023629674962416684
+model,0.12779019834042626
+model x method,0.09196943820379347
+model x method x year,0.0039023541524924347
+model x year,0.004638502499409541
+residual (seed),0.054905744548922164
+year,0.08959577310234541

@@ -1,0 +1,767 @@
+- `mc.cross-method.J_A`: 0.9126
+- `mc.cross-method.OC_A`: 1.0000
+- `mc.cross-method.contradiction_A`: 0.0000
+- `mc.cross-method.top5`: 1.0000
+- `mc.cross-method.top10`: 0.8444
+- `mc.cross-method.spearman`: 0.8464
+- `mc.cross-method.kendall_tau_b`: 0.7205
+- `mc.cross-method.rbo_ext_p90`: 0.8649
+- `mc.cross-model-SHAP.J_A`: 0.8306
+- `mc.cross-model-SHAP.OC_A`: 0.9814
+- `mc.cross-model-SHAP.contradiction_A`: 0.1111
+- `mc.cross-model-SHAP.top5`: 1.0000
+- `mc.cross-model-SHAP.top10`: 0.7444
+- `mc.cross-model-SHAP.spearman`: 0.8205
+- `mc.cross-model-SHAP.kendall_tau_b`: 0.6699
+- `mc.cross-model-SHAP.rbo_ext_p90`: 0.8490
+- `mc.cross-model-PI.J_A`: 1.0000
+- `mc.cross-model-PI.OC_A`: 1.0000
+- `mc.cross-model-PI.contradiction_A`: 0.0000
+- `mc.cross-model-PI.top5`: 1.0000
+- `mc.cross-model-PI.top10`: 0.8555
+- `mc.cross-model-PI.spearman`: 0.8687
+- `mc.cross-model-PI.kendall_tau_b`: 0.7516
+- `mc.cross-model-PI.rbo_ext_p90`: 0.9189
+- `mc.cross-year-SHAP.J_A`: 0.9312
+- `mc.cross-year-SHAP.OC_A`: 1.0000
+- `mc.cross-year-SHAP.contradiction_A`: 0.0000
+- `mc.cross-year-SHAP.top5`: 1.0000
+- `mc.cross-year-SHAP.top10`: 0.9111
+- `mc.cross-year-SHAP.spearman`: 0.9373
+- `mc.cross-year-SHAP.kendall_tau_b`: 0.8496
+- `mc.cross-year-SHAP.rbo_ext_p90`: 0.9220
+- `mc.cross-year-PI.J_A`: 1.0000
+- `mc.cross-year-PI.OC_A`: 1.0000
+- `mc.cross-year-PI.contradiction_A`: 0.0000
+- `mc.cross-year-PI.top5`: 1.0000
+- `mc.cross-year-PI.top10`: 0.8888
+- `mc.cross-year-PI.spearman`: 0.8709
+- `mc.cross-year-PI.kendall_tau_b`: 0.7647
+- `mc.cross-year-PI.rbo_ext_p90`: 0.9037
+- `mc.top5_all_one`: 45
+- `mc.ja_corr_min`: 0.1017
+- `mc.ja_corr_max`: 0.4020
+- `mc.ja_corr_min_metric`: top6
+- `mc.ja_corr_rank_min`: 0.3353
+- `mc.ja_corr_rank_max`: 0.4020
+- `mc.sex_ratio_2015`: 0.9796
+- `mc.sex_ratio_2021`: 1.0373
+- `mc.sex_ratio_2023`: 0.9444
+- `mc.ja_jump`: 0.1666
+- `mc.boot_B`: 2000
+- `br.auc.logistic_regression`: 0.8140 ± 0.0053
+- `br.auc.random_forest`: 0.7787 ± 0.0063
+- `br.auc.xgboost`: 0.8213 ± 0.0057
+- `br.seed.J_A`: 0.9955
+- `br.seed.spearman`: 0.9566
+- `br.seed.rbo_ext_p90`: 0.9596
+- `br.seed.contradiction_A`: 0.0000
+- `br.year.J_A`: 0.9770
+- `br.year.spearman`: 0.9192
+- `br.year.rbo_ext_p90`: 0.9218
+- `br.year.contradiction_A`: 0.0000
+- `br.method.J_A`: 0.9222
+- `br.method.spearman`: 0.8263
+- `br.method.rbo_ext_p90`: 0.8611
+- `br.method.contradiction_A`: 0.0000
+- `br.model_SHAP.J_A`: 0.8571
+- `br.model_SHAP.spearman`: 0.8269
+- `br.model_SHAP.rbo_ext_p90`: 0.8487
+- `br.model_SHAP.contradiction_A`: 0.1111
+- `br.seed_SHAP.spearman`: 0.9873
+- `br.model_PI.J_A`: 0.9911
+- `br.model_PI.spearman`: 0.8993
+- `br.model_PI.rbo_ext_p90`: 0.9325
+- `br.model_PI.contradiction_A`: 0.0000
+- `br.seed_PI.spearman`: 0.9258
+- `cw.pipeline.model_SHAP.J_A`: 0.8571
+- `cw.pipeline.model_SHAP.contradiction`: 0.1111
+- `cw.pipeline.model_SHAP.spearman`: 0.8248
+- `cw.pipeline.method.J_A`: 0.9197
+- `cw.pipeline.method.spearman`: 0.8189
+- `cw.pipeline.rf_auc`: 0.7785
+- `cw.pipeline.rf_shap_A5`: 0/9
+- `cw.none.model_SHAP.J_A`: 0.9417
+- `cw.none.model_SHAP.contradiction`: 0.0000
+- `cw.none.model_SHAP.spearman`: 0.8717
+- `cw.none.method.J_A`: 0.9634
+- `cw.none.method.spearman`: 0.8886
+- `cw.none.rf_auc`: 0.7834
+- `cw.none.rf_shap_A5`: 8/9
+- `cw.balanced.model_SHAP.J_A`: 0.8571
+- `cw.balanced.model_SHAP.contradiction`: 0.1111
+- `cw.balanced.model_SHAP.spearman`: 0.8263
+- `cw.balanced.method.J_A`: 0.9197
+- `cw.balanced.method.spearman`: 0.8219
+- `cw.balanced.rf_auc`: 0.7785
+- `cw.balanced.rf_shap_A5`: 0/9
+- `eta.brfss_pipeline.share.method`: 0.6035
+- `eta.brfss_pipeline.share.model`: 0.1277
+- `eta.brfss_pipeline.share.year`: 0.0895
+- `eta.brfss_pipeline.share.residual`: 0.0549
+- `eta.brfss_pipeline.rank.method`: 0.2305
+- `eta.brfss_pipeline.rank.model`: 0.2213
+- `eta.brfss_pipeline.rank.year`: 0.1223
+- `eta.brfss_pipeline.rank.residual`: 0.2086
+- `eta.brfss_none.share.method`: 0.6075
+- `eta.brfss_none.share.model`: 0.1610
+- `eta.brfss_none.share.year`: 0.0847
+- `eta.brfss_none.share.residual`: 0.0422
+- `eta.brfss_none.rank.method`: 0.1664
+- `eta.brfss_none.rank.model`: 0.3026
+- `eta.brfss_none.rank.year`: 0.1696
+- `eta.brfss_none.rank.residual`: 0.2231
+- `eta.brfss_balanced.share.method`: 0.6271
+- `eta.brfss_balanced.share.model`: 0.1332
+- `eta.brfss_balanced.share.year`: 0.0781
+- `eta.brfss_balanced.share.residual`: 0.0355
+- `eta.brfss_balanced.rank.method`: 0.2615
+- `eta.brfss_balanced.rank.model`: 0.2269
+- `eta.brfss_balanced.rank.year`: 0.1280
+- `eta.brfss_balanced.rank.residual`: 0.1391
+- `eta.nhanes_2017-2020.share.method`: 0.6731
+- `eta.nhanes_2017-2020.share.model`: 0.1572
+- `eta.nhanes_2017-2020.share.label`: 0.0457
+- `eta.nhanes_2017-2020.share.residual`: 0.0906
+- `eta.nhanes_2021-2023.share.method`: 0.2591
+- `eta.nhanes_2021-2023.share.model`: 0.0900
+- `eta.nhanes_2021-2023.share.label`: 0.2152
+- `eta.nhanes_2021-2023.share.residual`: 0.3540
+- `eta.nhanes_2017-2020.rank.method`: 0.1530
+- `eta.nhanes_2017-2020.rank.model`: 0.2228
+- `eta.nhanes_2017-2020.rank.label`: 0.0999
+- `eta.nhanes_2017-2020.rank.residual`: 0.4079
+- `eta.nhanes_2021-2023.rank.method`: 0.0810
+- `eta.nhanes_2021-2023.rank.model`: 0.1151
+- `eta.nhanes_2021-2023.rank.label`: 0.0880
+- `eta.nhanes_2021-2023.rank.residual`: 0.6189
+- `nh.2017-2020.n`: 6,221
+- `nh.2017-2020.prev_diag`: 0.1567
+- `nh.2017-2020.prev_lab`: 0.1392
+- `nh.2017-2020.prev_total`: 0.1853
+- `nh.2017-2020.discord_pct`: 7.47
+- `nh.2017-2020.diag_not_lab_treated_pct`: 70.38
+- `nh.2021-2023.n`: 4,184
+- `nh.2021-2023.prev_diag`: 0.1400
+- `nh.2021-2023.prev_lab`: 0.1154
+- `nh.2021-2023.prev_total`: 0.1596
+- `nh.2021-2023.discord_pct`: 6.38
+- `nh.2021-2023.diag_not_lab_treated_pct`: 65.94
+- `nh.auc.2017-2020.diag`: 0.8060
+- `nh.pos_test.2017-2020.diag`: 195-195
+- `nh.auc.2017-2020.lab`: 0.7632
+- `nh.pos_test.2017-2020.lab`: 174-174
+- `nh.auc.2017-2020.total`: 0.7898
+- `nh.pos_test.2017-2020.total`: 231-231
+- `nh.auc.2021-2023.diag`: 0.8167
+- `nh.pos_test.2021-2023.diag`: 117-117
+- `nh.auc.2021-2023.lab`: 0.7994
+- `nh.pos_test.2021-2023.lab`: 97-97
+- `nh.auc.2021-2023.total`: 0.8095
+- `nh.pos_test.2021-2023.total`: 134-134
+- `nh.auc_weighted_range`: 0.7481-0.8328
+- `nh.pairs.2017-2020.label.J_A`: 0.9114
+- `nh.pairs.2017-2020.label.contradiction_A`: 0.0277
+- `nh.pairs.2017-2020.label.spearman`: 0.9122
+- `nh.pairs.2017-2020.label.rbo_ext_p90`: 0.9401
+- `nh.pairs.2017-2020.method.J_A`: 0.7609
+- `nh.pairs.2017-2020.method.contradiction_A`: 0.0333
+- `nh.pairs.2017-2020.method.spearman`: 0.8418
+- `nh.pairs.2017-2020.method.rbo_ext_p90`: 0.9113
+- `nh.pairs.2017-2020.model.J_A`: 0.7929
+- `nh.pairs.2017-2020.model.contradiction_A`: 0.0277
+- `nh.pairs.2017-2020.model.spearman`: 0.8574
+- `nh.pairs.2017-2020.model.rbo_ext_p90`: 0.9135
+- `nh.pairs.2017-2020.seed.J_A`: 0.9100
+- `nh.pairs.2017-2020.seed.contradiction_A`: 0.0222
+- `nh.pairs.2017-2020.seed.spearman`: 0.9210
+- `nh.pairs.2017-2020.seed.rbo_ext_p90`: 0.9519
+- `nh.pairs.2021-2023.label.J_A`: 0.8426
+- `nh.pairs.2021-2023.label.contradiction_A`: 0.1833
+- `nh.pairs.2021-2023.label.spearman`: 0.9201
+- `nh.pairs.2021-2023.label.rbo_ext_p90`: 0.8800
+- `nh.pairs.2021-2023.method.J_A`: 0.8134
+- `nh.pairs.2021-2023.method.contradiction_A`: 0.0555
+- `nh.pairs.2021-2023.method.spearman`: 0.8651
+- `nh.pairs.2021-2023.method.rbo_ext_p90`: 0.8490
+- `nh.pairs.2021-2023.model.J_A`: 0.8771
+- `nh.pairs.2021-2023.model.contradiction_A`: 0.0722
+- `nh.pairs.2021-2023.model.spearman`: 0.8978
+- `nh.pairs.2021-2023.model.rbo_ext_p90`: 0.8754
+- `nh.pairs.2021-2023.seed.J_A`: 0.9045
+- `nh.pairs.2021-2023.seed.contradiction_A`: 0.0629
+- `nh.pairs.2021-2023.seed.spearman`: 0.9072
+- `nh.pairs.2021-2023.seed.rbo_ext_p90`: 0.8953
+- `nh.floor.2017-2020.J_A`: 0.55
+- `nh.floor.2021-2023.J_A`: 8.88
+- `nh.floor.2017-2020.rbo_ext_p90`: 8.88
+- `nh.floor.2021-2023.rbo_ext_p90`: 15.55
+- `nh.floor.2017-2020.spearman`: 18.33
+- `nh.floor.2021-2023.spearman`: 12.22
+- `nh.floor.cell_max`: 53.33
+- `sh.nsig.2017-2020`: 22
+- `sh.nsig.2021-2023`: 29
+- `sh.n_replicated`: 13
+- `sh.PI.logistic_regression.BMI`: -6.16 / -10.68
+- `sh.SHAP.logistic_regression.BMI`: -2.37 / -3.92
+- `sh.SHAP.logistic_regression.Education`: -1.27 / -1.84
+- `sh.SHAP.logistic_regression.HeartDiseaseorAttack`: 1.72 / 0.88
+- `sh.SHAP.logistic_regression.HighBP`: 2.39 / 4.81
+- `sh.SHAP.random_forest.BMI`: -3.27 / -3.29
+- `sh.SHAP.random_forest.Education`: -1.45 / -1.41
+- `sh.SHAP.random_forest.HeartDiseaseorAttack`: 1.98 / 0.81
+- `sh.SHAP.random_forest.HighBP`: 2.36 / 3.77
+- `sh.SHAP.random_forest.HighChol`: 1.21 / 3.67
+- `sh.SHAP.random_forest.Income`: -0.87 / -0.85
+- `sh.SHAP.xgboost.BMI`: -2.59 / -4.79
+- `sh.SHAP.xgboost.HighBP`: 2.08 / 5.71
+- `sh.weighted_same_sign`: 25/26
+- `sh.weighted_sig`: 20/26
+- `in.BRFSS.2015.model: XGB vs LR.top5.pop`: 1.0000
+- `in.BRFSS.2015.model: XGB vs LR.top5.median`: 0.8000
+- `in.BRFSS.2015.model: XGB vs LR.top5.q25`: 0.8000
+- `in.BRFSS.2015.model: XGB vs LR.top5.q75`: 1.0000
+- `in.BRFSS.2015.model: XGB vs LR.top5.below_pct`: 56.30
+- `in.BRFSS.2015.model: XGB vs LR.spearman.pop`: 0.9558
+- `in.BRFSS.2015.model: XGB vs LR.spearman.median`: 0.8308
+- `in.BRFSS.2015.model: XGB vs LR.spearman.q25`: 0.7818
+- `in.BRFSS.2015.model: XGB vs LR.spearman.q75`: 0.8700
+- `in.BRFSS.2015.model: XGB vs LR.spearman.below_pct`: 99.70
+- `in.BRFSS.2021.model: XGB vs LR.top5.pop`: 1.0000
+- `in.BRFSS.2021.model: XGB vs LR.top5.median`: 1.0000
+- `in.BRFSS.2021.model: XGB vs LR.top5.q25`: 0.8000
+- `in.BRFSS.2021.model: XGB vs LR.top5.q75`: 1.0000
+- `in.BRFSS.2021.model: XGB vs LR.top5.below_pct`: 47.50
+- `in.BRFSS.2021.model: XGB vs LR.spearman.pop`: 0.9485
+- `in.BRFSS.2021.model: XGB vs LR.spearman.median`: 0.8455
+- `in.BRFSS.2021.model: XGB vs LR.spearman.q25`: 0.7965
+- `in.BRFSS.2021.model: XGB vs LR.spearman.q75`: 0.8780
+- `in.BRFSS.2021.model: XGB vs LR.spearman.below_pct`: 99.40
+- `in.BRFSS.2023.model: XGB vs LR.top5.pop`: 1.0000
+- `in.BRFSS.2023.model: XGB vs LR.top5.median`: 0.8000
+- `in.BRFSS.2023.model: XGB vs LR.top5.q25`: 0.8000
+- `in.BRFSS.2023.model: XGB vs LR.top5.q75`: 1.0000
+- `in.BRFSS.2023.model: XGB vs LR.top5.below_pct`: 62.65
+- `in.BRFSS.2023.model: XGB vs LR.spearman.pop`: 0.9460
+- `in.BRFSS.2023.model: XGB vs LR.spearman.median`: 0.8161
+- `in.BRFSS.2023.model: XGB vs LR.spearman.q25`: 0.7671
+- `in.BRFSS.2023.model: XGB vs LR.spearman.q75`: 0.8553
+- `in.BRFSS.2023.model: XGB vs LR.spearman.below_pct`: 99.90
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).top5.pop`: 0.8000
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).top5.median`: 0.8000
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).top5.q25`: 0.6000
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).top5.q75`: 0.8000
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).top5.below_pct`: 34.13
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).spearman.pop`: 0.8417
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).spearman.median`: 0.7142
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).spearman.q25`: 0.6175
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).spearman.q75`: 0.7978
+- `in.NHANES.2017-2020.model: XGB vs LR (diag).spearman.below_pct`: 85.38
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).top5.pop`: 0.8000
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).top5.median`: 0.8000
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).top5.q25`: 0.6000
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).top5.q75`: 0.8000
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).top5.below_pct`: 35.42
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).spearman.pop`: 0.9428
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).spearman.median`: 0.7714
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).spearman.q25`: 0.6615
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).spearman.q75`: 0.8417
+- `in.NHANES.2017-2020.label: diag vs lab (XGB).spearman.below_pct`: 98.07
+- `in.NHANES.2017-2020.label: diag vs lab (LR).top5.pop`: 0.8000
+- `in.NHANES.2017-2020.label: diag vs lab (LR).top5.median`: 0.8000
+- `in.NHANES.2017-2020.label: diag vs lab (LR).top5.q25`: 0.8000
+- `in.NHANES.2017-2020.label: diag vs lab (LR).top5.q75`: 1.0000
+- `in.NHANES.2017-2020.label: diag vs lab (LR).top5.below_pct`: 7.95
+- `in.NHANES.2017-2020.label: diag vs lab (LR).spearman.pop`: 0.9296
+- `in.NHANES.2017-2020.label: diag vs lab (LR).spearman.median`: 0.9032
+- `in.NHANES.2017-2020.label: diag vs lab (LR).spearman.q25`: 0.8769
+- `in.NHANES.2017-2020.label: diag vs lab (LR).spearman.q75`: 0.9252
+- `in.NHANES.2017-2020.label: diag vs lab (LR).spearman.below_pct`: 75.18
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).top5.pop`: 1.0000
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).top5.median`: 0.8000
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).top5.q25`: 0.6000
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).top5.q75`: 0.8000
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).top5.below_pct`: 80.40
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).spearman.pop`: 0.9120
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).spearman.median`: 0.7934
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).spearman.q25`: 0.6967
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).spearman.q75`: 0.8593
+- `in.NHANES.2021-2023.model: XGB vs LR (diag).spearman.below_pct`: 90.44
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).top5.pop`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).top5.median`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).top5.q25`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).top5.q75`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).top5.below_pct`: 23.41
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).spearman.pop`: 0.9780
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).spearman.median`: 0.8197
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).spearman.q25`: 0.7362
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).spearman.q75`: 0.8813
+- `in.NHANES.2021-2023.label: diag vs lab (XGB).spearman.below_pct`: 99.28
+- `in.NHANES.2021-2023.label: diag vs lab (LR).top5.pop`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (LR).top5.median`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (LR).top5.q25`: 0.8000
+- `in.NHANES.2021-2023.label: diag vs lab (LR).top5.q75`: 1.0000
+- `in.NHANES.2021-2023.label: diag vs lab (LR).top5.below_pct`: 1.67
+- `in.NHANES.2021-2023.label: diag vs lab (LR).spearman.pop`: 0.9164
+- `in.NHANES.2021-2023.label: diag vs lab (LR).spearman.median`: 0.9428
+- `in.NHANES.2021-2023.label: diag vs lab (LR).spearman.q25`: 0.9296
+- `in.NHANES.2021-2023.label: diag vs lab (LR).spearman.q75`: 0.9648
+- `in.NHANES.2021-2023.label: diag vs lab (LR).spearman.below_pct`: 7.76
+- `in.brfss_top5_differ_pct`: 47.50-62.65
+- `fa.signed.2017-2020.Education.diag`: 0.1347
+- `fa.signed.2017-2020.Education.lab`: 0.1333
+- `fa.signed.2017-2020.Education.total`: 0.1282
+- `fa.signed.2017-2020.Income.diag`: 0.0665
+- `fa.signed.2017-2020.Income.lab`: 0.0791
+- `fa.signed.2017-2020.Income.total`: 0.0646
+- `fa.signed.2021-2023.Education.diag`: 0.2115
+- `fa.signed.2021-2023.Education.lab`: 0.2220
+- `fa.signed.2021-2023.Education.total`: 0.2140
+- `fa.signed.2021-2023.Income.diag`: 0.1263
+- `fa.signed.2021-2023.Income.lab`: 0.1309
+- `fa.signed.2021-2023.Income.total`: 0.1649
+- `fa.unsigned.2017-2020.Age.diag`: 0.4425
+- `fa.unsigned.2017-2020.Age.lab`: 0.3441
+- `fa.unsigned.2017-2020.Age.total`: 0.4128
+- `fa.unsigned.2017-2020.Education.diag`: 0.1534
+- `fa.unsigned.2017-2020.Education.lab`: 0.1429
+- `fa.unsigned.2017-2020.Education.total`: 0.1416
+- `fa.unsigned.2017-2020.Income.diag`: 0.0972
+- `fa.unsigned.2017-2020.Income.lab`: 0.0915
+- `fa.unsigned.2017-2020.Income.total`: 0.1063
+- `fa.unsigned.2017-2020.Sex.diag`: 0.1297
+- `fa.unsigned.2017-2020.Sex.lab`: 0.0772
+- `fa.unsigned.2017-2020.Sex.total`: 0.1015
+- `fa.unsigned.2021-2023.Age.diag`: 0.4567
+- `fa.unsigned.2021-2023.Age.lab`: 0.3695
+- `fa.unsigned.2021-2023.Age.total`: 0.4342
+- `fa.unsigned.2021-2023.Education.diag`: 0.2115
+- `fa.unsigned.2021-2023.Education.lab`: 0.2220
+- `fa.unsigned.2021-2023.Education.total`: 0.2140
+- `fa.unsigned.2021-2023.Income.diag`: 0.1592
+- `fa.unsigned.2021-2023.Income.lab`: 0.1636
+- `fa.unsigned.2021-2023.Income.total`: 0.1738
+- `fa.unsigned.2021-2023.Sex.diag`: 0.1203
+- `fa.unsigned.2021-2023.Sex.lab`: 0.0789
+- `fa.unsigned.2021-2023.Sex.total`: 0.1134
+- `fa.diff.2017-2020.Age`: 0.0984 [-0.0981, 0.2393]
+- `fa.diff.2017-2020.Education`: 0.0105 [-0.1593, 0.1541]
+- `fa.diff.2017-2020.Income`: 0.0057 [-0.0894, 0.1354]
+- `fa.diff.2017-2020.Sex`: 0.0524 [-0.0417, 0.1740]
+- `fa.diff.2021-2023.Age`: 0.0872 [-0.0634, 0.1963]
+- `fa.diff.2021-2023.Education`: -0.0104 [-0.1855, 0.1246]
+- `fa.diff.2021-2023.Income`: -0.0043 [-0.1556, 0.1084]
+- `fa.diff.2021-2023.Sex`: 0.0414 [-0.0645, 0.1534]
+- `fa.diff_inc_edu_range`: -0.0104 to 0.0105
+- `fa.diff_inc_edu_ci_contain0`: True
+- `fa.age_ci_contain0`: True
+- `fa.age_min_pos`: 8-26
+- `inc.xgboost.2015`: 0.2422 -> 0.1827
+- `inc.random_forest.2015`: 0.1090 -> 0.0949
+- `inc.logistic_regression.2015`: 0.3108 -> 0.2638
+- `inc.xgboost.2021`: 0.3153 -> 0.2384
+- `inc.random_forest.2021`: 0.1923 -> 0.1051
+- `inc.logistic_regression.2021`: 0.4246 -> 0.2360
+- `inc.xgboost.2023`: 0.3047 -> 0.2471
+- `inc.random_forest.2023`: 0.2090 -> 0.1225
+- `inc.logistic_regression.2023`: 0.3969 -> 0.2271
+- `se.var.nhanes_2017-2020.share.seed as replicate.label`: 0.0457
+- `se.var.nhanes_2017-2020.share.seed as replicate.method`: 0.6731
+- `se.var.nhanes_2017-2020.share.seed as replicate.method x label`: 0.0053
+- `se.var.nhanes_2017-2020.share.seed as replicate.model`: 0.1572
+- `se.var.nhanes_2017-2020.share.seed as replicate.model x label`: 0.0038
+- `se.var.nhanes_2017-2020.share.seed as replicate.model x method`: 0.0220
+- `se.var.nhanes_2017-2020.share.seed as replicate.model x method x label`: 0.0018
+- `se.var.nhanes_2017-2020.share.seed as replicate.residual (seed)`: 0.0906
+- `se.var.nhanes_2017-2020.share.seed crossed.label`: 0.0457
+- `se.var.nhanes_2017-2020.share.seed crossed.method`: 0.6731
+- `se.var.nhanes_2017-2020.share.seed crossed.method x label`: 0.0053
+- `se.var.nhanes_2017-2020.share.seed crossed.model`: 0.1572
+- `se.var.nhanes_2017-2020.share.seed crossed.model x label`: 0.0038
+- `se.var.nhanes_2017-2020.share.seed crossed.model x method`: 0.0220
+- `se.var.nhanes_2017-2020.share.seed crossed.model x method x label`: 0.0018
+- `se.var.nhanes_2017-2020.share.seed crossed.seed`: 0.0137
+- `se.var.nhanes_2017-2020.share.seed crossed.seed x factors`: 0.0768
+- `se.var.nhanes_2017-2020.rank.seed as replicate.label`: 0.0999
+- `se.var.nhanes_2017-2020.rank.seed as replicate.method`: 0.1530
+- `se.var.nhanes_2017-2020.rank.seed as replicate.method x label`: 0.0097
+- `se.var.nhanes_2017-2020.rank.seed as replicate.model`: 0.2228
+- `se.var.nhanes_2017-2020.rank.seed as replicate.model x label`: 0.0350
+- `se.var.nhanes_2017-2020.rank.seed as replicate.model x method`: 0.0588
+- `se.var.nhanes_2017-2020.rank.seed as replicate.model x method x label`: 0.0126
+- `se.var.nhanes_2017-2020.rank.seed as replicate.residual (seed)`: 0.4079
+- `se.var.nhanes_2017-2020.rank.seed crossed.label`: 0.0999
+- `se.var.nhanes_2017-2020.rank.seed crossed.method`: 0.1530
+- `se.var.nhanes_2017-2020.rank.seed crossed.method x label`: 0.0097
+- `se.var.nhanes_2017-2020.rank.seed crossed.model`: 0.2228
+- `se.var.nhanes_2017-2020.rank.seed crossed.model x label`: 0.0350
+- `se.var.nhanes_2017-2020.rank.seed crossed.model x method`: 0.0588
+- `se.var.nhanes_2017-2020.rank.seed crossed.model x method x label`: 0.0126
+- `se.var.nhanes_2017-2020.rank.seed crossed.seed`: 0.0528
+- `se.var.nhanes_2017-2020.rank.seed crossed.seed x factors`: 0.3551
+- `se.var.nhanes_2017-2020.clr.seed as replicate.label`: 0.0479
+- `se.var.nhanes_2017-2020.clr.seed as replicate.method`: 0.3043
+- `se.var.nhanes_2017-2020.clr.seed as replicate.method x label`: 0.0168
+- `se.var.nhanes_2017-2020.clr.seed as replicate.model`: 0.1233
+- `se.var.nhanes_2017-2020.clr.seed as replicate.model x label`: 0.0216
+- `se.var.nhanes_2017-2020.clr.seed as replicate.model x method`: 0.0242
+- `se.var.nhanes_2017-2020.clr.seed as replicate.model x method x label`: 0.0121
+- `se.var.nhanes_2017-2020.clr.seed as replicate.residual (seed)`: 0.4495
+- `se.var.nhanes_2017-2020.clr.seed crossed.label`: 0.0479
+- `se.var.nhanes_2017-2020.clr.seed crossed.method`: 0.3043
+- `se.var.nhanes_2017-2020.clr.seed crossed.method x label`: 0.0168
+- `se.var.nhanes_2017-2020.clr.seed crossed.model`: 0.1233
+- `se.var.nhanes_2017-2020.clr.seed crossed.model x label`: 0.0216
+- `se.var.nhanes_2017-2020.clr.seed crossed.model x method`: 0.0242
+- `se.var.nhanes_2017-2020.clr.seed crossed.model x method x label`: 0.0121
+- `se.var.nhanes_2017-2020.clr.seed crossed.seed`: 0.0672
+- `se.var.nhanes_2017-2020.clr.seed crossed.seed x factors`: 0.3823
+- `se.var.nhanes_2021-2023.share.seed as replicate.label`: 0.2152
+- `se.var.nhanes_2021-2023.share.seed as replicate.method`: 0.2591
+- `se.var.nhanes_2021-2023.share.seed as replicate.method x label`: 0.0288
+- `se.var.nhanes_2021-2023.share.seed as replicate.model`: 0.0900
+- `se.var.nhanes_2021-2023.share.seed as replicate.model x label`: 0.0118
+- `se.var.nhanes_2021-2023.share.seed as replicate.model x method`: 0.0321
+- `se.var.nhanes_2021-2023.share.seed as replicate.model x method x label`: 0.0086
+- `se.var.nhanes_2021-2023.share.seed as replicate.residual (seed)`: 0.3540
+- `se.var.nhanes_2021-2023.share.seed crossed.label`: 0.2152
+- `se.var.nhanes_2021-2023.share.seed crossed.method`: 0.2591
+- `se.var.nhanes_2021-2023.share.seed crossed.method x label`: 0.0288
+- `se.var.nhanes_2021-2023.share.seed crossed.model`: 0.0900
+- `se.var.nhanes_2021-2023.share.seed crossed.model x label`: 0.0118
+- `se.var.nhanes_2021-2023.share.seed crossed.model x method`: 0.0321
+- `se.var.nhanes_2021-2023.share.seed crossed.model x method x label`: 0.0086
+- `se.var.nhanes_2021-2023.share.seed crossed.seed`: 0.0762
+- `se.var.nhanes_2021-2023.share.seed crossed.seed x factors`: 0.2778
+- `se.var.nhanes_2021-2023.rank.seed as replicate.label`: 0.0880
+- `se.var.nhanes_2021-2023.rank.seed as replicate.method`: 0.0810
+- `se.var.nhanes_2021-2023.rank.seed as replicate.method x label`: 0.0124
+- `se.var.nhanes_2021-2023.rank.seed as replicate.model`: 0.1151
+- `se.var.nhanes_2021-2023.rank.seed as replicate.model x label`: 0.0244
+- `se.var.nhanes_2021-2023.rank.seed as replicate.model x method`: 0.0381
+- `se.var.nhanes_2021-2023.rank.seed as replicate.model x method x label`: 0.0218
+- `se.var.nhanes_2021-2023.rank.seed as replicate.residual (seed)`: 0.6189
+- `se.var.nhanes_2021-2023.rank.seed crossed.label`: 0.0880
+- `se.var.nhanes_2021-2023.rank.seed crossed.method`: 0.0810
+- `se.var.nhanes_2021-2023.rank.seed crossed.method x label`: 0.0124
+- `se.var.nhanes_2021-2023.rank.seed crossed.model`: 0.1151
+- `se.var.nhanes_2021-2023.rank.seed crossed.model x label`: 0.0244
+- `se.var.nhanes_2021-2023.rank.seed crossed.model x method`: 0.0381
+- `se.var.nhanes_2021-2023.rank.seed crossed.model x method x label`: 0.0218
+- `se.var.nhanes_2021-2023.rank.seed crossed.seed`: 0.0670
+- `se.var.nhanes_2021-2023.rank.seed crossed.seed x factors`: 0.5519
+- `se.var.nhanes_2021-2023.clr.seed as replicate.label`: 0.0507
+- `se.var.nhanes_2021-2023.clr.seed as replicate.method`: 0.2183
+- `se.var.nhanes_2021-2023.clr.seed as replicate.method x label`: 0.0210
+- `se.var.nhanes_2021-2023.clr.seed as replicate.model`: 0.0720
+- `se.var.nhanes_2021-2023.clr.seed as replicate.model x label`: 0.0167
+- `se.var.nhanes_2021-2023.clr.seed as replicate.model x method`: 0.0138
+- `se.var.nhanes_2021-2023.clr.seed as replicate.model x method x label`: 0.0147
+- `se.var.nhanes_2021-2023.clr.seed as replicate.residual (seed)`: 0.5924
+- `se.var.nhanes_2021-2023.clr.seed crossed.label`: 0.0507
+- `se.var.nhanes_2021-2023.clr.seed crossed.method`: 0.2183
+- `se.var.nhanes_2021-2023.clr.seed crossed.method x label`: 0.0210
+- `se.var.nhanes_2021-2023.clr.seed crossed.model`: 0.0720
+- `se.var.nhanes_2021-2023.clr.seed crossed.model x label`: 0.0167
+- `se.var.nhanes_2021-2023.clr.seed crossed.model x method`: 0.0138
+- `se.var.nhanes_2021-2023.clr.seed crossed.model x method x label`: 0.0147
+- `se.var.nhanes_2021-2023.clr.seed crossed.seed`: 0.0716
+- `se.var.nhanes_2021-2023.clr.seed crossed.seed x factors`: 0.5208
+- `se.var.brfss_pipeline.share.seed as replicate.method`: 0.6035
+- `se.var.brfss_pipeline.share.seed as replicate.method x year`: 0.0236
+- `se.var.brfss_pipeline.share.seed as replicate.model`: 0.1277
+- `se.var.brfss_pipeline.share.seed as replicate.model x method`: 0.0919
+- `se.var.brfss_pipeline.share.seed as replicate.model x method x year`: 0.0039
+- `se.var.brfss_pipeline.share.seed as replicate.model x year`: 0.0046
+- `se.var.brfss_pipeline.share.seed as replicate.residual (seed)`: 0.0549
+- `se.var.brfss_pipeline.share.seed as replicate.year`: 0.0895
+- `se.var.brfss_pipeline.share.seed crossed.method`: 0.6035
+- `se.var.brfss_pipeline.share.seed crossed.method x year`: 0.0236
+- `se.var.brfss_pipeline.share.seed crossed.model`: 0.1277
+- `se.var.brfss_pipeline.share.seed crossed.model x method`: 0.0919
+- `se.var.brfss_pipeline.share.seed crossed.model x method x year`: 0.0039
+- `se.var.brfss_pipeline.share.seed crossed.model x year`: 0.0046
+- `se.var.brfss_pipeline.share.seed crossed.seed`: 0.0059
+- `se.var.brfss_pipeline.share.seed crossed.year`: 0.0895
+- `se.var.brfss_pipeline.share.seed crossed.seed x factors`: 0.0489
+- `se.var.brfss_pipeline.rank.seed as replicate.method`: 0.2305
+- `se.var.brfss_pipeline.rank.seed as replicate.method x year`: 0.0081
+- `se.var.brfss_pipeline.rank.seed as replicate.model`: 0.2213
+- `se.var.brfss_pipeline.rank.seed as replicate.model x method`: 0.1592
+- `se.var.brfss_pipeline.rank.seed as replicate.model x method x year`: 0.0205
+- `se.var.brfss_pipeline.rank.seed as replicate.model x year`: 0.0292
+- `se.var.brfss_pipeline.rank.seed as replicate.residual (seed)`: 0.2086
+- `se.var.brfss_pipeline.rank.seed as replicate.year`: 0.1223
+- `se.var.brfss_pipeline.rank.seed crossed.method`: 0.2305
+- `se.var.brfss_pipeline.rank.seed crossed.method x year`: 0.0081
+- `se.var.brfss_pipeline.rank.seed crossed.model`: 0.2213
+- `se.var.brfss_pipeline.rank.seed crossed.model x method`: 0.1592
+- `se.var.brfss_pipeline.rank.seed crossed.model x method x year`: 0.0205
+- `se.var.brfss_pipeline.rank.seed crossed.model x year`: 0.0292
+- `se.var.brfss_pipeline.rank.seed crossed.seed`: 0.0137
+- `se.var.brfss_pipeline.rank.seed crossed.year`: 0.1223
+- `se.var.brfss_pipeline.rank.seed crossed.seed x factors`: 0.1948
+- `se.var.brfss_pipeline.clr.seed as replicate.method`: 0.3884
+- `se.var.brfss_pipeline.clr.seed as replicate.method x year`: 0.0226
+- `se.var.brfss_pipeline.clr.seed as replicate.model`: 0.0884
+- `se.var.brfss_pipeline.clr.seed as replicate.model x method`: 0.1235
+- `se.var.brfss_pipeline.clr.seed as replicate.model x method x year`: 0.0149
+- `se.var.brfss_pipeline.clr.seed as replicate.model x year`: 0.0144
+- `se.var.brfss_pipeline.clr.seed as replicate.residual (seed)`: 0.2612
+- `se.var.brfss_pipeline.clr.seed as replicate.year`: 0.0862
+- `se.var.brfss_pipeline.clr.seed crossed.method`: 0.3884
+- `se.var.brfss_pipeline.clr.seed crossed.method x year`: 0.0226
+- `se.var.brfss_pipeline.clr.seed crossed.model`: 0.0884
+- `se.var.brfss_pipeline.clr.seed crossed.model x method`: 0.1235
+- `se.var.brfss_pipeline.clr.seed crossed.model x method x year`: 0.0149
+- `se.var.brfss_pipeline.clr.seed crossed.model x year`: 0.0144
+- `se.var.brfss_pipeline.clr.seed crossed.seed`: 0.0170
+- `se.var.brfss_pipeline.clr.seed crossed.year`: 0.0862
+- `se.var.brfss_pipeline.clr.seed crossed.seed x factors`: 0.2441
+- `se.var.brfss_none.share.seed as replicate.method`: 0.6075
+- `se.var.brfss_none.share.seed as replicate.method x year`: 0.0201
+- `se.var.brfss_none.share.seed as replicate.model`: 0.1610
+- `se.var.brfss_none.share.seed as replicate.model x method`: 0.0667
+- `se.var.brfss_none.share.seed as replicate.model x method x year`: 0.0050
+- `se.var.brfss_none.share.seed as replicate.model x year`: 0.0124
+- `se.var.brfss_none.share.seed as replicate.residual (seed)`: 0.0422
+- `se.var.brfss_none.share.seed as replicate.year`: 0.0847
+- `se.var.brfss_none.share.seed crossed.method`: 0.6075
+- `se.var.brfss_none.share.seed crossed.method x year`: 0.0201
+- `se.var.brfss_none.share.seed crossed.model`: 0.1610
+- `se.var.brfss_none.share.seed crossed.model x method`: 0.0667
+- `se.var.brfss_none.share.seed crossed.model x method x year`: 0.0050
+- `se.var.brfss_none.share.seed crossed.model x year`: 0.0124
+- `se.var.brfss_none.share.seed crossed.seed`: 0.0027
+- `se.var.brfss_none.share.seed crossed.year`: 0.0847
+- `se.var.brfss_none.share.seed crossed.seed x factors`: 0.0395
+- `se.var.brfss_none.rank.seed as replicate.method`: 0.1664
+- `se.var.brfss_none.rank.seed as replicate.method x year`: 0.0126
+- `se.var.brfss_none.rank.seed as replicate.model`: 0.3026
+- `se.var.brfss_none.rank.seed as replicate.model x method`: 0.0601
+- `se.var.brfss_none.rank.seed as replicate.model x method x year`: 0.0282
+- `se.var.brfss_none.rank.seed as replicate.model x year`: 0.0369
+- `se.var.brfss_none.rank.seed as replicate.residual (seed)`: 0.2231
+- `se.var.brfss_none.rank.seed as replicate.year`: 0.1696
+- `se.var.brfss_none.rank.seed crossed.method`: 0.1664
+- `se.var.brfss_none.rank.seed crossed.method x year`: 0.0126
+- `se.var.brfss_none.rank.seed crossed.model`: 0.3026
+- `se.var.brfss_none.rank.seed crossed.model x method`: 0.0601
+- `se.var.brfss_none.rank.seed crossed.model x method x year`: 0.0282
+- `se.var.brfss_none.rank.seed crossed.model x year`: 0.0369
+- `se.var.brfss_none.rank.seed crossed.seed`: 0.0145
+- `se.var.brfss_none.rank.seed crossed.year`: 0.1696
+- `se.var.brfss_none.rank.seed crossed.seed x factors`: 0.2086
+- `se.var.brfss_none.clr.seed as replicate.method`: 0.3443
+- `se.var.brfss_none.clr.seed as replicate.method x year`: 0.0376
+- `se.var.brfss_none.clr.seed as replicate.model`: 0.1250
+- `se.var.brfss_none.clr.seed as replicate.model x method`: 0.0632
+- `se.var.brfss_none.clr.seed as replicate.model x method x year`: 0.0330
+- `se.var.brfss_none.clr.seed as replicate.model x year`: 0.0301
+- `se.var.brfss_none.clr.seed as replicate.residual (seed)`: 0.2632
+- `se.var.brfss_none.clr.seed as replicate.year`: 0.1031
+- `se.var.brfss_none.clr.seed crossed.method`: 0.3443
+- `se.var.brfss_none.clr.seed crossed.method x year`: 0.0376
+- `se.var.brfss_none.clr.seed crossed.model`: 0.1250
+- `se.var.brfss_none.clr.seed crossed.model x method`: 0.0632
+- `se.var.brfss_none.clr.seed crossed.model x method x year`: 0.0330
+- `se.var.brfss_none.clr.seed crossed.model x year`: 0.0301
+- `se.var.brfss_none.clr.seed crossed.seed`: 0.0217
+- `se.var.brfss_none.clr.seed crossed.year`: 0.1031
+- `se.var.brfss_none.clr.seed crossed.seed x factors`: 0.2415
+- `se.var.brfss_balanced.share.seed as replicate.method`: 0.6271
+- `se.var.brfss_balanced.share.seed as replicate.method x year`: 0.0196
+- `se.var.brfss_balanced.share.seed as replicate.model`: 0.1332
+- `se.var.brfss_balanced.share.seed as replicate.model x method`: 0.0956
+- `se.var.brfss_balanced.share.seed as replicate.model x method x year`: 0.0050
+- `se.var.brfss_balanced.share.seed as replicate.model x year`: 0.0054
+- `se.var.brfss_balanced.share.seed as replicate.residual (seed)`: 0.0355
+- `se.var.brfss_balanced.share.seed as replicate.year`: 0.0781
+- `se.var.brfss_balanced.share.seed crossed.method`: 0.6271
+- `se.var.brfss_balanced.share.seed crossed.method x year`: 0.0196
+- `se.var.brfss_balanced.share.seed crossed.model`: 0.1332
+- `se.var.brfss_balanced.share.seed crossed.model x method`: 0.0956
+- `se.var.brfss_balanced.share.seed crossed.model x method x year`: 0.0050
+- `se.var.brfss_balanced.share.seed crossed.model x year`: 0.0054
+- `se.var.brfss_balanced.share.seed crossed.seed`: 0.0028
+- `se.var.brfss_balanced.share.seed crossed.year`: 0.0781
+- `se.var.brfss_balanced.share.seed crossed.seed x factors`: 0.0326
+- `se.var.brfss_balanced.rank.seed as replicate.method`: 0.2615
+- `se.var.brfss_balanced.rank.seed as replicate.method x year`: 0.0157
+- `se.var.brfss_balanced.rank.seed as replicate.model`: 0.2269
+- `se.var.brfss_balanced.rank.seed as replicate.model x method`: 0.1636
+- `se.var.brfss_balanced.rank.seed as replicate.model x method x year`: 0.0199
+- `se.var.brfss_balanced.rank.seed as replicate.model x year`: 0.0449
+- `se.var.brfss_balanced.rank.seed as replicate.residual (seed)`: 0.1391
+- `se.var.brfss_balanced.rank.seed as replicate.year`: 0.1280
+- `se.var.brfss_balanced.rank.seed crossed.method`: 0.2615
+- `se.var.brfss_balanced.rank.seed crossed.method x year`: 0.0157
+- `se.var.brfss_balanced.rank.seed crossed.model`: 0.2269
+- `se.var.brfss_balanced.rank.seed crossed.model x method`: 0.1636
+- `se.var.brfss_balanced.rank.seed crossed.model x method x year`: 0.0199
+- `se.var.brfss_balanced.rank.seed crossed.model x year`: 0.0449
+- `se.var.brfss_balanced.rank.seed crossed.seed`: 0.0081
+- `se.var.brfss_balanced.rank.seed crossed.year`: 0.1280
+- `se.var.brfss_balanced.rank.seed crossed.seed x factors`: 0.1310
+- `se.var.brfss_balanced.clr.seed as replicate.method`: 0.4304
+- `se.var.brfss_balanced.clr.seed as replicate.method x year`: 0.0292
+- `se.var.brfss_balanced.clr.seed as replicate.model`: 0.1019
+- `se.var.brfss_balanced.clr.seed as replicate.model x method`: 0.1411
+- `se.var.brfss_balanced.clr.seed as replicate.model x method x year`: 0.0174
+- `se.var.brfss_balanced.clr.seed as replicate.model x year`: 0.0165
+- `se.var.brfss_balanced.clr.seed as replicate.residual (seed)`: 0.1748
+- `se.var.brfss_balanced.clr.seed as replicate.year`: 0.0884
+- `se.var.brfss_balanced.clr.seed crossed.method`: 0.4304
+- `se.var.brfss_balanced.clr.seed crossed.method x year`: 0.0292
+- `se.var.brfss_balanced.clr.seed crossed.model`: 0.1019
+- `se.var.brfss_balanced.clr.seed crossed.model x method`: 0.1411
+- `se.var.brfss_balanced.clr.seed crossed.model x method x year`: 0.0174
+- `se.var.brfss_balanced.clr.seed crossed.model x year`: 0.0165
+- `se.var.brfss_balanced.clr.seed crossed.seed`: 0.0089
+- `se.var.brfss_balanced.clr.seed crossed.year`: 0.0884
+- `se.var.brfss_balanced.clr.seed crossed.seed x factors`: 0.1658
+- `se.feat.nhanes_2017-2020.share.label`: 0.0348 [0.0044, 0.1091]
+- `se.feat.nhanes_2017-2020.share.method`: 0.4280 [0.3262, 0.5865]
+- `se.feat.nhanes_2017-2020.share.method x label`: 0.0041 [0.0023, 0.0114]
+- `se.feat.nhanes_2017-2020.share.model`: 0.2043 [0.1221, 0.3076]
+- `se.feat.nhanes_2017-2020.share.model x label`: 0.0099 [0.0027, 0.0149]
+- `se.feat.nhanes_2017-2020.share.model x method`: 0.0338 [0.0152, 0.0837]
+- `se.feat.nhanes_2017-2020.share.model x method x label`: 0.0063 [0.0029, 0.0086]
+- `se.feat.nhanes_2017-2020.share.residual (seed)`: 0.1694 [0.1057, 0.2438]
+- `se.feat.nhanes_2017-2020.rank.label`: 0.0667 [0.0228, 0.1205]
+- `se.feat.nhanes_2017-2020.rank.method`: 0.0617 [0.0139, 0.2241]
+- `se.feat.nhanes_2017-2020.rank.method x label`: 0.0099 [0.0056, 0.0144]
+- `se.feat.nhanes_2017-2020.rank.model`: 0.1877 [0.0350, 0.3043]
+- `se.feat.nhanes_2017-2020.rank.model x label`: 0.0282 [0.0171, 0.0446]
+- `se.feat.nhanes_2017-2020.rank.model x method`: 0.0321 [0.0217, 0.0812]
+- `se.feat.nhanes_2017-2020.rank.model x method x label`: 0.0117 [0.0068, 0.0234]
+- `se.feat.nhanes_2017-2020.rank.residual (seed)`: 0.4585 [0.3200, 0.5064]
+- `se.feat.nhanes_2017-2020.clr.label`: 0.0263 [0.0081, 0.0718]
+- `se.feat.nhanes_2017-2020.clr.method`: 0.2559 [0.1251, 0.6510]
+- `se.feat.nhanes_2017-2020.clr.method x label`: 0.0138 [0.0049, 0.0235]
+- `se.feat.nhanes_2017-2020.clr.model`: 0.0842 [0.0500, 0.1191]
+- `se.feat.nhanes_2017-2020.clr.model x label`: 0.0120 [0.0056, 0.0217]
+- `se.feat.nhanes_2017-2020.clr.model x method`: 0.0233 [0.0082, 0.0337]
+- `se.feat.nhanes_2017-2020.clr.model x method x label`: 0.0099 [0.0040, 0.0170]
+- `se.feat.nhanes_2017-2020.clr.residual (seed)`: 0.3810 [0.2340, 0.6173]
+- `se.feat.nhanes_2021-2023.share.label`: 0.0687 [0.0275, 0.1948]
+- `se.feat.nhanes_2021-2023.share.method`: 0.3101 [0.1597, 0.3563]
+- `se.feat.nhanes_2021-2023.share.method x label`: 0.0062 [0.0012, 0.0204]
+- `se.feat.nhanes_2021-2023.share.model`: 0.1128 [0.0926, 0.1593]
+- `se.feat.nhanes_2021-2023.share.model x label`: 0.0130 [0.0065, 0.0228]
+- `se.feat.nhanes_2021-2023.share.model x method`: 0.0158 [0.0057, 0.0391]
+- `se.feat.nhanes_2021-2023.share.model x method x label`: 0.0080 [0.0057, 0.0121]
+- `se.feat.nhanes_2021-2023.share.residual (seed)`: 0.3651 [0.3373, 0.4433]
+- `se.feat.nhanes_2021-2023.rank.label`: 0.0720 [0.0508, 0.1135]
+- `se.feat.nhanes_2021-2023.rank.method`: 0.0556 [0.0241, 0.1300]
+- `se.feat.nhanes_2021-2023.rank.method x label`: 0.0097 [0.0009, 0.0143]
+- `se.feat.nhanes_2021-2023.rank.model`: 0.0871 [0.0630, 0.1175]
+- `se.feat.nhanes_2021-2023.rank.model x label`: 0.0239 [0.0133, 0.0526]
+- `se.feat.nhanes_2021-2023.rank.model x method`: 0.0301 [0.0112, 0.0540]
+- `se.feat.nhanes_2021-2023.rank.model x method x label`: 0.0159 [0.0125, 0.0222]
+- `se.feat.nhanes_2021-2023.rank.residual (seed)`: 0.5691 [0.5067, 0.7089]
+- `se.feat.nhanes_2021-2023.clr.label`: 0.0332 [0.0134, 0.0691]
+- `se.feat.nhanes_2021-2023.clr.method`: 0.2100 [0.1003, 0.6073]
+- `se.feat.nhanes_2021-2023.clr.method x label`: 0.0119 [0.0044, 0.0153]
+- `se.feat.nhanes_2021-2023.clr.model`: 0.0565 [0.0271, 0.0985]
+- `se.feat.nhanes_2021-2023.clr.model x label`: 0.0090 [0.0054, 0.0114]
+- `se.feat.nhanes_2021-2023.clr.model x method`: 0.0101 [0.0075, 0.0164]
+- `se.feat.nhanes_2021-2023.clr.model x method x label`: 0.0062 [0.0042, 0.0115]
+- `se.feat.nhanes_2021-2023.clr.residual (seed)`: 0.5717 [0.2224, 0.7053]
+- `se.feat.brfss_pipeline.share.method`: 0.5037 [0.3320, 0.5617]
+- `se.feat.brfss_pipeline.share.method x year`: 0.0076 [0.0045, 0.0326]
+- `se.feat.brfss_pipeline.share.model`: 0.1681 [0.0969, 0.2485]
+- `se.feat.brfss_pipeline.share.model x method`: 0.0889 [0.0493, 0.2210]
+- `se.feat.brfss_pipeline.share.model x method x year`: 0.0057 [0.0033, 0.0115]
+- `se.feat.brfss_pipeline.share.model x year`: 0.0066 [0.0034, 0.0109]
+- `se.feat.brfss_pipeline.share.residual (seed)`: 0.0697 [0.0350, 0.1281]
+- `se.feat.brfss_pipeline.share.year`: 0.0250 [0.0112, 0.0715]
+- `se.feat.brfss_pipeline.rank.method`: 0.1918 [0.0339, 0.2966]
+- `se.feat.brfss_pipeline.rank.method x year`: 0.0120 [0.0062, 0.0224]
+- `se.feat.brfss_pipeline.rank.model`: 0.1394 [0.0427, 0.2252]
+- `se.feat.brfss_pipeline.rank.model x method`: 0.1423 [0.0665, 0.2403]
+- `se.feat.brfss_pipeline.rank.model x method x year`: 0.0202 [0.0089, 0.0307]
+- `se.feat.brfss_pipeline.rank.model x year`: 0.0260 [0.0133, 0.0523]
+- `se.feat.brfss_pipeline.rank.residual (seed)`: 0.2155 [0.1407, 0.2881]
+- `se.feat.brfss_pipeline.rank.year`: 0.0567 [0.0224, 0.1502]
+- `se.feat.brfss_pipeline.clr.method`: 0.3681 [0.0768, 0.5981]
+- `se.feat.brfss_pipeline.clr.method x year`: 0.0078 [0.0038, 0.0185]
+- `se.feat.brfss_pipeline.clr.model`: 0.0486 [0.0302, 0.1634]
+- `se.feat.brfss_pipeline.clr.model x method`: 0.0814 [0.0622, 0.1690]
+- `se.feat.brfss_pipeline.clr.model x method x year`: 0.0116 [0.0052, 0.0150]
+- `se.feat.brfss_pipeline.clr.model x year`: 0.0071 [0.0034, 0.0207]
+- `se.feat.brfss_pipeline.clr.residual (seed)`: 0.2110 [0.0636, 0.4977]
+- `se.feat.brfss_pipeline.clr.year`: 0.0253 [0.0069, 0.0652]
+- `se.feat.brfss_none.share.method`: 0.5796 [0.3127, 0.7157]
+- `se.feat.brfss_none.share.method x year`: 0.0178 [0.0033, 0.0297]
+- `se.feat.brfss_none.share.model`: 0.1179 [0.0640, 0.3118]
+- `se.feat.brfss_none.share.model x method`: 0.0448 [0.0194, 0.0953]
+- `se.feat.brfss_none.share.model x method x year`: 0.0090 [0.0040, 0.0114]
+- `se.feat.brfss_none.share.model x year`: 0.0086 [0.0045, 0.0267]
+- `se.feat.brfss_none.share.residual (seed)`: 0.0637 [0.0368, 0.1279]
+- `se.feat.brfss_none.share.year`: 0.0432 [0.0126, 0.0528]
+- `se.feat.brfss_none.rank.method`: 0.1341 [0.0555, 0.2568]
+- `se.feat.brfss_none.rank.method x year`: 0.0209 [0.0078, 0.0256]
+- `se.feat.brfss_none.rank.model`: 0.1424 [0.0702, 0.3728]
+- `se.feat.brfss_none.rank.model x method`: 0.0756 [0.0497, 0.1225]
+- `se.feat.brfss_none.rank.model x method x year`: 0.0273 [0.0158, 0.0368]
+- `se.feat.brfss_none.rank.model x year`: 0.0515 [0.0308, 0.0795]
+- `se.feat.brfss_none.rank.residual (seed)`: 0.2301 [0.1352, 0.3549]
+- `se.feat.brfss_none.rank.year`: 0.0739 [0.0193, 0.0972]
+- `se.feat.brfss_none.clr.method`: 0.3285 [0.0828, 0.5838]
+- `se.feat.brfss_none.clr.method x year`: 0.0141 [0.0081, 0.0232]
+- `se.feat.brfss_none.clr.model`: 0.0875 [0.0192, 0.2255]
+- `se.feat.brfss_none.clr.model x method`: 0.0407 [0.0288, 0.0852]
+- `se.feat.brfss_none.clr.model x method x year`: 0.0194 [0.0125, 0.0420]
+- `se.feat.brfss_none.clr.model x year`: 0.0211 [0.0106, 0.0373]
+- `se.feat.brfss_none.clr.residual (seed)`: 0.2228 [0.0881, 0.3301]
+- `se.feat.brfss_none.clr.year`: 0.0298 [0.0081, 0.0544]
+- `se.feat.brfss_balanced.share.method`: 0.5008 [0.3901, 0.5797]
+- `se.feat.brfss_balanced.share.method x year`: 0.0081 [0.0032, 0.0248]
+- `se.feat.brfss_balanced.share.model`: 0.1619 [0.0874, 0.2418]
+- `se.feat.brfss_balanced.share.model x method`: 0.1395 [0.0485, 0.2036]
+- `se.feat.brfss_balanced.share.model x method x year`: 0.0060 [0.0041, 0.0166]
+- `se.feat.brfss_balanced.share.model x year`: 0.0088 [0.0054, 0.0120]
+- `se.feat.brfss_balanced.share.residual (seed)`: 0.0303 [0.0218, 0.0883]
+- `se.feat.brfss_balanced.share.year`: 0.0342 [0.0170, 0.0564]
+- `se.feat.brfss_balanced.rank.method`: 0.1875 [0.0370, 0.3642]
+- `se.feat.brfss_balanced.rank.method x year`: 0.0168 [0.0035, 0.0382]
+- `se.feat.brfss_balanced.rank.model`: 0.1480 [0.0555, 0.2137]
+- `se.feat.brfss_balanced.rank.model x method`: 0.1613 [0.0562, 0.2566]
+- `se.feat.brfss_balanced.rank.model x method x year`: 0.0164 [0.0066, 0.0322]
+- `se.feat.brfss_balanced.rank.model x year`: 0.0393 [0.0194, 0.0912]
+- `se.feat.brfss_balanced.rank.residual (seed)`: 0.1631 [0.1063, 0.2011]
+- `se.feat.brfss_balanced.rank.year`: 0.0573 [0.0272, 0.0906]
+- `se.feat.brfss_balanced.clr.method`: 0.4163 [0.1075, 0.6376]
+- `se.feat.brfss_balanced.clr.method x year`: 0.0074 [0.0035, 0.0208]
+- `se.feat.brfss_balanced.clr.model`: 0.0584 [0.0301, 0.1763]
+- `se.feat.brfss_balanced.clr.model x method`: 0.1370 [0.0694, 0.2165]
+- `se.feat.brfss_balanced.clr.model x method x year`: 0.0106 [0.0054, 0.0307]
+- `se.feat.brfss_balanced.clr.model x year`: 0.0075 [0.0035, 0.0170]
+- `se.feat.brfss_balanced.clr.residual (seed)`: 0.1237 [0.0476, 0.2354]
+- `se.feat.brfss_balanced.clr.year`: 0.0222 [0.0085, 0.0486]
+- `se.perm.max_p`: 0.0010
+- `se.perm.n`: 999
+- `se.perm.tests`: 30
+- `se.floor.p1.2017-2020.J_A`: 0.55 (max 3.33)
+- `se.floor.p1.2021-2023.J_A`: 2.22 (max 6.66)
+- `se.floor.p1.2017-2020.rbo_ext_p90`: 4.44 (max 13.33)
+- `se.floor.p1.2021-2023.rbo_ext_p90`: 10.55 (max 43.33)
+- `se.floor.p1.2017-2020.spearman`: 12.77 (max 33.33)
+- `se.floor.p1.2021-2023.spearman`: 7.77 (max 16.66)
+- `se.floor.p5.2017-2020.J_A`: 0.55 (max 3.33)
+- `se.floor.p5.2021-2023.J_A`: 8.88 (max 30.00)
+- `se.floor.p5.2017-2020.rbo_ext_p90`: 8.88 (max 16.66)
+- `se.floor.p5.2021-2023.rbo_ext_p90`: 15.55 (max 53.33)
+- `se.floor.p5.2017-2020.spearman`: 18.33 (max 40.00)
+- `se.floor.p5.2021-2023.spearman`: 12.22 (max 23.33)
+- `se.floor.p10.2017-2020.J_A`: 4.44 (max 6.66)
+- `se.floor.p10.2021-2023.J_A`: 13.88 (max 33.33)
+- `se.floor.p10.2017-2020.rbo_ext_p90`: 18.88 (max 50.00)
+- `se.floor.p10.2021-2023.rbo_ext_p90`: 19.44 (max 53.33)
+- `se.floor.p10.2017-2020.spearman`: 33.33 (max 53.33)
+- `se.floor.p10.2021-2023.spearman`: 15.00 (max 33.33)
+- `se.shift.replicated.q_bh`: 13
+- `se.shift.replicated.q_signflip`: 23
+- `se.shift.nsig_signflip.2017-2020`: 38
+- `se.shift.nsig_signflip.2021-2023`: 47
