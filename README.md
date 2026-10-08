@@ -31,7 +31,8 @@ BRFSS evaluation protocol implemented in this repository, please cite:
 
 Van Thieu, Hung-Nghiep Tran. Auditing Population-Level XAI Agreement
 with cABC: Evidence from Diabetes Risk Prediction. *International
-Conference on Multimedia Analysis and Pattern Recognition (MAPR)*, 2026.
+Conference on Multimedia Analysis and Pattern Recognition (MAPR)*, 2026,
+pp. 442-447. https://doi.org/10.1109/MAPR72750.2026.11685767
 
 ```bibtex
 @inproceedings{thieu2026auditing,
@@ -41,13 +42,11 @@ Conference on Multimedia Analysis and Pattern Recognition (MAPR)*, 2026.
   booktitle = {Proceedings of the 2026 International Conference on
                Multimedia Analysis and Pattern Recognition (MAPR)},
   year      = {2026},
+  pages     = {442--447},
   publisher = {IEEE},
-  note      = {To appear}
+  doi       = {10.1109/MAPR72750.2026.11685767}
 }
 ```
-
-The IEEE Xplore DOI will be added here once the proceedings are
-published.
 
 ## What the pipeline computes
 

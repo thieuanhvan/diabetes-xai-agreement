@@ -2,10 +2,14 @@ cff-version: 1.2.0
 message: "If you found our work useful, please cite the paper below."
 title: "diabetes-xai-agreement"
 abstract: >-
-  Research pipeline auditing explainable AI methods (SHAP vs Permutation
-  Importance) on population-scale diabetes risk prediction from CDC BRFSS
-  data (2015, 2021, 2023), using a computed-ABC partition of ranked
-  feature importance.
+  Research pipeline for auditing population-level explainable AI agreement
+  (SHAP vs permutation importance) in clinical risk prediction. Release
+  jbi-v1 adds an audit protocol that separates agreement into
+  contradiction, depth and head order, judges it against a seed-noise
+  reference, and tests metric, model, attribution method, training
+  configuration and outcome definition on BRFSS (2015, 2021, 2023) and
+  NHANES (2017-March 2020, 2021-2023; diabetes and hypertension).
+version: "jbi-v1"
 authors:
   - family-names: "Thieu"
     given-names: "Van"
@@ -43,4 +47,6 @@ preferred-citation:
   publisher:
     name: "IEEE"
   year: 2026
-  notes: "To appear. DOI to be added once the IEEE Xplore record is live."
+  start: 442
+  end: 447
+  doi: "10.1109/MAPR72750.2026.11685767"
