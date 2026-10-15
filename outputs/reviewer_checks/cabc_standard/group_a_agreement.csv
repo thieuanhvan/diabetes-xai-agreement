@@ -1,0 +1,5 @@
+set,n,identical_group_a
+NHANES diabetes label vectors,360,157
+NHANES hypertension label vectors,180,106
+conference vectors,18,12
+conference pairs: J_A<1 / nested / contradiction,45,21/21/0

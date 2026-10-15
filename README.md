@@ -3,7 +3,15 @@
 Research pipeline for auditing population-level explainable AI agreement in
 clinical risk prediction. It contains two sets of results:
 
-* **Journal article (release `jbi-v1`)**: an audit protocol that separates
+* **Journal article, outcome-definition version (release `v32`)**: do
+  diagnosis and measured outcome labels change population-level
+  explanations? Replicated shifts on NHANES 2017-March 2020 and 2021-2023,
+  label controls (prevalence, threshold, definition, class weighting),
+  random and AUC-matched disagreement null labels, pseudo-outcome and
+  planted-label checks, detection by 12 agreement metrics, and held-out
+  replication in NHANES 2015-2016. See
+  [Outcome-definition analysis](#outcome-definition-analysis-release-v32).
+* **Journal article, first submission (release `jbi-v1`)**: an audit protocol that separates
   explanation agreement into contradiction, depth and head order, judges it
   against a seed-noise reference, and tests metric, model, attribution
   method, training configuration and outcome definition as sources of
@@ -257,6 +265,35 @@ EO violation by Age (max of dTPR, dFPR):
 If a clean run reproduces these values, the pipeline is reproducible.
 If any value differs, check that `random_state = 42` is honoured
 throughout and that all packages match `requirements.txt`.
+
+## Outcome-definition analysis (release `v32`)
+
+Inputs: the NHANES CSVs in `data/` (2015-2016 is the held-out cycle, built
+with the same `nhanes-diabetes` code; its blood pressure is auscultatory).
+Run everything, then check every decimal quoted in the manuscript:
+
+```bash
+bash run_v32.sh path/to/manuscript.tex path/to/supplementary.tex
+```
+
+| Script | Output folder | Question |
+|---|---|---|
+| `run_label_controls` | `label_controls/` | Do replicated shifts survive prevalence, threshold, definition and class-weighting controls? |
+| `run_label_null` | `label_null/` | Do they exceed random and AUC-matched disagreement null labels (30 labels; gamma sensitivity also 30)? |
+| `run_null_validation` | `null_validation/` | Null labels as pseudo-outcomes; planted BMI and age labels |
+| `run_detection_power` | `detection_power/` | Do agreement metrics flag configurations with replicated shifts? |
+| `run_reviewer_checks` | `reviewer_checks/` | AUC match, calibration on other splits, detection variants, CLR (pseudocount 1e-5 to 1e-3), gamma sensitivity, set metrics with the published cABC A\|B limit (`cabc_standard/`), MentHlth 0-4 recoding for LR |
+| `run_holdout_cycle` | `holdout_2015_2016/` | Held-out replication without re-selection |
+| `make_manuscript_outputs` | `manuscript_tables/`, `manuscript_figures/`, `manuscript_numbers/` | Tables, Fig. 1, graphical abstract, numbers.json |
+
+Run time on a 2-core container: roughly two days for all null labels.
+
+**Group A rule.** `agreement_metrics.cabc_partition` (used by the conference
+pipeline and the main analysis) cuts Group A at the BreakEven point of the
+ABC curve, i.e. above-mean importance. The published computed ABC analysis
+(Ultsch & Lötsch 2015) cuts at the earlier of the BreakEven and Pareto
+points; `agreement_metrics.cabc_group_a_standard` implements that rule after
+the authors' reference code and is used for the sensitivity analysis.
 
 ## Journal article (JBI, release `jbi-v1`)
 

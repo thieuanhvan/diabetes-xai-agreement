@@ -16,15 +16,18 @@ import re
 import sys
 from pathlib import Path
 
-NUMBERS = Path(__file__).resolve().parents[2] / "outputs" / "journal_numbers" / "numbers.json"
+ROOT = Path(__file__).resolve().parents[2] / "outputs"
+NUMBERS = [ROOT / "journal_numbers" / "numbers.json", ROOT / "manuscript_numbers" / "numbers.json"]
 ALLOWED = {"0.51", "3.11", "3.12", "0.05", "0.25", "0.70", "0.35", "0.45", "0.95"}  # versions, alpha, column widths, RBO p
 QUOTED = {"0.8307", "0.9127"}  # conference values quoted as printed in the conference paper
 
 
 def main(paths: list[str]) -> int:
     values = set()
-    for v in json.loads(NUMBERS.read_text()).values():
-        values.update(x.lstrip("-") for x in re.findall(r"-?\d+\.\d+", v))
+    for path in NUMBERS:
+        if path.exists():
+            for v in json.loads(path.read_text()).values():
+                values.update(x.lstrip("-") for x in re.findall(r"-?\d+\.\d+", v))
     bad = 0
     for path in paths:
         for i, line in enumerate(Path(path).read_text().splitlines(), 1):

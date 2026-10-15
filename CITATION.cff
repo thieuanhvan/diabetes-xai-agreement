@@ -4,12 +4,14 @@ title: "diabetes-xai-agreement"
 abstract: >-
   Research pipeline for auditing population-level explainable AI agreement
   (SHAP vs permutation importance) in clinical risk prediction. Release
-  jbi-v1 adds an audit protocol that separates agreement into
+  v32 tests whether diagnosis and measured outcome labels change
+  explanations, with label controls, disagreement-matched null labels and
+  held-out replication in NHANES 2015-2016. Release jbi-v1 added an audit protocol that separates agreement into
   contradiction, depth and head order, judges it against a seed-noise
   reference, and tests metric, model, attribution method, training
   configuration and outcome definition on BRFSS (2015, 2021, 2023) and
   NHANES (2017-March 2020, 2021-2023; diabetes and hypertension).
-version: "jbi-v1"
+version: "v32"
 authors:
   - family-names: "Thieu"
     given-names: "Van"

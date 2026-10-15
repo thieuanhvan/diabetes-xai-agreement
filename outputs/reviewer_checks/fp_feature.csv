@@ -1,0 +1,3 @@
+outcome,null_labels,tests_per_label,replicated_vs_zero,flagged,rate_vs_zero,rate_full
+diabetes,30,84,49,1,0.019444444444444445,0.0003968253968253968
+hypertension,30,84,250,1,0.0992063492063492,0.0003968253968253968

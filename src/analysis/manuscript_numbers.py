@@ -31,6 +31,12 @@ def t4(x: float) -> str:
     return f"{s}{math.floor(abs(x) * 10000 + 1e-6) / 10000:.4f}"
 
 
+def q4(x: float) -> str:
+    """p- or q-value, truncated to four decimals; values below 0.0001 are
+    shown as <0.0001 rather than 0.0000."""
+    return "$<$0.0001" if x < 0.0001 else t4(x)
+
+
 def pct(x: float) -> str:
     s = "-" if x < 0 else ""
     return f"{s}{math.floor(abs(x) * 10000 + 1e-6) / 100:.2f}"

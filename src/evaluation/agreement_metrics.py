@@ -215,3 +215,61 @@ def compare(imp_a: pd.Series, imp_b: pd.Series,
     for p in rbo_ps:
         out[f"rbo_ext_p{int(round(p * 100)):02d}"] = rbo_ext(rank_a, rank_b, p)
     return out
+
+
+# ------------------------------------------------------------------ #
+# Standard computed ABC (Ultsch & Lötsch 2015) A|B limit              #
+# ------------------------------------------------------------------ #
+#
+# ``cabc_partition`` above uses only the BreakEven point (slope 1), which is
+# the A|B limit of the published cABC only when the BreakEven point comes
+# before the Pareto point. The published method sets the A|B limit at
+# whichever of the Pareto point (closest to (0, 1)) and the BreakEven point
+# has the smaller effort. ``cabc_group_a_standard`` follows the reference
+# Python implementation by the method's authors (PyPI cABCanalysis 0.1.1,
+# functions ABC_curve and ABC_calc): cubic-spline ABC curve on 100 effort
+# values, the two points on that grid, and the A limit read from a
+# cubic-spline inverse ECDF on 1000 values. Non-positive values are dropped,
+# as in the reference.
+
+def _abc_curve(values: np.ndarray):
+    from scipy.interpolate import CubicSpline
+    v = np.sort(values)[::-1]
+    y = np.cumsum(v)
+    y = y / y[-1]
+    x = np.arange(1, len(y) + 1) / len(y)
+    if y.min() > 0:
+        y, x = np.insert(y, 0, 0.0), np.insert(x, 0, 0.0)
+    if y.max() < 1:
+        y, x = np.append(y, 1.0), np.append(x, 1.0)
+    effort = np.linspace(0, 1, 100)
+    yld = CubicSpline(x, y)(effort)
+    if yld.max() > 1:
+        i = int(np.flatnonzero(yld > 1)[0])
+        yld[i:] = 1.0
+    slope = CubicSpline(effort, yld)(effort, 1)
+    return effort, yld, slope
+
+
+def cabc_ab_points(importance: pd.Series) -> Dict[str, float]:
+    """Effort (fraction of features) at the Pareto and BreakEven points."""
+    v = importance.abs().to_numpy(dtype=float)
+    v = v[v > 0]
+    effort, yld, slope = _abc_curve(v)
+    ip = int(np.argmin(np.hypot(effort - 0.0, yld - 1.0)))
+    ib = int(np.argmin(np.abs(slope - 1.0)))
+    return {"pareto": float(effort[ip]), "breakeven": float(effort[ib])}
+
+
+def cabc_group_a_standard(importance: pd.Series) -> List[str]:
+    """Group A under the published cABC A|B limit (min of Pareto, BreakEven)."""
+    from scipy.interpolate import CubicSpline
+    s = importance.abs()
+    s = s[s > 0].sort_values(ascending=False)
+    if len(s) < 2:
+        return list(s.index)
+    pts = cabc_ab_points(s)
+    a_effort = min(pts["pareto"], pts["breakeven"])
+    inv = CubicSpline(np.linspace(1, 100, len(s)), s.to_numpy(dtype=float))(np.linspace(1, 100, 1000))
+    ab_limit = inv[min(round(a_effort * 1000) + 1, 999)]
+    return list(s[s > ab_limit].index)

@@ -20,6 +20,9 @@ import pandas as pd
 
 DATA = Path(__file__).resolve().parents[2] / "data"
 BPXO = {"2017-2020": "2017-2020/P_BPXO.xpt", "2021-2023": "2021-2023/BPXO_L.xpt"}
+# 2015-2016 (held-out replication cycle): auscultatory readings (BPX_I); a
+# diastolic reading of 0 mmHg is treated as missing before averaging.
+BPX = {"2015-2016": "2015-2016/BPX_I.xpt"}
 
 
 def build(raw_dir: Path) -> None:
@@ -28,6 +31,19 @@ def build(raw_dir: Path) -> None:
         b = pd.read_sas(raw_dir / rel)
         b["SBP_mean"] = b[["BPXOSY1", "BPXOSY2", "BPXOSY3"]].mean(axis=1)
         b["DBP_mean"] = b[["BPXODI1", "BPXODI2", "BPXODI3"]].mean(axis=1)
+        b["SEQN"] = b["SEQN"].astype(int)
+        out = d.merge(b[["SEQN", "SBP_mean", "DBP_mean"]], on="SEQN", how="left")
+        out.to_csv(DATA / f"cdc_nhanes_hypertension_{cycle}.csv", index=False)
+        print(cycle, len(out), "rows; measured BP available:", int(out.SBP_mean.notna().sum()))
+    for cycle, rel in BPX.items():
+        f = DATA / f"cdc_nhanes_diabetes_{cycle}.csv"
+        if not f.exists() or not (raw_dir / rel).exists():
+            continue
+        d = pd.read_csv(f)
+        b = pd.read_sas(raw_dir / rel)
+        dia = b[["BPXDI1", "BPXDI2", "BPXDI3"]].where(b[["BPXDI1", "BPXDI2", "BPXDI3"]] > 0)
+        b["SBP_mean"] = b[["BPXSY1", "BPXSY2", "BPXSY3"]].mean(axis=1)
+        b["DBP_mean"] = dia.mean(axis=1)
         b["SEQN"] = b["SEQN"].astype(int)
         out = d.merge(b[["SEQN", "SBP_mean", "DBP_mean"]], on="SEQN", how="left")
         out.to_csv(DATA / f"cdc_nhanes_hypertension_{cycle}.csv", index=False)

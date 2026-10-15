@@ -1,0 +1,7 @@
+label,target,auc,target_combos_flagged,other_flagged,other_features
+plant_BMI_1,BMI,"{'2017-2020': 0.8596, '2021-2023': 0.8557}",6,14,"Age, GenHlth, HighChol"
+plant_BMI_2,BMI,"{'2017-2020': 0.8454, '2021-2023': 0.8545}",6,16,"Age, GenHlth, HighChol"
+plant_BMI_3,BMI,"{'2017-2020': 0.8432, '2021-2023': 0.8529}",6,18,"Age, Diabetes_self, GenHlth, HighChol"
+plant_Age_1,Age,"{'2017-2020': 0.8617, '2021-2023': 0.8243}",6,19,"BMI, Diabetes_self, GenHlth, HighChol"
+plant_Age_2,Age,"{'2017-2020': 0.8444, '2021-2023': 0.8358}",6,21,"BMI, Diabetes_self, GenHlth, HighChol"
+plant_Age_3,Age,"{'2017-2020': 0.8573, '2021-2023': 0.8241}",6,12,"BMI, GenHlth, HighChol"

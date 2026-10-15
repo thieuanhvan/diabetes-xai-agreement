@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.analysis.manuscript_numbers import pct, t4
+from src.analysis.manuscript_numbers import pct, t4, q4
 
 OUT = Path(__file__).resolve().parents[2] / "outputs"
 DST = OUT / "journal_tables"
@@ -73,7 +73,7 @@ def label_shift_tests() -> str:
         cells = []
         for cyc in ["2017-2020", "2021-2023"]:
             x = g.loc[cyc]
-            cells += [pct(x["diff"]), t4(x.q_bh), t4(x.q_signflip)]
+            cells += [pct(x["diff"]), q4(x.q_bh), q4(x.q_signflip)]
         bonf = "yes" if bonf_ok[(r.method, r.model, r.feature)] else "no"
         rows.append(f"{r.direction} & {r.method} & {MODEL[r.model]} & {r.feature} & " + " & ".join(cells) + f" & {bonf} \\\\")
     return "\n".join(rows)
@@ -126,7 +126,7 @@ def hypertension_shifts() -> str:
         mark = r"$^{\ast}$" if rep[(meth, mdl, feat)] else ""
         cells = []
         for cyc in ["2017-2020", "2021-2023"]:
-            cells += [pct(r[("diff", cyc)]), t4(r[("q_bh", cyc)])]
+            cells += [pct(r[("diff", cyc)]), q4(r[("q_bh", cyc)])]
         feat_tex = feat.replace("_", r"\_")
         rows.append(f"{meth} & {MODEL[mdl]} & {feat_tex}{mark} & " + " & ".join(cells) + r" \\")
     return "\n".join(rows)
