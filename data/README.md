@@ -1,6 +1,11 @@
 # data/
 
-Three cleaned CDC BRFSS cohorts committed directly to this folder:
+This folder holds two sets of inputs: three cleaned CDC BRFSS cohorts
+(conference paper, tag `mapr2026-v1.0`) and six NHANES analysis tables
+(journal article, releases `jbi-v1` and `v32`; see
+[NHANES cohorts](#nhanes-cohorts-label-axis-journal-extension) below).
+
+BRFSS cohorts:
 
 ```
 data/
@@ -9,7 +14,7 @@ data/
 └── cdc_brfss_diabetes_2023.csv    (272,769 rows x 18 cols)
 ```
 
-These three files are the only inputs the pipeline consumes. The full
+These three files are the only inputs the MAPR pipeline consumes. The full
 reproduction in `README_REPRODUCIBILITY.md` reads them as-is; no raw
 `.XPT` ingestion is required.
 
@@ -67,15 +72,28 @@ python -m src.pipelines.run_pipeline_all_combos
 
 ```
 data/
-├── cdc_nhanes_diabetes_2017-2020.csv    (8,702 rows x 29 cols)
-└── cdc_nhanes_diabetes_2021-2023.csv    (6,185 rows x 29 cols)
+├── cdc_nhanes_diabetes_2015-2016.csv        (5,602 rows x 29 cols, held-out cycle)
+├── cdc_nhanes_diabetes_2017-2020.csv        (8,702 rows x 29 cols)
+├── cdc_nhanes_diabetes_2021-2023.csv        (6,185 rows x 29 cols)
+├── cdc_nhanes_hypertension_2015-2016.csv    (5,602 rows x 31 cols, held-out cycle)
+├── cdc_nhanes_hypertension_2017-2020.csv    (8,702 rows x 31 cols)
+└── cdc_nhanes_hypertension_2021-2023.csv    (6,185 rows x 31 cols)
 ```
+
+The hypertension tables are the diabetes tables plus `SBP_mean` and
+`DBP_mean` (mean of the measured readings), built from the raw NHANES
+blood-pressure files with
+`python -m src.data.build_nhanes_hypertension --raw-dir <raw NHANES dir>`.
+The 2015-2016 tables are the held-out replication cycle of release `v32`
+(its blood pressure is auscultatory, BPX; later cycles are oscillometric,
+BPXO).
 
 Built from the public CDC NHANES files (2017–March 2020 pre-pandemic
 release `P_*`; August 2021–August 2023 release `*_L`) by the companion
 repository `nhanes-diabetes` (branch `label-axis-columns`), adults aged 18+.
-Used only by `src/analysis/run_label_axis.py`; the MAPR pipeline does not
-read them.
+Used by the journal analyses (`src/analysis/run_label_axis.py` and the
+`v32` outcome-definition scripts, see the main README); the MAPR pipeline
+does not read them.
 
 Columns used by the label axis:
 
