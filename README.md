@@ -1,24 +1,26 @@
 # diabetes-xai-agreement
 
 Research pipeline for auditing population-level explainable AI agreement in
-clinical risk prediction. It contains two sets of results:
+clinical risk prediction. It contains three sets of results:
 
-* **Journal article, outcome-definition version (release `v32`)**: do
-  diagnosis and measured outcome labels change population-level
-  explanations? Replicated shifts on NHANES 2017-March 2020 and 2021-2023,
+* **Journal article, outcome-definition version (release `v32`)**:
+  *Auditing population-level XAI agreement under diagnosed versus measured
+  outcome labels: evidence from diabetes and hypertension risk prediction*
+  (under review). Do diagnosis and measured outcome labels change
+  population-level explanations? Replicated shifts on NHANES 2017-March 2020 and 2021-2023,
   label controls (prevalence, threshold, definition, class weighting),
   random and AUC-matched disagreement null labels, pseudo-outcome and
   planted-label checks, detection by 12 agreement metrics, and held-out
   replication in NHANES 2015-2016. See
   [Outcome-definition analysis](#outcome-definition-analysis-release-v32).
-* **Journal article, first submission (release `jbi-v1`)**: an audit protocol that separates
+* **Earlier journal version (release `jbi-v1`)**: an audit protocol that separates
   explanation agreement into contradiction, depth and head order, judges it
   against a seed-noise reference, and tests metric, model, attribution
   method, training configuration and outcome definition as sources of
   apparent disagreement. Testbed: BRFSS 2015/2021/2023 and NHANES
   2017-March 2020 and 2021-2023 (diabetes: diagnosis vs HbA1c; transfer
   demonstration: hypertension, diagnosis vs measured blood pressure).
-  See [Journal article (JBI)](#journal-article-jbi-release-jbi-v1).
+  See [Earlier journal version](#earlier-journal-version-release-jbi-v1).
 * **Conference paper (tag `mapr2026-v1.0`)**: the MAPR 2026 pipeline on
   BRFSS (18 attribution rankings, cABC Group-A Jaccard), documented in the
   sections below.
@@ -188,7 +190,7 @@ This section describes the conference pipeline only. Within it, only the
 pipeline are exploratory additions; they are not audited in the MAPR
 paper, which defers both to extension work. The fairness analysis reported
 in the journal article is a separate script (`run_label_fairness`, see
-[Journal article (JBI)](#journal-article-jbi-release-jbi-v1)). They are
+[Earlier journal version](#earlier-journal-version-release-jbi-v1)). They are
 included here because they are reproducible artefacts of the same run,
 not because they are results of the paper.
 
@@ -295,7 +297,7 @@ ABC curve, i.e. above-mean importance. The published computed ABC analysis
 points; `agreement_metrics.cabc_group_a_standard` implements that rule after
 the authors' reference code and is used for the sensitivity analysis.
 
-## Journal article (JBI, release `jbi-v1`)
+## Earlier journal version (release `jbi-v1`)
 
 ### Environment
 
