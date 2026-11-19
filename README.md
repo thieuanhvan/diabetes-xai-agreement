@@ -3,10 +3,12 @@
 Research pipeline for auditing population-level explainable AI agreement in
 clinical risk prediction. It contains three sets of results:
 
-* **Journal article, outcome-definition version (release `v32`)**:
-  *Auditing population-level XAI agreement under diagnosed versus measured
-  outcome labels: evidence from diabetes and hypertension risk prediction*
-  (under review). Do diagnosis and measured outcome labels change
+* **Journal article, outcome-definition version (releases `v32`, `v33`)**:
+  *Diagnosed or measured: The outcome definition shifts the feature-importance
+  explanations of clinical prediction models* (under review). Release `v33`
+  adds the online supplement of the article
+  ([docs/online_supplement.pdf](docs/online_supplement.pdf), Sections S1-S5 and
+  Tables S1-S31); the analysis code and results are unchanged since `v32`. Do diagnosis and measured outcome labels change
   population-level explanations? Replicated shifts on NHANES 2017-March 2020 and 2021-2023,
   label controls (prevalence, threshold, definition, class weighting),
   random and AUC-matched disagreement null labels, pseudo-outcome and
